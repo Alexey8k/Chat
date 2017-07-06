@@ -7,39 +7,39 @@ using System.Text;
 
 namespace ChatServise
 {
-    // ПРИМЕЧАНИЕ. Команду "Переименовать" в меню "Рефакторинг" можно использовать для одновременного изменения имени интерфейса "IService1" в коде и файле конфигурации.
-    [ServiceContract]
-    public interface IService1
+
+    [ServiceContract(CallbackContract = typeof(IChatClient), SessionMode = SessionMode.Allowed)]//для дуплексного контакта
+    public interface IChatService
     {
+        //AuthModel 
+        //AuthModelResponse
         [OperationContract]
-        string GetData(int value);
+        void Login();
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        void Logout();
 
-        // TODO: Добавьте здесь операции служб
+        [OperationContract]
+        void SendMessage();
+
+        [OperationContract]
+        void Registration();
+
+        [OperationContract]
+        void GetUsers();
+
+        [OperationContract]
+        void GetMessages();
     }
 
-    // Используйте контракт данных, как показано на следующем примере, чтобы добавить сложные типы к сервисным операциям.
-    // В проект можно добавлять XSD-файлы. После построения проекта вы можете напрямую использовать в нем определенные типы данных с пространством имен "ChatServise.ContractType".
-    [DataContract]
-    public class CompositeType
+    public interface IChatClient//дуплексный контракт (исправить string s)
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
-
-        [DataMember]
-        public bool BoolValue
-        {
-            get { return boolValue; }
-            set { boolValue = value; }
-        }
-
-        [DataMember]
-        public string StringValue
-        {
-            get { return stringValue; }
-            set { stringValue = value; }
-        }
+        [OperationContract]
+        void UserJoined(string s);
+        [OperationContract]
+        void UserLeaved(string s);
+        [OperationContract]
+        void MessageReceived(string s);
     }
+
 }
