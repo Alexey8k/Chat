@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatServise.Model
 {
-    class Unread_Message
+    public class Unread_Message : Attribute
     {
     }
 }

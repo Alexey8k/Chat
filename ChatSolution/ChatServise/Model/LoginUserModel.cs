@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatServise.Model
 {
-    class LoginUserModel
+    public class LoginUserModel : Attribute
     {
     }
 }

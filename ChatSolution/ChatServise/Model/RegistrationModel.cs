@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ChatServise.Model
 {
-    class RegistrationModel
+    public class RegistrationModel:Attribute
     {
+       public string Login { get;set; }
+       public string Mail { get; set; }
+       public string Password { get; set; }
+
     }
 }

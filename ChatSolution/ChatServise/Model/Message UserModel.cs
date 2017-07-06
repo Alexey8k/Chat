@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatServise.Model
 {
-    class Message_UserModel
+    public class Message_UserModel : Attribute
     {
     }
 }
