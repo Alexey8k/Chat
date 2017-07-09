@@ -11,35 +11,41 @@ namespace ChatServise
     [ServiceContract(CallbackContract = typeof(IChatClient), SessionMode = SessionMode.Allowed)]//для дуплексного контакта
     public interface IChatService
     {
-        //AuthModel 
-        //AuthModelResponse
         [OperationContract]
-        void Login();
+        LoginObjectOut Login(LoginObjectIn);//войти
 
         [OperationContract]
-        void Logout();
+        void Logout(LogoutObjectIn);//выйти
 
         [OperationContract]
-        void SendMessage();
+        void SendMessage(MessageObjectIn);//отправить сообщение
 
         [OperationContract]
-        void Registration();
+        RegistrationObjectOut Registration(RegistrationObjectIn);//регистрация
 
-        [OperationContract]
-        void GetUsers();
+        //[OperationContract]
+        //void GetUsers();
 
-        [OperationContract]
-        void GetMessages();
+        //[OperationContract]
+        //void GetMessages();
     }
 
-    public interface IChatClient//дуплексный контракт (исправить string s)
+    public interface IChatCallback//дуплексный контракт
     {
         [OperationContract]
-        void UserJoined(string s);
+        void UserJoined(UserJoinedObjectIn);//разослать всем что юзер присоеденился к чату
+
         [OperationContract]
-        void UserLeaved(string s);
+        void UserLeaved(UserLeavedObjectIn);//разослать всем что юзер покинул чат
+
         [OperationContract]
-        void MessageReceived(string s);
+        void Message(MessageObjectIn);//разослать всем такое то сообщение (у нас общий чат)
+
+        [OperationContract]
+        void SetUsers(UsersobjectIn);//метод который запускается методом Login (при входе пользователя) пользователю который только залогинился придут пользователи которые онлайн
+
+        [OperationContract]
+        void SetMessage(MessageObjectIn);//метод который запускается методом Login (при входе пользователя) и показывает пользователю непрочитанные сообщения
     }
 
 }
