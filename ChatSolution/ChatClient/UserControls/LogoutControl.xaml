@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="ChatClient.UserControls.LogoutControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ChatClient.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel LastChildFill="False">
+        <Button DockPanel.Dock="Right" 
+                VerticalAlignment="Center"
+                Margin="3"
+                Padding="7,3" 
+                Content="Выйти"/>
+        <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
+            <Hyperlink>
+                <!--здесь будет отображатся имя пользователя и возможно возможность перейти в личный кабинет-->
+                <Run Text=""/>
+            </Hyperlink>
+        </TextBlock>
+    </DockPanel>
+</UserControl>

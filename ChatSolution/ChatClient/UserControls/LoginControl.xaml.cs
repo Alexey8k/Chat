@@ -13,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ChatClient
+namespace ChatClient.UserControls
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для LoginControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginControl : UserControl
     {
-        public MainWindow()
+        public LoginControl()
         {
             InitializeComponent();
-
-            
         }
     }
 }

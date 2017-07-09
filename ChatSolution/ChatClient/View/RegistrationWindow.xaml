@@ -1,0 +1,41 @@
+﻿<Window x:Class="ChatClient.View.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="Регистрация" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Grid Margin="3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="190"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Margin="3" Text="Логин:" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding Login}"/>
+
+        <TextBlock Margin="3" Text="Пароль:" Grid.Row="1" Grid.Column="0"/>
+        <PasswordBox Margin="3" x:Name="Psw1" Grid.Row="1" Grid.Column="1">
+
+        </PasswordBox>
+
+        <TextBlock Margin="3" Text="Повторите пароль:" Grid.Row="2" Grid.Column="0"/>
+        <PasswordBox Margin="3" x:Name="Psw2" Grid.Row="2" Grid.Column="1" />
+
+        <TextBlock Margin="3" Text="Почта:" Grid.Row="3" Grid.Column="0"/>
+        <TextBox Margin="3" Grid.Row="3" Grid.Column="1" Text="{Binding Email}"/>
+
+        <Button Margin="3" Grid.Row="8" Grid.ColumnSpan="2" 
+                Content="Отправить" 
+                HorizontalAlignment="Center"
+                Command="{Binding RegistrationCommand}"
+                CommandParameter="{Binding ElementName=Window}"/>
+    </Grid>
+</Window>

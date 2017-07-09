@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ChatClient
+namespace ChatClient.View
 {
     /// <summary>
-    /// Логика взаимодействия для auth.xaml
+    /// Логика взаимодействия для RegistrationWindow.xaml
     /// </summary>
-    public partial class auth : Window
+    public partial class RegistrationWindow : Window
     {
-        public auth()
+        public RegistrationWindow()
         {
             InitializeComponent();
         }
