@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class LoginObjectOut
+    public class LoginObjectOut 
     {
+        public LoginResult logresult { get; set; }
     }
 }

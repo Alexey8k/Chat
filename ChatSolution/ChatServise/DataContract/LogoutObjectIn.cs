@@ -10,5 +10,6 @@ namespace ChatServise.DataContract
     [DataContract]
     public class LogoutObjectIn
     {
+
     }
 }

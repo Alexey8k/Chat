@@ -8,7 +8,10 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class LoginObjectIn
+    public class LoginObjectIn //Вход
     {
+        public string login { get; set; }
+        public string passHesh { get; set; }
+
     }
 }
