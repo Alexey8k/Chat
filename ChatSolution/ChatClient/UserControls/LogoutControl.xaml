@@ -11,11 +11,11 @@
                 VerticalAlignment="Center"
                 Margin="3"
                 Padding="7,3" 
-                Content="Выйти"/>
+                Content="Выйти"
+                Command="{Binding LogoutCommand}" />
         <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
-            <Hyperlink>
-                <!--здесь будет отображатся имя пользователя и возможно возможность перейти в личный кабинет-->
-                <Run Text=""/>
+            <Hyperlink Command="{Binding CabinetCommand}">
+                <Run Text="{Binding Login}"/>
             </Hyperlink>
         </TextBlock>
     </DockPanel>

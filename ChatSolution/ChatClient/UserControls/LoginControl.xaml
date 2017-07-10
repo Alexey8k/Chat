@@ -8,8 +8,9 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
         <Button Content="Войти"
-                    VerticalAlignment="Center"
-                    Margin="3"
-                    Padding="7,3"/>
+                VerticalAlignment="Center"
+                Margin="3"
+                Padding="7,3"
+                Command="{Binding LoginCommand}"/>
     </StackPanel>
 </UserControl>
