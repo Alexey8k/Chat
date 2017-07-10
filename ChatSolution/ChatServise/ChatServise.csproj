@@ -49,7 +49,8 @@
     <Compile Include="DataContract\MessagesObjectIn.cs" />
     <Compile Include="DataContract\RegistrationResult.cs" />
     <Compile Include="DataContract\UsersObjectIn.cs" />
-    <Compile Include="IService1.cs" />
+    <Compile Include="IChatCallback.cs" />
+    <Compile Include="IChatService.cs" />
     <Compile Include="DataContract\LoginObjectOut.cs" />
     <Compile Include="DataContract\LoginObjectIn.cs" />
     <Compile Include="DataContract\LogoutObjectIn.cs" />
@@ -59,7 +60,7 @@
     <Compile Include="DataContract\UserJoinedObjectIn.cs" />
     <Compile Include="DataContract\UserLeavedObjectIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service1.cs" />
+    <Compile Include="ChatService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
