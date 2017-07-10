@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.Model
+namespace ChatServise.DataContract
 {
-     [DataContract]
-    public class LogoutUserModel 
+    [DataContract]
+    public class MessageObjectIn
     {
     }
 }
