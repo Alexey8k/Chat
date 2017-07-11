@@ -8,6 +8,7 @@ using System.ServiceModel;
 
 namespace ChatServise
 {
+    //возможно этот файл надо удалить
     public interface IChatCallback//дуплексный контракт
     {
         [OperationContract]

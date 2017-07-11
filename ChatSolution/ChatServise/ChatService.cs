@@ -9,24 +9,21 @@ using ChatServise.DataContract;
 
 namespace ChatServise
 {
-    public class ChatService : IChatService
-    {
-        Dictionary<string, IChatCallback> Call = new Dictionary<string, IChatCallback>();//для запоминания подключенных пользователей (онлайн юзеры)
-
-        
+    public class ChatService :IChatService
+    {        
         public LoginObjectOut Login(LoginObjectIn obj)//войти
         {
-
-            //if (BuisenessLevel.Login(obj) == LoginResult.Ok)
-            //{
+            User user = new User();
+            UserManager userManager = new UserManager();
+            
 
                 IChatCallback call = OperationContext.Current.GetCallbackChannel<IChatCallback>();
                 UsersObjectIn obj = new UsersObjectIn();
                 call.SetUsers(obj);
                 call.SetMessage(MessagesObjectIn obj);
                 Call.Add(obj, call);//добавили в базу онлайн пользователей
+            
 
-            //}
 
             return new LoginObjectOut();
         }
