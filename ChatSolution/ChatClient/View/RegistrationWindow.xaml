@@ -5,7 +5,14 @@
         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:viewModel="clr-namespace:ChatClient.ViewModel"
         Title="Регистрация" SizeToContent="WidthAndHeight" ResizeMode="NoResize">
+    <Window.Resources>
+        <viewModel:RegistrationViewModel x:Key="RegistrationViewModel"/>
+    </Window.Resources>
+    <Window.DataContext>
+        <Binding Source="{StaticResource RegistrationViewModel}"/>
+    </Window.DataContext>
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
