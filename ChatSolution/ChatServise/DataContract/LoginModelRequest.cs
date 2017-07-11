@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class MessagesObjectIn //вернет коллекцию непрочитанных сообщений
+    public class LoginModelRequest //Вход
     {
-        public List<MessagesModelIn> Messages = new List<MessagesModelIn>();
+        public string login { get; set; }
+        public string passHesh { get; set; }
+
     }
 }

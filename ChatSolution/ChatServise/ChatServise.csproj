@@ -46,13 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContract\LoginResult.cs" />
+    <Compile Include="DataContract\MessagesModelIn.cs" />
     <Compile Include="DataContract\MessagesObjectIn.cs" />
     <Compile Include="DataContract\RegistrationResult.cs" />
+    <Compile Include="DataContract\UserModel.cs" />
     <Compile Include="DataContract\UsersObjectIn.cs" />
     <Compile Include="IChatCallback.cs" />
     <Compile Include="IChatService.cs" />
-    <Compile Include="DataContract\LoginObjectOut.cs" />
-    <Compile Include="DataContract\LoginObjectIn.cs" />
+    <Compile Include="DataContract\LoginModelResponce.cs" />
+    <Compile Include="DataContract\LoginModelRequest.cs" />
     <Compile Include="DataContract\LogoutObjectIn.cs" />
     <Compile Include="DataContract\MessageObjectIn.cs" />
     <Compile Include="DataContract\RegistrationObjectOut.cs" />

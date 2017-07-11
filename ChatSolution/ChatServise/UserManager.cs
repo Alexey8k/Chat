@@ -8,7 +8,7 @@ namespace ChatServise
 {
    public class UserManager//для запоминания подключенных пользователей (онлайн юзеры) и работы с ними
     {
-        public Dictionary<string, IChatCallback> Call = new Dictionary<string, IChatCallback>();//для запоминания подключенных пользователей (онлайн юзеры)
-
+        public Dictionary<int, User> Users = new Dictionary<int, User>();//для запоминания подключенных пользователей (онлайн юзеры)
+        
     }
 }

@@ -8,6 +8,7 @@ namespace ChatServise
 {
     public class User//хранит поля для работы с пользователем
     {
+      //  public int idUser { get; set; }//ID в базе данных (переместил в UserManager)
         public string login { get; set; }
         public IChatCallback call { get; set; }//поле обр вызова
     }

@@ -9,23 +9,26 @@ using ChatServise.DataContract;
 
 namespace ChatServise
 {
-    public class ChatService :IChatService
-    {        
-        public LoginObjectOut Login(LoginObjectIn obj)//войти
+    public class ChatService : IChatService
+    {
+        User user = new User();
+        UserManager userManager = new UserManager();
+
+        public LoginModelResponce Login(LoginModelRequest obj)//войти (принимает obj, возвращает Login)
         {
-            User user = new User();
-            UserManager userManager = new UserManager();
-            
-
-                IChatCallback call = OperationContext.Current.GetCallbackChannel<IChatCallback>();
-                UsersObjectIn obj = new UsersObjectIn();
-                call.SetUsers(obj);
-                call.SetMessage(MessagesObjectIn obj);
-                Call.Add(obj, call);//добавили в базу онлайн пользователей
-            
+            user.call = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            user.login = obj.login;
+            UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
 
 
-            return new LoginObjectOut();
+
+            call.SetUsers(obj);//получить онлайн пользователей
+            call.SetMessage(MessagesObjectIn obj);
+            Call.Add(obj, call);//добавили в базу онлайн пользователей
+
+
+
+            return new LoginModelResponce();
         }
 
         public void Logout(LogoutObjectIn obj)//выйти
@@ -65,6 +68,7 @@ namespace ChatServise
 
         public RegistrationObjectOut Registration(RegistrationObjectIn obj)//регистрация
         {
+
             //return BuisenessLevel.Registration(_Registration);//просто для добавленгие в БД
             return new RegistrationObjectOut();
         }
@@ -75,4 +79,4 @@ namespace ChatServise
         //}
 
     }
-    }
+}
