@@ -20,20 +20,24 @@ namespace ChatServise
             DataContract.User user = new DataContract.User();
             UserManager userManager = new UserManager();
             BuisnessLevel.Login business = new BuisnessLevel.Login();
+            int id;
 
             user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
             user.login = obj.login;
-            user.passHesh = obj.passHesh;
 
-            business.CheckLogin(user.login, user.passHesh);//должен вернуть результат проверки логина/пароля из БД
+            business.CheckLogin(obj.login, obj.passHesh,out id);//должен вернуть результат проверки логина/пароля из БД
 
             //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
             //UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
 
-            SetUsers(obj);
-            SetMessage(MessagesObjectIn obj);
+            //СДЕЛАТЬ ФУНКЦИИ КАЛБЕКАМИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            Call.Add(obj, call);//добавили в базу онлайн пользователей
+            userManager.SetUsers();//вернем список онлайн юзеров
+
+            userManager.SetMessage();//вернем список непрочитанных сообщений
+
+            userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
+
             //Через CallBack надо всем отправить что Юзер онлайн
 
             return new LoginModelResponce();

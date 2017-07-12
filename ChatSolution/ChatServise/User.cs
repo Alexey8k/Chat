@@ -13,6 +13,6 @@ namespace ChatServise.DataContract
       //  public int idUser { get; set; }//ID в базе данных (переместил в UserManager)
         public string login { get; set; }
         public IChatCallback callBack { get; set; }//поле обр вызова
-        public string passHesh { get; set; }//для проброски к БД для сверки
+     //   public string passHesh { get; set; }//для проброски к БД для сверки
     }
 }
