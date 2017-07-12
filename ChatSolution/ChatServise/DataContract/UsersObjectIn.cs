@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.DataContract
+namespace ChatServise.DataContract//возможно надо будет удалить
 {
     [DataContract]
     public class UsersObjectIn  //UsersObjectIn() вернет коллекцию онлайн пользователей

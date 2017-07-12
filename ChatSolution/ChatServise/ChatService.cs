@@ -5,24 +5,30 @@ using System.Runtime.Serialization;//для передачи пользоват�
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
-using BusinessLevel;
+using BuisnessLevel;
+using ChatServise.DataContract;
 
 namespace ChatServise
 {
     public class ChatService : IChatService
     {
-        User user = new User();
-        UserManager userManager = new UserManager();
-        BusinessLevel.BusinessLevel business = new BusinessLevel.BusinessLevel();
+
 
         public LoginModelResponce Login(LoginModelRequest obj)//войти (принимает obj от LogicLevel, возвращает Login)
         {
-            user.call = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            User user = new User();
+            UserManager userManager = new UserManager();
+            BuisnessLevel.Login business = new BuisnessLevel.Login();
+
+            user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
             user.login = obj.login;
-            
-            buis
-            
-      //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
+            user.passHesh = obj.passHesh;
+
+            business.CheckLogin(user.login, user.passHesh);
+
+
+
+            //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
 
             UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
 
