@@ -8,6 +8,7 @@ using System.Threading;
 using BuisnessLevel;
 using ChatServise.DataContract;
 
+
 namespace ChatServise
 {
     public class ChatService : IChatService
@@ -16,7 +17,7 @@ namespace ChatServise
 
         public LoginModelResponce Login(LoginModelRequest obj)//войти (принимает obj от LogicLevel, возвращает Login)
         {
-            User user = new User();
+            DataContract.User user = new DataContract.User();
             UserManager userManager = new UserManager();
             BuisnessLevel.Login business = new BuisnessLevel.Login();
 
@@ -24,21 +25,16 @@ namespace ChatServise
             user.login = obj.login;
             user.passHesh = obj.passHesh;
 
-            business.CheckLogin(user.login, user.passHesh);
-
-
+            business.CheckLogin(user.login, user.passHesh);//должен вернуть результат проверки логина/пароля из БД
 
             //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
+            //UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
 
-            UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
+            SetUsers(obj);
+            SetMessage(MessagesObjectIn obj);
 
-
-
-            call.SetUsers(obj);//получить онлайн пользователей
-            call.SetMessage(MessagesObjectIn obj);
             Call.Add(obj, call);//добавили в базу онлайн пользователей
-
-
+            //Через CallBack надо всем отправить что Юзер онлайн
 
             return new LoginModelResponce();
         }
