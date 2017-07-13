@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.DataContract
+namespace BuisenessLevel.Model
 {
-    [DataContract]
-    public class LoginModelRequest //Вход
+   public class LoginModel
     {
+        public byte[] Hash { get; set; }
         public string Login { get; set; }
-        public string Hesh { get; set; }
 
     }
 }
