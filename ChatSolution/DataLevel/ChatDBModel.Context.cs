@@ -15,7 +15,7 @@ namespace DataLevel
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class ChatDbEntities : DbContext
+    internal partial class ChatDbEntities : DbContext
     {
         public ChatDbEntities()
             : base("name=ChatDbEntities")
@@ -43,19 +43,6 @@ namespace DataLevel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddMessage", textParameter, userIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Login(string login, byte[] password)
-        {
-            var loginParameter = login != null ?
-                new ObjectParameter("login", login) :
-                new ObjectParameter("login", typeof(string));
-    
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Login", loginParameter, passwordParameter);
-        }
-    
         public virtual int Logout(string login)
         {
             var loginParameter = login != null ?
@@ -65,21 +52,30 @@ namespace DataLevel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Logout", loginParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Registration(string login, byte[] password, string email)
+        public virtual ObjectResult<Nullable<int>> Login(byte[] hash)
+        {
+            var hashParameter = hash != null ?
+                new ObjectParameter("hash", hash) :
+                new ObjectParameter("hash", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Login", hashParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> Registration(string login, byte[] hash, string email)
         {
             var loginParameter = login != null ?
                 new ObjectParameter("login", login) :
                 new ObjectParameter("login", typeof(string));
     
-            var passwordParameter = password != null ?
-                new ObjectParameter("password", password) :
-                new ObjectParameter("password", typeof(byte[]));
+            var hashParameter = hash != null ?
+                new ObjectParameter("hash", hash) :
+                new ObjectParameter("hash", typeof(byte[]));
     
             var emailParameter = email != null ?
                 new ObjectParameter("email", email) :
                 new ObjectParameter("email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Registration", loginParameter, passwordParameter, emailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Registration", loginParameter, hashParameter, emailParameter);
         }
     }
 }

@@ -6,8 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="a5d36b92832244c584d899e8c7702e36" Name="Diagram1">
         <EntityTypeShape EntityType="ChatDbModel.Message" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChatDbModel.User" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <AssociationConnector Association="ChatDbModel.FK_Message_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ChatDbModel.User" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="ChatDbModel.FK_Message_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
