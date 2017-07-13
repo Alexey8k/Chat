@@ -30,12 +30,23 @@
 
         <TextBlock Margin="3" Text="Пароль:" Grid.Row="1" Grid.Column="0"/>
         <PasswordBox Margin="3" x:Name="Psw1" Grid.Row="1" Grid.Column="1">
-
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PasswordChanged">
+                    <i:InvokeCommandAction Command="{Binding Psw1Command}"
+                                           CommandParameter="{Binding ElementName=PswBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </PasswordBox>
 
         <TextBlock Margin="3" Text="Повторите пароль:" Grid.Row="2" Grid.Column="0"/>
-        <PasswordBox Margin="3" x:Name="Psw2" Grid.Row="2" Grid.Column="1" />
-
+        <PasswordBox Margin="3" x:Name="Psw2" Grid.Row="2" Grid.Column="1" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PasswordChanged">
+                    <i:InvokeCommandAction Command="{Binding Psw2Command}"
+                                           CommandParameter="{Binding ElementName=PswBox}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </PasswordBox>
         <TextBlock Margin="3" Text="Почта:" Grid.Row="3" Grid.Column="0"/>
         <TextBox Margin="3" Grid.Row="3" Grid.Column="1" Text="{Binding Email}"/>
 
