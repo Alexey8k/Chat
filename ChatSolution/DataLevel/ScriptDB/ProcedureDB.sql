@@ -1,26 +1,29 @@
 ﻿create procedure [Login]
-@login varchar(15),
-@password binary(100)
+@hash varbinary(100)
 as
 select case 
-			when exists(select '' from [User] where Login=@login and password=@password)
+			when exists(select '' from [User] where [Hash]=@hash)
 				then 0
-			else 1
+			else 2
 		end
 go
 
 create procedure [Registration]
 @login varchar(15),
-@password varbinary(100),
+@hash varbinary(100),
 @email varchar(50)
 as
-select case 
+declare @result int = case 
 			when exists(select '' from [User] where Login=@login)
 				then 1
 			when exists(select '' from [User] where Email=@email)
 				then 2
 			else 0
 		end
+if @result=0
+	insert into [User]([Login],[Email],[Hash],[RegDate])
+		values(@login,@email,@hash,GETDATE())
+select @result
 go
 
 create procedure [Logout]

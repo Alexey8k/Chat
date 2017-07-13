@@ -22,12 +22,12 @@ namespace DataLevel
     
         public int Id { get; set; }
         public string Login { get; set; }
-        public byte[] Password { get; set; }
+        public byte[] Hash { get; set; }
         public string Email { get; set; }
         public System.DateTime RegDate { get; set; }
         public Nullable<System.DateTime> LastVisitDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Message> Messages { get; set; }
+        internal virtual ICollection<Message> Messages { get; set; }
     }
 }
