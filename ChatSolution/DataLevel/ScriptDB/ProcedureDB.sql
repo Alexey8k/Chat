@@ -14,7 +14,7 @@ create procedure [Registration]
 @email varchar(50)
 as
 declare @result int = case 
-			when exists(select '' from [User] where Login=@login)
+			when exists(select '' from [User] where [Login]=@login)
 				then 1
 			when exists(select '' from [User] where Email=@email)
 				then 2
