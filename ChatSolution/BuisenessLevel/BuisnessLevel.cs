@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.ServiceModel;
 
 
-
 namespace BuisnessLevel
 {
     public class Login//реализация логики службы для входа
@@ -14,13 +13,13 @@ namespace BuisnessLevel
         public int CheckLogin(string login, string passHesh,out int id)//для прповерки логина и пароля
         {
 
+
             return;
         }
 
-        public MessagesObjectIn SetMessage()//список непрочитанных сообщений
+        public void SetMessage()//список непрочитанных сообщений
         {
 
-            return;
         }
 
     }

@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class UserModel//возможно надо будет удалить
+    public class UserModel
     {
-        public int idUser { get; set; }//ID в базе данных
+        //  public int idUser { get; set; }//ID в базе данных (переместил в UserManager)
+        [DataMember]
         public string login { get; set; }
+
+        [DataMember]
+        public IChatCallback callBack { get; set; }//поле обр вызова
+        //   public string passHesh { get; set; }//для проброски к БД для сверки
+
     }
 }

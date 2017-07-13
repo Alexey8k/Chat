@@ -17,7 +17,7 @@ namespace ChatServise
 
         public LoginModelResponce Login(LoginModelRequest obj)//войти (принимает obj от LogicLevel, возвращает Login)
         {
-            DataContract.User user = new DataContract.User();
+            UserModel user = new UserModel();
             UserManager userManager = new UserManager();
             BuisnessLevel.Login business = new BuisnessLevel.Login();
             int id;
@@ -32,13 +32,16 @@ namespace ChatServise
 
             //СДЕЛАТЬ ФУНКЦИИ КАЛБЕКАМИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            userManager.SetUsers();//вернем список онлайн юзеров
+            userManager.GetUsers();//вернем список онлайн юзеров
 
-            userManager.SetMessage();//вернем список непрочитанных сообщений
+            userManager.GetMessages();//вернем список непрочитанных сообщений
+
+            //Через CallBack надо всем отправить что Юзер онлайн
+            userManager.SendOnline(user.login);
+
 
             userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
 
-            //Через CallBack надо всем отправить что Юзер онлайн
 
             return new LoginModelResponce();
         }
