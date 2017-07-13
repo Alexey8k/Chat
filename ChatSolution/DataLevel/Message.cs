@@ -12,7 +12,7 @@ namespace DataLevel
     using System;
     using System.Collections.Generic;
     
-    public partial class Message
+    internal partial class Message
     {
         public int Id { get; set; }
         public string Text { get; set; }

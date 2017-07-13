@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище ChatDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище ChatDbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Message">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,7 +20,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Password" Type="varbinary" MaxLength="100" Nullable="false" />
+          <Property Name="Hash" Type="varbinary" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RegDate" Type="datetime" Nullable="false" />
           <Property Name="LastVisitDate" Type="datetime" />
@@ -42,15 +42,14 @@
           <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
         <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="login" Type="varchar" Mode="In" />
-          <Parameter Name="password" Type="binary" Mode="In" />
+          <Parameter Name="hash" Type="varbinary" Mode="In" />
         </Function>
         <Function Name="Logout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login" Type="varchar" Mode="In" />
-          <Parameter Name="password" Type="varbinary" Mode="In" />
+          <Parameter Name="hash" Type="varbinary" Mode="In" />
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="Хранилище ChatDbModelContainer">
@@ -61,12 +60,11 @@
             <End Role="Message" EntitySet="Message" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChatDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Message">
+        <EntityType Name="Message" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -74,23 +72,46 @@
           <Property Name="Text" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Message_User" FromRole="Message" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="ChatDbModel.FK_Message_User" FromRole="Message" ToRole="User" />
         </EntityType>
+        <EntityContainer Name="ChatDbEntities" annotation:LazyLoadingEnabled="true" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+          <EntitySet Name="Messages" EntityType="Self.Message" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+          <FunctionImport Name="AddMessage" a:MethodAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Logout" a:MethodAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+          <Parameter Name="login" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Users" EntityType="ChatDbModel.User" />
+          <AssociationSet Name="FK_Message_User" Association="ChatDbModel.FK_Message_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <FunctionImport Name="Login" ReturnType="Collection(Int32)">
+            <Parameter Name="hash" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="Registration" ReturnType="Collection(Int32)">
+            <Parameter Name="login" Mode="In" Type="String" />
+            <Parameter Name="hash" Mode="In" Type="Binary" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="Binary" MaxLength="100" FixedLength="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Hash" Type="Binary" Nullable="false" MaxLength="100" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastVisitDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Messages" Relationship="Self.FK_Message_User" FromRole="User" ToRole="Message" />
+          <NavigationProperty Name="Messages" Relationship="ChatDbModel.FK_Message_User" FromRole="User" ToRole="Message" />
         </EntityType>
         <Association Name="FK_Message_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Message" Type="Self.Message" Multiplicity="*" />
+          <End Type="ChatDbModel.User" Role="User" Multiplicity="1" />
+          <End Type="ChatDbModel.Message" Role="Message" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -100,30 +121,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ChatDbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Messages" EntityType="Self.Message" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK_Message_User" Association="Self.FK_Message_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Message" EntitySet="Messages" />
-          </AssociationSet>
-          <FunctionImport Name="AddMessage">
-            <Parameter Name="text" Mode="In" Type="String" />
-            <Parameter Name="userId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Login" ReturnType="Collection(Int32)">
-            <Parameter Name="login" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="Logout">
-            <Parameter Name="login" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="Registration" ReturnType="Collection(Int32)">
-            <Parameter Name="login" Mode="In" Type="String" />
-            <Parameter Name="password" Mode="In" Type="Binary" />
-            <Parameter Name="email" Mode="In" Type="String" />
-          </FunctionImport>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -140,21 +137,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddMessage" FunctionName="Хранилище ChatDbModel.AddMessage" />
+          <FunctionImportMapping FunctionImportName="Logout" FunctionName="Хранилище ChatDbModel.Logout" />
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="ChatDbModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="LastVisitDate" ColumnName="LastVisitDate" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="AddMessage" FunctionName="Хранилище ChatDbModel.AddMessage" />
           <FunctionImportMapping FunctionImportName="Login" FunctionName="Хранилище ChatDbModel.Login" />
-          <FunctionImportMapping FunctionImportName="Logout" FunctionName="Хранилище ChatDbModel.Logout" />
           <FunctionImportMapping FunctionImportName="Registration" FunctionName="Хранилище ChatDbModel.Registration" />
         </EntityContainerMapping>
       </Mapping>
