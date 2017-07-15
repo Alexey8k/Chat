@@ -41,3 +41,20 @@ as
   insert into [Message] ([Text],[Date],[UserId])
 	values(@text,GETDATE(),@userId)
 go
+
+create procedure GetMessages
+@userId int
+as
+declare @lastVisitDate datetime
+select @lastVisitDate=LastVisitDate from [User]
+	where Id=@userId
+select * from MessageView
+	where @lastVisitDate<=Date
+go
+
+create procedure GetUser
+@hash varbinary(100)
+as
+select Id,[Login],[Email],RegDate,LastVisitDate from [User]
+	where [Hash]=@hash
+go

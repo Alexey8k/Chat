@@ -83,8 +83,14 @@
     <Compile Include="Message.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MessageModel.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserModel.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -30,19 +30,6 @@ namespace DataLevel
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
     
-        public virtual int AddMessage(string text, Nullable<int> userId)
-        {
-            var textParameter = text != null ?
-                new ObjectParameter("text", text) :
-                new ObjectParameter("text", typeof(string));
-    
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddMessage", textParameter, userIdParameter);
-        }
-    
         public virtual int Logout(string login)
         {
             var loginParameter = login != null ?
@@ -76,6 +63,37 @@ namespace DataLevel
                 new ObjectParameter("email", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Registration", loginParameter, hashParameter, emailParameter);
+        }
+    
+        public virtual ObjectResult<MessageModel> GetMessages(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MessageModel>("GetMessages", userIdParameter);
+        }
+    
+        public virtual ObjectResult<UserModel> GetUser(byte[] hash)
+        {
+            var hashParameter = hash != null ?
+                new ObjectParameter("hash", hash) :
+                new ObjectParameter("hash", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserModel>("GetUser", hashParameter);
+        }
+    
+        public virtual int AddMessage(string text, Nullable<int> userId)
+        {
+            var textParameter = text != null ?
+                new ObjectParameter("text", text) :
+                new ObjectParameter("text", typeof(string));
+    
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddMessage", textParameter, userIdParameter);
         }
     }
 }
