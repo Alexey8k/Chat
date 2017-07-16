@@ -11,10 +11,10 @@ namespace DataLevel
 {
     class MessageManager : BaseManager
     {
-        public MessageModel[] GetMessages(int userId)
+        public MessageDbModel[] GetMessages(int userId)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<GetMessages_Result, MessageModel>());
-            return Mapper.Map<ObjectResult<GetMessages_Result>, MessageModel[]>(_chatDb.GetMessages(userId));
+            Mapper.Initialize(cfg => cfg.CreateMap<GetMessages_Result, MessageDbModel>());
+            return Mapper.Map<ObjectResult<GetMessages_Result>, MessageDbModel[]>(_chatDb.GetMessages(userId));
         }
     }
 }

@@ -9,7 +9,7 @@ namespace DataLevel
 {
     class AuthorizationManager : BaseManager
     {
-        public LoginResultModel Login(LoginModel obj)
+        public LoginResultModel Login(LoginDbModel obj)
         {
             return new LoginResultModel { Result = _chatDb.Login(obj.Hash).FirstOrDefault() };
         }
