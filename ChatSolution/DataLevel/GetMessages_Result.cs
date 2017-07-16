@@ -11,10 +11,10 @@ namespace DataLevel
 {
     using System;
     
-    public partial class MessageModel
+    public partial class GetMessages_Result
     {
         public string Text { get; set; }
-        public System.DateTime Date { get; set; }
         public int UserId { get; set; }
+        public System.DateTime Date { get; set; }
     }
 }

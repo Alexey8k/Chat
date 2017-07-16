@@ -11,10 +11,11 @@ namespace DataLevel
 {
     using System;
     
-    public partial class UserModel
+    public partial class GetUser_Result
     {
         public int Id { get; set; }
         public string Login { get; set; }
+        public byte[] Hash { get; set; }
         public string Email { get; set; }
         public System.DateTime RegDate { get; set; }
         public Nullable<System.DateTime> LastVisitDate { get; set; }

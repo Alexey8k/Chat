@@ -25,8 +25,6 @@
           <Property Name="RegDate" Type="datetime" Nullable="false" />
           <Property Name="LastVisitDate" Type="datetime" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "ChatDb.dbo.MessageView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <Association Name="FK_Message_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Message" Type="Self.Message" Multiplicity="*" />
@@ -53,7 +51,7 @@
           <Parameter Name="hash" Type="varbinary" Mode="In" />
         </Function>
         <Function Name="Logout" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="login" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
         </Function>
         <Function Name="Registration" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="login" Type="varchar" Mode="In" />
@@ -84,14 +82,18 @@
         </EntityType>
         <EntityContainer Name="ChatDbEntities" annotation:LazyLoadingEnabled="true" a:TypeAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <EntitySet Name="Messages" EntityType="Self.Message" a:GetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-          <FunctionImport Name="Logout" a:MethodAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
-          <Parameter Name="login" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="Users" EntityType="ChatDbModel.User" />
           <AssociationSet Name="FK_Message_User" Association="ChatDbModel.FK_Message_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Message" EntitySet="Messages" />
           </AssociationSet>
+          <FunctionImport Name="AddMessage">
+            <Parameter Name="text" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Logout">
+          <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="Login" ReturnType="Collection(Int32)">
           <Parameter Name="hash" Mode="In" Type="Binary" />
           </FunctionImport>
@@ -100,15 +102,11 @@
             <Parameter Name="hash" Mode="In" Type="Binary" />
             <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetMessages" ReturnType="Collection(ChatDbModel.MessageModel)">
-          <Parameter Name="userId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="GetUser" ReturnType="Collection(ChatDbModel.UserModel)">
-          <Parameter Name="hash" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="AddMessage">
-            <Parameter Name="text" Mode="In" Type="String" />
+          <FunctionImport Name="GetMessages" ReturnType="Collection(ChatDbModel.GetMessages_Result)">
             <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetUser" ReturnType="Collection(ChatDbModel.GetUser_Result)">
+            <Parameter Name="hash" Mode="In" Type="Binary" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="User">
@@ -135,14 +133,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="MessageModel">
+        <ComplexType Name="GetMessages_Result">
           <Property Type="String" Name="Text" Nullable="false" MaxLength="140" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
         </ComplexType>
-        <ComplexType Name="UserModel">
+        <ComplexType Name="GetUser_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Login" Nullable="false" MaxLength="15" />
+          <Property Type="Binary" Name="Hash" Nullable="false" MaxLength="100" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
           <Property Type="DateTime" Name="RegDate" Nullable="false" Precision="23" />
           <Property Type="DateTime" Name="LastVisitDate" Nullable="true" Precision="23" />
@@ -163,7 +162,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Logout" FunctionName="Хранилище ChatDbModel.Logout" />
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="IsTypeOf(ChatDbModel.User)">
               <MappingFragment StoreEntitySet="User">
@@ -176,29 +174,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddMessage" FunctionName="Хранилище ChatDbModel.AddMessage" />
+          <FunctionImportMapping FunctionImportName="Logout" FunctionName="Хранилище ChatDbModel.Logout" />
           <FunctionImportMapping FunctionImportName="Login" FunctionName="Хранилище ChatDbModel.Login" />
           <FunctionImportMapping FunctionImportName="Registration" FunctionName="Хранилище ChatDbModel.Registration" />
           <FunctionImportMapping FunctionImportName="GetMessages" FunctionName="Хранилище ChatDbModel.GetMessages">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ChatDbModel.MessageModel">
+              <ComplexTypeMapping TypeName="ChatDbModel.GetMessages_Result">
                 <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetUser" FunctionName="Хранилище ChatDbModel.GetUser">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ChatDbModel.UserModel">
+              <ComplexTypeMapping TypeName="ChatDbModel.GetUser_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
                 <ScalarProperty Name="LastVisitDate" ColumnName="LastVisitDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="AddMessage" FunctionName="Хранилище ChatDbModel.AddMessage" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

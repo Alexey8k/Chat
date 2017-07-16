@@ -5,7 +5,7 @@ select case
 			when exists(select '' from [User] where [Hash]=@hash)
 				then 0
 			else 2
-		end
+		end	Result
 go
 
 create procedure [Registration]
@@ -23,15 +23,15 @@ declare @result int = case
 if @result=0
 	insert into [User]([Login],[Email],[Hash],[RegDate])
 		values(@login,@email,@hash,GETDATE())
-select @result
+select @result Result
 go
 
 create procedure [Logout]
-@login varchar(15)
+@userId int
 as
 update [User]
 	set LastVisitDate=GETDATE()
-	where Login=@login
+	where Id=@userId
 go
 
 create procedure [AddMessage]
@@ -45,16 +45,14 @@ go
 create procedure GetMessages
 @userId int
 as
-declare @lastVisitDate datetime
-select @lastVisitDate=LastVisitDate from [User]
-	where Id=@userId
-select * from MessageView
-	where @lastVisitDate<=Date
+select m.Text,m.UserId,m.Date from [Message] m
+	join [User] u on u.LastVisitDate<=m.Date
+	where u.Id=@userId
 go
 
 create procedure GetUser
 @hash varbinary(100)
 as
-select Id,[Login],[Email],RegDate,LastVisitDate from [User]
+select * from [User]
 	where [Hash]=@hash
 go
