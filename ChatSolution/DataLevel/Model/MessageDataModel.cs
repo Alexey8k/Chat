@@ -8,7 +8,7 @@ namespace DataLevel.Model
 {
     class MessageDataModel
     {
-        public string Text { get; set; }
+        public string MessageText { get; set; }
         public DateTime Date { get; set; }
         public int UserId { get; set; }
     }

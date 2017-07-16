@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="AuthorizationManager.cs" />
     <Compile Include="BaseManager.cs" />
+    <Compile Include="ChatDb.cs" />
     <Compile Include="ChatDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +97,7 @@
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MessageManager.cs" />
+    <Compile Include="Model\GetUnreadMessagesDataModel.cs" />
     <Compile Include="Model\LoginDataModel.cs" />
     <Compile Include="Model\LoginDataResult.cs" />
     <Compile Include="Model\LoginResultDataModel.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Model\MessageAddDataModel.cs" />
     <Compile Include="Model\MessageDataModel.cs" />
     <Compile Include="Model\RegistrationDataModel.cs" />
+    <Compile Include="Model\RegistrationDataResult.cs" />
     <Compile Include="Model\RegistrationResultDataModel.cs" />
     <Compile Include="Model\UserDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

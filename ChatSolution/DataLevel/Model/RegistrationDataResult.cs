@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public enum LoginDataResult
+    public enum RegistrationDataResult
     {
         Ok,
-        Fail,
+        Login,
+        Email
     }
 }

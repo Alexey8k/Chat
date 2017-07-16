@@ -8,6 +8,6 @@ namespace DataLevel.Model
 {
     class LoginResultDataModel
     {
-        public int? Result { get; set; }
+        public LoginDataResult Result { get; set; }
     }
 }
