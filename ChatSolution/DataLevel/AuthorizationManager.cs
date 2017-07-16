@@ -19,7 +19,6 @@ namespace DataLevel
         }
         public RegistrationResultModel Registration(RegistrationModel obj)
         {
-            Mapper
             return new RegistrationResultModel
             {
                 Result = _chatDb.Registration(obj.Login, obj.Hash, obj.Email).FirstOrDefault()

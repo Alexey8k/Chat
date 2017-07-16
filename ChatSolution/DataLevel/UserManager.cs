@@ -1,10 +1,10 @@
 ﻿using DataLevel.Model;
-using DataLevel.Mapping;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace DataLevel
 {
@@ -12,7 +12,8 @@ namespace DataLevel
     {
         public UserModel GetUserCurrent(LoginModel obj)
         {
-            return new UserModel().FromEntitiesModel(_chatDb.GetUser(obj.Hash).FirstOrDefault());
+            Mapper.Initialize(cfg => cfg.CreateMap<GetUser_Result, UserModel>());
+            return Mapper.Map<GetUser_Result, UserModel>(_chatDb.GetUser(obj.Hash).FirstOrDefault());
         }
     }
 }

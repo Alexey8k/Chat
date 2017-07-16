@@ -92,8 +92,6 @@
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IChatDb.cs" />
-    <Compile Include="Mapping\MessageModelExtension.cs" />
-    <Compile Include="Mapping\UserModelExtension.cs" />
     <Compile Include="Message.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
