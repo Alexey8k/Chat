@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class LoginResultModel
+    class LoginResultDataModel
     {
         public int? Result { get; set; }
     }

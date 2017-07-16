@@ -96,13 +96,15 @@
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MessageManager.cs" />
-    <Compile Include="Model\LoginModel.cs" />
-    <Compile Include="Model\LoginResultModel.cs" />
-    <Compile Include="Model\LogoutModel.cs" />
-    <Compile Include="Model\MessageModel.cs" />
-    <Compile Include="Model\RegistrationModel.cs" />
-    <Compile Include="Model\RegistrationResultModel.cs" />
-    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\LoginDataModel.cs" />
+    <Compile Include="Model\LoginDataResult.cs" />
+    <Compile Include="Model\LoginResultDataModel.cs" />
+    <Compile Include="Model\LogoutDataModel.cs" />
+    <Compile Include="Model\MessageAddDataModel.cs" />
+    <Compile Include="Model\MessageDataModel.cs" />
+    <Compile Include="Model\RegistrationDataModel.cs" />
+    <Compile Include="Model\RegistrationResultDataModel.cs" />
+    <Compile Include="Model\UserDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>

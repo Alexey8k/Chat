@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class MessageAddModelDb
+    class MessageAddDataModel
     {
+
     }
 }

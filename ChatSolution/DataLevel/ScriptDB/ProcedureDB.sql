@@ -1,10 +1,10 @@
-﻿create procedure [Login]
+﻿alter procedure [Login]
 @hash varbinary(100)
 as
 select case 
 			when exists(select '' from [User] where [Hash]=@hash)
 				then 0
-			else 2
+			else 1
 		end	Result
 go
 

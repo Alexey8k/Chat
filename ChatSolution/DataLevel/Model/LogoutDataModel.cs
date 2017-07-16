@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class LogoutModel
+    class LogoutDataModel
     {
         public int UserId { get; set; }
     }

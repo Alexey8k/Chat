@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class RegistrationResultModel
+    class RegistrationResultDataModel
     {
         public int? Result { get; set; }
     }

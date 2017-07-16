@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class MessageModel
+    class MessageDataModel
     {
         public string Text { get; set; }
         public DateTime Date { get; set; }
