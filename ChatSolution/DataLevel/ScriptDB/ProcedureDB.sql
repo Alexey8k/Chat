@@ -1,34 +1,37 @@
-﻿create procedure [Login]
-@login varchar(15),
-@password binary(100)
+﻿alter procedure [Login]
+@hash varbinary(100)
 as
 select case 
-			when exists(select '' from [User] where Login=@login and password=@password)
+			when exists(select '' from [User] where [Hash]=@hash)
 				then 0
 			else 1
-		end
+		end	Result
 go
 
 create procedure [Registration]
 @login varchar(15),
-@password varbinary(100),
+@hash varbinary(100),
 @email varchar(50)
 as
-select case 
-			when exists(select '' from [User] where Login=@login)
+declare @result int = case 
+			when exists(select '' from [User] where [Login]=@login)
 				then 1
 			when exists(select '' from [User] where Email=@email)
 				then 2
 			else 0
 		end
+if @result=0
+	insert into [User]([Login],[Email],[Hash],[RegDate])
+		values(@login,@email,@hash,GETDATE())
+select @result Result
 go
 
 create procedure [Logout]
-@login varchar(15)
+@userId int
 as
 update [User]
 	set LastVisitDate=GETDATE()
-	where Login=@login
+	where Id=@userId
 go
 
 create procedure [AddMessage]
@@ -37,4 +40,19 @@ create procedure [AddMessage]
 as
   insert into [Message] ([Text],[Date],[UserId])
 	values(@text,GETDATE(),@userId)
+go
+
+create procedure GetMessages
+@userId int
+as
+select m.Text,m.UserId,m.Date from [Message] m
+	join [User] u on u.LastVisitDate<=m.Date
+	where u.Id=@userId
+go
+
+create procedure GetUser
+@hash varbinary(100)
+as
+select * from [User]
+	where [Hash]=@hash
 go

@@ -1,7 +1,7 @@
 ﻿create table [User](
 Id int identity(1,1) not null,
 [Login] varchar(15) not null,
-[Password] varbinary(100) not null,
+[Hash] varbinary(100) not null,
 [Email] varchar(50) not null,
 RegDate datetime not null,
 LastVisitDate datetime null,

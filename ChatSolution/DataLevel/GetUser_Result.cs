@@ -10,15 +10,14 @@
 namespace DataLevel
 {
     using System;
-    using System.Collections.Generic;
     
-    internal partial class Message
+    public partial class GetUser_Result
     {
         public int Id { get; set; }
-        public string Text { get; set; }
-        public System.DateTime Date { get; set; }
-        public int UserId { get; set; }
-    
-        public virtual User User { get; set; }
+        public string Login { get; set; }
+        public byte[] Hash { get; set; }
+        public string Email { get; set; }
+        public System.DateTime RegDate { get; set; }
+        public Nullable<System.DateTime> LastVisitDate { get; set; }
     }
 }
