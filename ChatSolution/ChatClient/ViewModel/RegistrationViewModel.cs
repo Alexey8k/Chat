@@ -23,9 +23,9 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(
                     sender =>
                     {
-                        if (string.IsNullOrEmpty(Login) || _password == null || _password.Password.Length == 0 || Email.Length == 0 )
+                        if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1 != _password2 )
                         {
-                            MessageBox.Show("Не все поля заполнены.");
+                            MessageBox.Show("Не все поля заполнены или пароли не совпадают.");
                             return;
                         }
                     });
