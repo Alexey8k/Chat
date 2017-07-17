@@ -17,22 +17,9 @@ namespace ChatServise.DataContract
             return Users.Values.Select(u => u.Login).ToList();
         }
 
-        public MessagesObjectIn GetMessages()//список непрочитанных сообщений
-        {
-            BuisnessLevel.AuthorizationManager business = new BuisnessLevel.AuthorizationManager();
-            business.SetMessage();
-        }
+        
 
-        public string SendOnline(string login)//отправить по Callback всем, что юзер онлайн
-        {
-
-            foreach (var item in Users)
-            {
-
-               login;
-
-            }
-        }
+        
 
     }
 }

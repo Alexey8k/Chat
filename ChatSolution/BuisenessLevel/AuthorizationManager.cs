@@ -10,12 +10,7 @@ namespace BuisnessLevel
 {
     public class AuthorizationManager//реализация логики службы для входа (Login)
     {
-        public int CheckLogin(string login, string passHesh,out int id)//для прповерки логина и пароля
-        {
-
-
-            return;
-        }
+        
 
         public void SetMessage()//список непрочитанных сообщений
         {

@@ -5,7 +5,6 @@ using System.Runtime.Serialization;//для передачи пользоват�
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
-using BuisnessLevel;
 using ChatServise.DataContract;
 
 
@@ -25,7 +24,6 @@ namespace ChatServise
             user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
             user.Login = obj.Login;
 
-            business.CheckLogin(obj.Login, obj.Hesh,out id);//должен вернуть результат проверки логина/пароля из БД
 
             //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
             //UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
@@ -34,13 +32,10 @@ namespace ChatServise
 
             userManager.GetUsers();//вернем список онлайн юзеров
 
-            userManager.GetMessages();//вернем список непрочитанных сообщений
 
             //Через CallBack надо всем отправить что Юзер онлайн
-            userManager.SendOnline(user.Login);
 
 
-            userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
 
 
             return new LoginModelResponce();
