@@ -12,6 +12,16 @@ namespace ChatServise.DataContract
     {
         public Dictionary<int, UserModel> Users = new Dictionary<int, UserModel>();//для запоминания подключенных пользователей (онлайн юзеры idUser, User)
 
+        //public List<string> SetUsers()//список онлайн юзеров
+        //{
+        //    List<string> UsersOnline = new List<string>();
+
+        //    foreach (var item in Users)
+        //    {
+        //        UsersOnline.Add(item.Value.login);
+        //    }
+        //    return UsersOnline;
+        //}
         public IEnumerable<string> GetUsers()//список онлайн юзеров
         {
             return Users.Values.Select(u => u.Login).ToList();

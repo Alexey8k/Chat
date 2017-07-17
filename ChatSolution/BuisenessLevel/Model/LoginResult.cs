@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BuisenessLevel.Model
 {
-   public enum LoginResult
+   public enum LoginResult //то что возвращает метод Login в ChatService
     {
         Ok,
         Fail = 2
