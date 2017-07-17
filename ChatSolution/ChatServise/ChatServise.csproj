@@ -66,6 +66,7 @@
     <Compile Include="DataContract\UserLeavedObjectIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChatService.cs" />
+    <Compile Include="TEST.cs" />
     <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
