@@ -19,13 +19,13 @@ namespace ChatServise
         {
             UserModel user = new UserModel();
             UserManager userManager = new UserManager();
-            BuisnessLevel.Login business = new BuisnessLevel.Login();
+            BuisnessLevel.AuthorizationManager business = new BuisnessLevel.AuthorizationManager();
             int id;
 
             user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
-            user.login = obj.login;
+            user.Login = obj.Login;
 
-            business.CheckLogin(obj.login, obj.passHesh,out id);//должен вернуть результат проверки логина/пароля из БД
+            business.CheckLogin(obj.Login, obj.Hesh,out id);//должен вернуть результат проверки логина/пароля из БД
 
             //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
             //UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
@@ -37,7 +37,7 @@ namespace ChatServise
             userManager.GetMessages();//вернем список непрочитанных сообщений
 
             //Через CallBack надо всем отправить что Юзер онлайн
-            userManager.SendOnline(user.login);
+            userManager.SendOnline(user.Login);
 
 
             userManager.Users.Add(id,user);//добавили в базу онлайн пользователей

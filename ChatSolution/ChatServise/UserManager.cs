@@ -14,12 +14,12 @@ namespace ChatServise.DataContract
 
         public IEnumerable<string> GetUsers()//список онлайн юзеров
         {
-            return Users.Values.Select(u => u.login).ToList();
+            return Users.Values.Select(u => u.Login).ToList();
         }
 
         public MessagesObjectIn GetMessages()//список непрочитанных сообщений
         {
-            BuisnessLevel.Login business = new BuisnessLevel.Login();
+            BuisnessLevel.AuthorizationManager business = new BuisnessLevel.AuthorizationManager();
             business.SetMessage();
         }
 

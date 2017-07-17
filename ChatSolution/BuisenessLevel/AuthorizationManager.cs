@@ -8,7 +8,7 @@ using System.ServiceModel;
 
 namespace BuisnessLevel
 {
-    public class Login//реализация логики службы для входа
+    public class AuthorizationManager//реализация логики службы для входа (Login)
     {
         public int CheckLogin(string login, string passHesh,out int id)//для прповерки логина и пароля
         {
