@@ -43,13 +43,13 @@ namespace DataLevel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddMessage", textParameter, userIdParameter);
         }
     
-        public virtual int Logout(string login)
+        public virtual int Logout(Nullable<int> userId)
         {
-            var loginParameter = login != null ?
-                new ObjectParameter("login", login) :
-                new ObjectParameter("login", typeof(string));
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Logout", loginParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Logout", userIdParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Login(byte[] hash)
@@ -76,6 +76,24 @@ namespace DataLevel
                 new ObjectParameter("email", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Registration", loginParameter, hashParameter, emailParameter);
+        }
+    
+        public virtual ObjectResult<GetMessages_Result> GetMessages(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMessages_Result>("GetMessages", userIdParameter);
+        }
+    
+        public virtual ObjectResult<GetUser_Result> GetUser(byte[] hash)
+        {
+            var hashParameter = hash != null ?
+                new ObjectParameter("hash", hash) :
+                new ObjectParameter("hash", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", hashParameter);
         }
     }
 }
