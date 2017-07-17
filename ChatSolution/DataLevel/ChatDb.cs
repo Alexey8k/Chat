@@ -1,0 +1,68 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DataLevel.Model;
+
+namespace DataLevel
+{
+    class ChatDb : IChatDb
+    {
+        public void AddMessage(MessageAddDataModel obj)
+        {
+            using (var messageManager = new MessageManager())
+            {
+                messageManager.AddMessage(obj);
+            }
+        }
+
+        public MessageDataModel[] GetUnreadMessages(GetUnreadMessagesDataModel obj)
+        {
+            MessageDataModel[] messages;
+            using (var messageManager = new MessageManager())
+            {
+                messages = messageManager.GetUnreadMessages(obj);
+            }
+            return messages;
+        }
+
+        public UserDataModel GetCurrentUser(LoginDataModel obj)
+        {
+            UserDataModel user;
+            using (var userManager = new UserManager())
+            {
+                user = userManager.GetCurrentUser(obj);
+            }
+            return user;
+        }
+
+        public LoginResultDataModel Login(LoginDataModel obj)
+        {
+            LoginResultDataModel result;
+            using (var authorizationManager = new AuthorizationManager())
+            {
+                result = authorizationManager.Login(obj);
+            }
+            return result;
+        }
+
+        public void Logout(LogoutDataModel obj)
+        {
+            using (var authorizationManager = new AuthorizationManager())
+            {
+                authorizationManager.Logout(obj);
+            }
+        }
+
+        public RegistrationResultDataModel Registration(RegistrationDataModel obj)
+        {
+            RegistrationResultDataModel result;
+            using (var authorizationManager = new AuthorizationManager())
+            {
+                result = authorizationManager.Registration(obj);
+            }
+            return result;
+        }
+    }
+}
