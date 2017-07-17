@@ -5,10 +5,16 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.Model
+namespace ChatServise.DataContract
 {
     [DataContract]
-    public class Message_UserModel 
+    public enum LoginResult : byte
     {
+        [EnumMember]
+        Ok,
+        [EnumMember]
+        Online,
+        [EnumMember]
+        Fail
     }
 }

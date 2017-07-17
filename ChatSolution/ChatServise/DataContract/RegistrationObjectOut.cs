@@ -5,14 +5,11 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.Model
+namespace ChatServise.DataContract
 {
     [DataContract]
-    public class RegistrationModel
+    public class RegistrationObjectOut
     {
-       public string Login { get;set; }
-       public string Mail { get; set; }
-       public string Password { get; set; }
-
+        public RegistrationResult regresult { get; set; }
     }
 }

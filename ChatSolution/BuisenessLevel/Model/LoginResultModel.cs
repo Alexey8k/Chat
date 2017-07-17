@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.Model
+namespace BuisenessLevel.Model
 {
-    [DataContract]
-    public class SendMessageModel 
+   public class LoginResultModel
     {
+        public LoginResult Result { get; set; }
     }
 }

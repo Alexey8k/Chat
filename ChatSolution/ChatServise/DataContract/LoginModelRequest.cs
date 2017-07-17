@@ -5,10 +5,13 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChatServise.Model
+namespace ChatServise.DataContract
 {
     [DataContract]
-    public class Unread_Message 
+    public class LoginModelRequest //Вход
     {
+        public string Login { get; set; }
+        public string Hesh { get; set; }
+
     }
 }
