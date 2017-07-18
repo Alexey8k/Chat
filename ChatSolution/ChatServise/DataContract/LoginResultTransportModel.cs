@@ -10,6 +10,6 @@ namespace ChatServise.DataContract
     [DataContract]
     public class LoginModelResponce 
     {
-        public LoginResult logresult { get; set; }
+        public LoginTransportResult logresult { get; set; }
     }
 }

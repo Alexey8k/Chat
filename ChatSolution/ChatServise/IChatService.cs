@@ -13,7 +13,7 @@ namespace ChatServise
     public interface IChatService
     {
         [OperationContract]
-        LoginModelResponce Login(LoginModelRequest obj);//войти
+        LoginResultTransportModel Login(LoginTransportModel obj);//войти
 
         [OperationContract]
         void Logout(LogoutObjectIn obj);//выйти
@@ -22,7 +22,7 @@ namespace ChatServise
         void SendMessage(MessageObjectIn obj);//отправить сообщение
 
         [OperationContract]
-        RegistrationObjectOut Registration(RegistrationObjectIn obj);//регистрация
+        RegistrationResultTransportModel Registration(RegistrationTransportModel obj);//регистрация
 
         //[OperationContract]
         //void GetUsers();

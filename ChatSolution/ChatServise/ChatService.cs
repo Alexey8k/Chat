@@ -15,7 +15,7 @@ namespace ChatServise
     {
 
 
-        public LoginModelResponce Login(LoginModelRequest obj)//войти (принимает obj от LogicLevel, возвращает Login)
+        public LoginResultTransportModel Login(LoginTransportModel obj)//войти (принимает obj от LogicLevel, возвращает Login)
         {
             UserModel user = new UserModel();
             UserManager userManager = new UserManager();
@@ -43,7 +43,7 @@ namespace ChatServise
             userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
 
 
-            return new LoginModelResponce();
+            return new LoginResultTransportModel();
         }
 
         public void Logout(LogoutObjectIn obj)//выйти
@@ -81,11 +81,11 @@ namespace ChatServise
             //return BuisenessLevel.SendMessage(_SendMessage);
         }
 
-        public RegistrationObjectOut Registration(RegistrationObjectIn obj)//регистрация
+        public RegistrationResultTransportModel Registration(RegistrationTransportModel obj)//регистрация
         {
 
             //return BuisenessLevel.Registration(_Registration);//просто для добавленгие в БД
-            return new RegistrationObjectOut();
+            return new RegistrationResultTransportModel();
         }
 
         //public void StopStream()//для остановки потока

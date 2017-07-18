@@ -10,6 +10,6 @@ namespace ChatServise.DataContract
     [DataContract]
     public class RegistrationObjectOut
     {
-        public RegistrationResult regresult { get; set; }
+        public RegistrationResultTransport regresult { get; set; }
     }
 }
