@@ -11,7 +11,7 @@ namespace DataLevel
     {
         public void AddMessage(MessageAddDataModel obj)
         {
-            using (var messageManager = new MessageManager())
+            using (var messageManager = new MessageDataManager())
             {
                 messageManager.AddMessage(obj);
             }
@@ -20,7 +20,7 @@ namespace DataLevel
         public MessageDataModel[] GetUnreadMessages(GetUnreadMessagesDataModel obj)
         {
             MessageDataModel[] messages;
-            using (var messageManager = new MessageManager())
+            using (var messageManager = new MessageDataManager())
             {
                 messages = messageManager.GetUnreadMessages(obj);
             }
@@ -30,7 +30,7 @@ namespace DataLevel
         public UserDataModel GetCurrentUser(LoginDataModel obj)
         {
             UserDataModel user;
-            using (var userManager = new UserManager())
+            using (var userManager = new UserDataManager())
             {
                 user = userManager.GetCurrentUser(obj);
             }
@@ -40,7 +40,7 @@ namespace DataLevel
         public LoginResultDataModel Login(LoginDataModel obj)
         {
             LoginResultDataModel result;
-            using (var authorizationManager = new AuthorizationManager())
+            using (var authorizationManager = new AuthorizationDataManager())
             {
                 result = authorizationManager.Login(obj);
             }
@@ -49,7 +49,7 @@ namespace DataLevel
 
         public void Logout(LogoutDataModel obj)
         {
-            using (var authorizationManager = new AuthorizationManager())
+            using (var authorizationManager = new AuthorizationDataManager())
             {
                 authorizationManager.Logout(obj);
             }
@@ -58,7 +58,7 @@ namespace DataLevel
         public RegistrationResultDataModel Registration(RegistrationDataModel obj)
         {
             RegistrationResultDataModel result;
-            using (var authorizationManager = new AuthorizationManager())
+            using (var authorizationManager = new AuthorizationDataManager())
             {
                 result = authorizationManager.Registration(obj);
             }

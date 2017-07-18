@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel
 {
-    abstract class BaseManager : IDisposable
+    abstract class BaseDataManager : IDisposable
     {
         protected ChatDbEntities _chatDb = new ChatDbEntities();
         public void Dispose()
@@ -24,7 +24,7 @@ namespace DataLevel
                     _chatDb = null;
                 }
         }
-        ~BaseManager()
+        ~BaseDataManager()
         {
             Dispose(false);
         }

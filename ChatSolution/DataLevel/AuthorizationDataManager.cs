@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel
 {
-    class AuthorizationManager : BaseManager
+    class AuthorizationDataManager : BaseDataManager
     {
         public LoginResultDataModel Login(LoginDataModel obj)
         {
