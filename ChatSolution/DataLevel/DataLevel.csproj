@@ -99,13 +99,13 @@
     <Compile Include="MessageDataManager.cs" />
     <Compile Include="Model\GetUnreadMessagesDataModel.cs" />
     <Compile Include="Model\LoginDataModel.cs" />
-    <Compile Include="Model\LoginDataResult.cs" />
+    <Compile Include="Model\LoginResultData.cs" />
     <Compile Include="Model\LoginResultDataModel.cs" />
     <Compile Include="Model\LogoutDataModel.cs" />
     <Compile Include="Model\MessageAddDataModel.cs" />
     <Compile Include="Model\MessageDataModel.cs" />
     <Compile Include="Model\RegistrationDataModel.cs" />
-    <Compile Include="Model\RegistrationDataResult.cs" />
+    <Compile Include="Model\RegistrationResultData.cs" />
     <Compile Include="Model\RegistrationResultDataModel.cs" />
     <Compile Include="Model\UserDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
