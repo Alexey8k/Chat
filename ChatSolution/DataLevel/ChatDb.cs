@@ -7,7 +7,7 @@ using DataLevel.Model;
 
 namespace DataLevel
 {
-    class ChatDb : IChatDb
+    public class ChatDb : IChatDb
     {
         public void AddMessage(MessageAddDataModel obj)
         {
