@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class LoginModelResponce 
+    public class LoginResultTransportModel 
     {
-        public LoginTransportResult logresult { get; set; }
+        [DataMember]
+        public LoginResultTransport Result { get; set; }
     }
 }

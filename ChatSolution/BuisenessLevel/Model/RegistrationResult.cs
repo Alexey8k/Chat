@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace BuisenessLevel.Model
 {
-    class RegistrationResult
+    public enum RegistrationResult
     {
+        Ok,
+        Login,
+        Email
     }
 }

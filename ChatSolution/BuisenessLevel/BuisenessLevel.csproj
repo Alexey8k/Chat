@@ -47,6 +47,9 @@
     <Compile Include="Model\LoginResultModel.cs" />
     <Compile Include="Model\MessagesModelIn.cs" />
     <Compile Include="Model\MessagesObjectIn.cs" />
+    <Compile Include="Model\RegistrationModel.cs" />
+    <Compile Include="Model\RegistrationResult.cs" />
+    <Compile Include="Model\RegistrationResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

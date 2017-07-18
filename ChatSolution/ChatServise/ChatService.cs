@@ -17,30 +17,30 @@ namespace ChatServise
 
         public LoginResultTransportModel Login(LoginTransportModel obj)//войти (принимает obj от LogicLevel, возвращает Login)
         {
-            UserModel user = new UserModel();
-            UserManager userManager = new UserManager();
-            BuisnessLevel.AuthorizationManager business = new BuisnessLevel.AuthorizationManager();
-            int id;
+            //UserModel user = new UserModel();
+            //UserManager userManager = new UserManager();
+            //BuisnessLevel.AuthorizationManager business = new BuisnessLevel.AuthorizationManager();
+            //int id;
 
-            user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
-            user.Login = obj.Login;
+            //user.callBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
+            //user.Login = obj.Login;
 
-            business.CheckLogin(obj.Login, obj.Hesh,out id);//должен вернуть результат проверки логина/пароля из БД
+            //business.CheckLogin(obj.Login, obj.Hesh,out id);//должен вернуть результат проверки логина/пароля из БД
 
-            //      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
-            //UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
+            ////      User/UserManager & UserModel/UsersObjectIn дублируют друг друга
+            ////UsersObjectIn usOnline = new UsersObjectIn();//UsersObjectIn() вернет коллекцию пользователей онлайн пользователей
 
-            //СДЕЛАТЬ ФУНКЦИИ КАЛБЕКАМИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            ////СДЕЛАТЬ ФУНКЦИИ КАЛБЕКАМИ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-            userManager.GetUsers();//вернем список онлайн юзеров
+            //userManager.GetUsers();//вернем список онлайн юзеров
 
-            userManager.GetMessages();//вернем список непрочитанных сообщений
+            //userManager.GetMessages();//вернем список непрочитанных сообщений
 
-            //Через CallBack надо всем отправить что Юзер онлайн
-            userManager.SendOnline(user.Login);
+            ////Через CallBack надо всем отправить что Юзер онлайн
+            //userManager.SendOnline(user.Login);
 
 
-            userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
+            //userManager.Users.Add(id,user);//добавили в базу онлайн пользователей
 
 
             return new LoginResultTransportModel();

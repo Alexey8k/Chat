@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class RegistrationObjectOut
+    public class RegistrationResultTransportModel
     {
-        public RegistrationResultTransport regresult { get; set; }
+        [DataMember]
+        public RegistrationResultTransport Result { get; set; }
     }
 }

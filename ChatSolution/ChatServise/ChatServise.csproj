@@ -45,20 +45,20 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataContract\LoginResult.cs" />
+    <Compile Include="DataContract\LoginResultTransport.cs" />
     <Compile Include="DataContract\MessagesModelIn.cs" />
     <Compile Include="DataContract\MessagesObjectIn.cs" />
-    <Compile Include="DataContract\RegistrationResult.cs" />
+    <Compile Include="DataContract\RegistrationResultTransport.cs" />
     <Compile Include="DataContract\UserModel.cs" />
     <Compile Include="DataContract\UsersObjectIn.cs" />
     <Compile Include="IChatCallback.cs" />
     <Compile Include="IChatService.cs" />
-    <Compile Include="DataContract\LoginModelResponce.cs" />
-    <Compile Include="DataContract\LoginModelRequest.cs" />
+    <Compile Include="DataContract\LoginResultTransportModel.cs" />
+    <Compile Include="DataContract\LoginTransportModel.cs" />
     <Compile Include="DataContract\LogoutObjectIn.cs" />
     <Compile Include="DataContract\MessageObjectIn.cs" />
-    <Compile Include="DataContract\RegistrationObjectOut.cs" />
-    <Compile Include="DataContract\RegistrationObjectIn.cs" />
+    <Compile Include="DataContract\RegistrationResultTransportModel.cs" />
+    <Compile Include="DataContract\RegistrationTransportModel.cs" />
     <Compile Include="DataContract\UserJoinedObjectIn.cs" />
     <Compile Include="DataContract\UserLeavedObjectIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

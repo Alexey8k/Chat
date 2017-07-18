@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BuisenessLevel.Model
 {
-    class RegistrationResultModel
+    public class RegistrationResultModel
     {
+        public RegistrationResult Result { get; set; }
     }
 }

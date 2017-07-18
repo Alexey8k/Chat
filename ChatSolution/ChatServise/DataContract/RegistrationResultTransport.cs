@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public enum RegistrationResult : byte
+    public enum RegistrationResultTransport
     {
         [EnumMember]
         Ok,

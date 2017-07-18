@@ -9,7 +9,5 @@ namespace BuisenessLevel.Model
    public class LoginModel
     {
         public byte[] Hash { get; set; }
-        public string Login { get; set; }
-
     }
 }

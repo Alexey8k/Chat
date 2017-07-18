@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public enum LoginResult : byte
+    public enum LoginResultTransport
     {
         [EnumMember]
         Ok,
         [EnumMember]
-        Online,
+        Fail,
         [EnumMember]
-        Fail
+        Online
     }
 }
