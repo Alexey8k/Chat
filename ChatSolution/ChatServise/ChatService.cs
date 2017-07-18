@@ -5,7 +5,6 @@ using System.Runtime.Serialization;//для передачи пользоват�
 using System.ServiceModel;
 using System.Text;
 using System.Threading;
-using BuisnessLevel;
 using ChatServise.DataContract;
 
 
