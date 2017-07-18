@@ -9,6 +9,7 @@ namespace BuisenessLevel.Model
    public enum LoginResult //то что возвращает метод Login в ChatService
     {
         Ok,
-        Fail
+        Fail,
+        Online
     }
 }
