@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class LoginDataModel
+    public class LoginDataModel
     {
         public byte[] Hash { get; set; }
     }
