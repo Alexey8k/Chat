@@ -11,7 +11,7 @@ namespace DataLevel
     {
         public void AddMessage(MessageAddDataModel obj)
         {
-            using (var messageManager = new MessageDataManager())
+            using (var messageManager = new MessageDataManager())//конструкция using для Dispose
             {
                 messageManager.AddMessage(obj);
             }
