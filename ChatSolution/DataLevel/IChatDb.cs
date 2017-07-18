@@ -7,7 +7,7 @@ using DataLevel.Model;
 
 namespace DataLevel
 {
-    interface IChatDb
+    public interface IChatDb
     {
         LoginResultDataModel Login(LoginDataModel obj);
         void Logout(LogoutDataModel obj);

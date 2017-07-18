@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    class GetUnreadMessagesDataModel
+    public class GetUnreadMessagesDataModel
     {
         public int UserId { get; set; }
     }
