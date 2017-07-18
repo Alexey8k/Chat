@@ -8,7 +8,7 @@ using AutoMapper;
 
 namespace DataLevel
 {
-    class UserManager : BaseManager
+    class UserDataManager : BaseDataManager
     {
         public UserDataModel GetCurrentUser(LoginDataModel obj)
         {
