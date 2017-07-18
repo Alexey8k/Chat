@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public enum LoginDataResult
+    public enum LoginResultData
     {
         Ok,
         Fail,

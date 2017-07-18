@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public enum RegistrationDataResult
+    public enum RegistrationResultData
     {
         Ok,
         Login,
