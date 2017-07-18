@@ -11,7 +11,7 @@ namespace DataLevel
     {
         public LoginResultDataModel Login(LoginDataModel obj)
         {
-            return new LoginResultDataModel { Result = (LoginDataResult)_chatDb.Login(obj.Hash).FirstOrDefault() };
+            return new LoginResultDataModel { Result = (LoginResultData)_chatDb.Login(obj.Hash).FirstOrDefault() };
         }
         public void Logout(LogoutDataModel obj)
         {
@@ -21,7 +21,7 @@ namespace DataLevel
         {
             return new RegistrationResultDataModel
             {
-                Result = (RegistrationDataResult)_chatDb.Registration(obj.Login, obj.Hash, obj.Email).FirstOrDefault()
+                Result = (RegistrationResultData)_chatDb.Registration(obj.Login, obj.Hash, obj.Email).FirstOrDefault()
             };
         }
     }
