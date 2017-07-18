@@ -1,5 +1,4 @@
-﻿using BuisenessLevel.Model;
-using DataLevel;
+﻿using DataLevel;
 using DataLevel.Model;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,9 @@ namespace BuisenessLevel
         private List<UserModel> _users;
         public UserModel GetCurrentUser(LoginModel obj)
         {
-            return _chatDb.GetCurrentUser(obj.Mapping<LoginDataModel>()).Mapping<UserModel>();
+            var user = _chatDb.GetCurrentUser(obj.Mapping<LoginDataModel>()).Mapping<UserModel>();
+            _users.Add(user);
+            return user;
         }
     }
 }
