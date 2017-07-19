@@ -9,7 +9,7 @@ using System.Data.Entity.Core.Objects;
 
 namespace DataLevel
 {
-    class MessageDataManager : BaseDataManager
+    class MessageDataManager : BaseDataManager  // менеджер сообщений
     {
         public MessageDataModel[] GetUnreadMessages(GetUnreadMessagesDataModel obj)
         {
