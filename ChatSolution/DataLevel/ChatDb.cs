@@ -17,7 +17,7 @@ namespace DataLevel
             }
         }
 
-        public MessageDataModel[] GetUnreadMessages(GetUnreadMessagesDataModel obj)
+        public MessageDataModel[] GetUnreadMessages(LoginSuccessDataModel obj)
         {
             MessageDataModel[] messages;
             using (var messageManager = new MessageDataManager())
@@ -27,9 +27,9 @@ namespace DataLevel
             return messages;
         }
 
-        public UserDataModel GetCurrentUser(LoginDataModel obj)
+        public UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj)
         {
-            UserDataModel user;
+            UserPartialDataModel user;
             using (var userManager = new UserDataManager())
             {
                 user = userManager.GetCurrentUser(obj);

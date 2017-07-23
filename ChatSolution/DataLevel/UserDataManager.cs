@@ -8,12 +8,12 @@ using AutoMapper;
 
 namespace DataLevel
 {
-    class UserDataManager : BaseDataManager
+    class UserDataManager : BaseDataManager // менеджер юзеров
     {
-        public UserDataModel GetCurrentUser(LoginDataModel obj)
+        public UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<GetUser_Result, UserDataModel>());
-            return Mapper.Map<GetUser_Result, UserDataModel>(_chatDb.GetUser(obj.Hash).FirstOrDefault());
+            Mapper.Initialize(cfg => cfg.CreateMap<UserPartialResult, UserPartialDataModel>());
+            return Mapper.Map<UserPartialResult, UserPartialDataModel>(_chatDb.GetUserPartial(obj.UserId).FirstOrDefault());
         }
     }
 }

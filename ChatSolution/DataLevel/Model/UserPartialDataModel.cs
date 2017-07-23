@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public class GetUnreadMessagesDataModel
+    public class UserPartialDataModel
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
+        public string Login { get; set; }
     }
 }
