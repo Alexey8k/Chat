@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BuisenessLevel.Model
 {
-   public class LoginResultModel
+    public class LoginSuccessModel
     {
-        public LoginResult Result { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
     }
 }

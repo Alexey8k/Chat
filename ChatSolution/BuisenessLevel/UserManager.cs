@@ -17,12 +17,16 @@ namespace BuisenessLevel
             _chatDb = chatDb;
         }
         private readonly IChatDb _chatDb;
-        private List<UserModel> _users;
-        public UserModel GetCurrentUser(LoginModel obj)
+        private List<UserPartialModel> _users = new List<UserPartialModel>();
+        public UserPartialModel GetCurrentUser(LoginSuccessModel obj)
         {
-            var user = _chatDb.GetCurrentUser(obj.Mapping<LoginDataModel>()).Mapping<UserModel>();
+            var user = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
             _users.Add(user);
             return user;
+        }
+        public UserPartialModel[] GetOnlineUsers(LoginSuccessModel obj)
+        {
+            return _users.Where(u => u.Id != obj.UserId).ToArray();
         }
     }
 }

@@ -13,11 +13,12 @@ namespace BuisnessLevel
 {
     public class AuthorizationManager
     {
+        private readonly IChatDb _chatDb;
+
         public AuthorizationManager(IChatDb chatDb)
         {
             _chatDb = chatDb;
         }
-        private readonly IChatDb _chatDb;
         public LoginResultModel Login(LoginModel obj)
         {
             return _chatDb.Login(obj.Mapping<LoginDataModel>()).Mapping<LoginResultModel>();

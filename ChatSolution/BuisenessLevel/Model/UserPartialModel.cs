@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BuisenessLevel.Model
 {
-    class UserPartialModel
+    public class UserPartialModel
     {
+        public int Id { get; set; }
+        public string Login { get; set; }
     }
 }
