@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLevel.Model
+namespace BuisenessLevel.Model
 {
-    public class GetUnreadMessagesDataModel
+    class UserPartialModel
     {
-        public int UserId { get; set; }
     }
 }

@@ -1,10 +1,12 @@
-﻿alter procedure [Login]
+﻿create procedure [Login]
 @hash varbinary(100)
 as
-select case 
-			when exists(select '' from [User] where [Hash]=@hash)
-				then 0
-			else 1
+declare @userId	int
+select @userId=Id from [User] where [Hash]=@hash
+select case @userId
+			when null
+				then (select Code from ErrorLogin where Text='Fail')
+			else @userId
 		end	Result
 go
 
@@ -23,7 +25,7 @@ declare @result int = case
 if @result=0
 	insert into [User]([Login],[Email],[Hash],[RegDate])
 		values(@login,@email,@hash,GETDATE())
-select @result Result
+select @result Result 
 go
 
 create procedure [Logout]
@@ -42,17 +44,24 @@ as
 	values(@text,GETDATE(),@userId)
 go
 
-create procedure GetMessages
+create procedure GetUnreadMessage
 @userId int
 as
-select m.Text,m.UserId,m.Date from [Message] m
+select m.* from [Message] m
 	join [User] u on u.LastVisitDate<=m.Date
 	where u.Id=@userId
 go
 
 create procedure GetUser
-@hash varbinary(100)
+@id int
 as
 select * from [User]
-	where [Hash]=@hash
+	where Id=@id
+go
+
+create procedure GetUserPartial
+@id int
+as
+select Id,Login from [User]
+	where [Id]=@id
 go

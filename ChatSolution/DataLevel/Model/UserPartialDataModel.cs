@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public enum LoginResultData
+    public class UserPartialDataModel
     {
-        Ok,
-        Fail,
+        public int Id { get; set; }
+        public string Login { get; set; }
     }
 }

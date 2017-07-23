@@ -29,6 +29,7 @@ namespace DataLevel
     
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ErrorLogin> ErrorLogins { get; set; }
     
         public virtual int AddMessage(string text, Nullable<int> userId)
         {
@@ -52,15 +53,6 @@ namespace DataLevel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Logout", userIdParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> Login(byte[] hash)
-        {
-            var hashParameter = hash != null ?
-                new ObjectParameter("hash", hash) :
-                new ObjectParameter("hash", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Login", hashParameter);
-        }
-    
         public virtual ObjectResult<Nullable<int>> Registration(string login, byte[] hash, string email)
         {
             var loginParameter = login != null ?
@@ -78,22 +70,40 @@ namespace DataLevel
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Registration", loginParameter, hashParameter, emailParameter);
         }
     
-        public virtual ObjectResult<GetMessages_Result> GetMessages(Nullable<int> userId)
-        {
-            var userIdParameter = userId.HasValue ?
-                new ObjectParameter("userId", userId) :
-                new ObjectParameter("userId", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetMessages_Result>("GetMessages", userIdParameter);
-        }
-    
-        public virtual ObjectResult<GetUser_Result> GetUser(byte[] hash)
+        public virtual ObjectResult<Nullable<int>> Login(byte[] hash)
         {
             var hashParameter = hash != null ?
                 new ObjectParameter("hash", hash) :
                 new ObjectParameter("hash", typeof(byte[]));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", hashParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("Login", hashParameter);
+        }
+    
+        public virtual ObjectResult<UserResult> GetUser(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserResult>("GetUser", idParameter);
+        }
+    
+        public virtual ObjectResult<UserPartialResult> GetUserPartial(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<UserPartialResult>("GetUserPartial", idParameter);
+        }
+    
+        public virtual ObjectResult<MessageResult> GetUnreadMessages(Nullable<int> userId)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("userId", userId) :
+                new ObjectParameter("userId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MessageResult>("GetUnreadMessages", userIdParameter);
         }
     }
 }

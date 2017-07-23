@@ -11,7 +11,12 @@ namespace DataLevel
     {
         public LoginResultDataModel Login(LoginDataModel obj)
         {
-            return new LoginResultDataModel { Result = (LoginResultData)_chatDb.Login(obj.Hash).FirstOrDefault() };
+            var result = _chatDb.Login(obj.Hash).FirstOrDefault();
+            return new LoginResultDataModel
+            {
+                Result = result >= 100 ? LoginResaltData.Ok : (LoginResaltData)result,
+                UserId = result >= 100 ? result : null
+            };
         }
         public void Logout(LogoutDataModel obj)
         {

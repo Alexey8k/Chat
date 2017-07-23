@@ -86,10 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChatDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="GetMessages_Result.cs">
-      <DependentUpon>ChatDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GetUser_Result.cs">
+    <Compile Include="ErrorLogin.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="IChatDb.cs" />
@@ -97,10 +94,13 @@
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MessageDataManager.cs" />
-    <Compile Include="Model\GetUnreadMessagesDataModel.cs" />
+    <Compile Include="MessageResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\LoginDataModel.cs" />
-    <Compile Include="Model\LoginResultData.cs" />
+    <Compile Include="Model\LoginResaltData.cs" />
     <Compile Include="Model\LoginResultDataModel.cs" />
+    <Compile Include="Model\LoginSuccessDataModel.cs" />
     <Compile Include="Model\LogoutDataModel.cs" />
     <Compile Include="Model\MessageAddDataModel.cs" />
     <Compile Include="Model\MessageDataModel.cs" />
@@ -108,11 +108,18 @@
     <Compile Include="Model\RegistrationResultData.cs" />
     <Compile Include="Model\RegistrationResultDataModel.cs" />
     <Compile Include="Model\UserDataModel.cs" />
+    <Compile Include="Model\UserPartialDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs">
       <DependentUpon>ChatDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserDataManager.cs" />
+    <Compile Include="UserPartialResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
