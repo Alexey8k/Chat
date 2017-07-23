@@ -27,9 +27,9 @@ namespace DataLevel
             return messages;
         }
 
-        public UserDataModel GetCurrentUser(LoginSuccessDataModel obj)
+        public UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj)
         {
-            UserDataModel user;
+            UserPartialDataModel user;
             using (var userManager = new UserDataManager())
             {
                 user = userManager.GetCurrentUser(obj);

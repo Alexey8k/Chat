@@ -10,10 +10,10 @@ namespace DataLevel
 {
     class UserDataManager : BaseDataManager // менеджер юзеров
     {
-        public UserDataModel GetCurrentUser(LoginSuccessDataModel obj)
+        public UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<UserResult, UserDataModel>());
-            return Mapper.Map<UserResult, UserDataModel>(_chatDb.GetUser(obj.UserId).FirstOrDefault());
+            Mapper.Initialize(cfg => cfg.CreateMap<UserPartialResult, UserPartialDataModel>());
+            return Mapper.Map<UserPartialResult, UserPartialDataModel>(_chatDb.GetUserPartial(obj.UserId).FirstOrDefault());
         }
     }
 }

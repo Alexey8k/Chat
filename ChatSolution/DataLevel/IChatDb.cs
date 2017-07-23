@@ -12,7 +12,7 @@ namespace DataLevel
         LoginResultDataModel Login(LoginDataModel obj);
         void Logout(LogoutDataModel obj);
         RegistrationResultDataModel Registration(RegistrationDataModel obj);
-        UserDataModel GetCurrentUser(LoginSuccessDataModel obj);
+        UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj);
         MessageDataModel[] GetUnreadMessages(LoginSuccessDataModel obj);
         void AddMessage(MessageAddDataModel obj);
     }
