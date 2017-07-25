@@ -17,9 +17,9 @@ namespace DataLevel
             }
         }
 
-        public MessageDataModel[] GetUnreadMessages(LoginSuccessDataModel obj)
+        public UnreadMessagesResultDataModel GetUnreadMessages(LoginSuccessDataModel obj)
         {
-            MessageDataModel[] messages;
+            UnreadMessagesResultDataModel messages;
             using (var messageManager = new MessageDataManager())
             {
                 messages = messageManager.GetUnreadMessages(obj);
