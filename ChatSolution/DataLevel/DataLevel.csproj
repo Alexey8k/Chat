@@ -107,6 +107,7 @@
     <Compile Include="Model\RegistrationDataModel.cs" />
     <Compile Include="Model\RegistrationResultData.cs" />
     <Compile Include="Model\RegistrationResultDataModel.cs" />
+    <Compile Include="Model\UnreadMessagesResultDataModel.cs" />
     <Compile Include="Model\UserDataModel.cs" />
     <Compile Include="Model\UserPartialDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

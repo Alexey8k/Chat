@@ -11,10 +11,13 @@ namespace DataLevel
 {
     class MessageDataManager : BaseDataManager  // менеджер сообщений
     {
-        public MessageDataModel[] GetUnreadMessages(LoginSuccessDataModel obj)
+        public UnreadMessagesResultDataModel GetUnreadMessages(LoginSuccessDataModel obj)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<MessageResult, MessageDataModel>());
-            return Mapper.Map<ObjectResult<MessageResult>, MessageDataModel[]>(_chatDb.GetUnreadMessages(obj.UserId));
+            return new UnreadMessagesResultDataModel
+            {
+                Messages = Mapper.Map<ObjectResult<MessageResult>, MessageDataModel[]>(_chatDb.GetUnreadMessages(obj.UserId))
+            };
         }
 
         public void AddMessage(MessageAddDataModel obj)
