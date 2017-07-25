@@ -50,6 +50,7 @@
     <Compile Include="Mapping\MessageReceiveModelExtension.cs" />
     <Compile Include="Mapping\RegistrationModelExtension.cs" />
     <Compile Include="Mapping\RegistrationResultDataModelExtension.cs" />
+    <Compile Include="Mapping\UnreadMessagesResultDataModelExtension.cs" />
     <Compile Include="Mapping\UserDataModelExtension.cs" />
     <Compile Include="Mapping\UserPartialModelExtension.cs" />
     <Compile Include="MessageManager.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Model\RegistrationModel.cs" />
     <Compile Include="Model\RegistrationResult.cs" />
     <Compile Include="Model\RegistrationResultModel.cs" />
+    <Compile Include="Model\UnreadMessagesResultModel.cs" />
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\UserPartialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

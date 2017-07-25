@@ -24,9 +24,9 @@ namespace BuisenessLevel
             _chatDb.AddMessage(obj.Mapping<MessageAddDataModel>());
         }
 
-        public MessageModel[] GetUnreadMessages(LoginSuccessModel obj)
+        public UnreadMessagesResultModel GetUnreadMessages(LoginSuccessModel obj)
         {
-            //return _chatDb.GetUnreadMessages(obj.Mapping<LoginSuccessDataModel>()).M
+            return _chatDb.GetUnreadMessages(obj.Mapping<LoginSuccessDataModel>()).Mapping();
         }
     }
 }
