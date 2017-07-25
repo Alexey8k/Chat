@@ -47,10 +47,12 @@
     <Compile Include="AuthorizationManager.cs" />
     <Compile Include="Mapping\LoginSuccessModelExtension.cs" />
     <Compile Include="Mapping\LogoutModelExtension.cs" />
+    <Compile Include="Mapping\MessageReceiveModelExtension.cs" />
     <Compile Include="Mapping\RegistrationModelExtension.cs" />
     <Compile Include="Mapping\RegistrationResultDataModelExtension.cs" />
     <Compile Include="Mapping\UserDataModelExtension.cs" />
     <Compile Include="Mapping\UserPartialModelExtension.cs" />
+    <Compile Include="MessageManager.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\LoginResult.cs" />
     <Compile Include="Model\LoginResultModel.cs" />
@@ -58,8 +60,8 @@
     <Compile Include="Mapping\LoginResultDataModelExtension.cs" />
     <Compile Include="Model\LoginSuccessModel.cs" />
     <Compile Include="Model\LogoutModel.cs" />
-    <Compile Include="Model\MessagesModelIn.cs" />
-    <Compile Include="Model\MessagesObjectIn.cs" />
+    <Compile Include="Model\MessageModel.cs" />
+    <Compile Include="Model\MessageReceiveModel.cs" />
     <Compile Include="Model\RegistrationModel.cs" />
     <Compile Include="Model\RegistrationResult.cs" />
     <Compile Include="Model\RegistrationResultModel.cs" />

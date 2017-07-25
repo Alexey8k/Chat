@@ -12,21 +12,31 @@ namespace BuisenessLevel
 {
     public class UserManager
     {
+        private readonly IChatDb _chatDb;
+
+        private List<UserPartialModel> _users = new List<UserPartialModel>();
+
         public UserManager(IChatDb chatDb)
         {
             _chatDb = chatDb;
         }
-        private readonly IChatDb _chatDb;
-        private List<UserPartialModel> _users = new List<UserPartialModel>();
+
         public UserPartialModel GetCurrentUser(LoginSuccessModel obj)
         {
-            var user = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
-            _users.Add(user);
-            return user;
+            var currentUser = _users.Find(u => u.Id == obj.UserId);
+            if (currentUser == null)
+            {
+                currentUser = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
+                _users.Add(currentUser);
+            }
+            return currentUser;
         }
+
         public UserPartialModel[] GetOnlineUsers(LoginSuccessModel obj)
         {
-            return _users.Where(u => u.Id != obj.UserId).ToArray();
+            var cashUsers = _users.ToList();
+            var indexCurrentUser = cashUsers.FindLastIndex(u => u.Id == obj.UserId);
+            return cashUsers.Take(indexCurrentUser).Concat(cashUsers.Skip(indexCurrentUser++)).ToArray();
         }
     }
 }
