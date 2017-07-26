@@ -14,6 +14,6 @@ namespace DataLevel
         RegistrationResultDataModel Registration(RegistrationDataModel obj);
         UserPartialDataModel GetCurrentUser(LoginSuccessDataModel obj);
         UnreadMessagesResultDataModel GetUnreadMessages(LoginSuccessDataModel obj);
-        void AddMessage(MessageAddDataModel obj);
+        void AddMessage(MessagePartialDataModel obj);
     }
 }

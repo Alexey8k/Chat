@@ -20,7 +20,7 @@ namespace DataLevel
             };
         }
 
-        public void AddMessage(MessageAddDataModel obj)
+        public void AddMessage(MessagePartialDataModel obj)
         {
             _chatDb.AddMessage(obj.MessageText, obj.UserId);
         }
