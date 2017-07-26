@@ -32,11 +32,14 @@ namespace BuisenessLevel
             return currentUser;
         }
 
-        public UserPartialModel[] GetOnlineUsers(LoginSuccessModel obj)
+        public OnlineUsersResultModel GetOnlineUsers(LoginSuccessModel obj)
         {
             var cashUsers = _users.ToList();
             var indexCurrentUser = cashUsers.FindLastIndex(u => u.Id == obj.UserId);
-            return cashUsers.Take(indexCurrentUser).Concat(cashUsers.Skip(indexCurrentUser++)).ToArray();
+            return new OnlineUsersResultModel
+            {
+                Users = cashUsers.Take(indexCurrentUser).Concat(cashUsers.Skip(indexCurrentUser++)).ToArray()
+            };
         }
     }
 }
