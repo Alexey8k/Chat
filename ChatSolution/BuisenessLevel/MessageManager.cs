@@ -19,7 +19,7 @@ namespace BuisenessLevel
             _chatDb = chatDb;
         }
 
-        public void ReceivedMessage(MessageReceiveModel obj)
+        public void ReceivedMessage(MessagePartialModel obj)
         {
             _chatDb.AddMessage(obj.Mapping<MessageAddDataModel>());
         }

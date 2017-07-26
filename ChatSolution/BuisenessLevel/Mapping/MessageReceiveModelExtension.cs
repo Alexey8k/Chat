@@ -10,10 +10,10 @@ namespace BuisenessLevel.Mapping
 {
     public static class MessageReceiveModelExtension
     {
-        public static T Mapping<T>(this MessageReceiveModel obj)
+        public static T Mapping<T>(this MessagePartialModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<MessageReceiveModel, T>());
-            return Mapper.Map<MessageReceiveModel, T>(obj);
+            Mapper.Initialize(cfg => cfg.CreateMap<MessagePartialModel, T>());
+            return Mapper.Map<MessagePartialModel, T>(obj);
         }
     }
 }
