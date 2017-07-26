@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataLevel.Model
 {
-    public class MessageAddDataModel
+    public class MessagePartialDataModel
     {
         public int UserId { get; set; }
         public string MessageText { get; set; }
