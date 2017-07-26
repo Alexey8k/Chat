@@ -62,7 +62,7 @@
     <Compile Include="Model\LoginSuccessModel.cs" />
     <Compile Include="Model\LogoutModel.cs" />
     <Compile Include="Model\MessageModel.cs" />
-    <Compile Include="Model\MessageReceiveModel.cs" />
+    <Compile Include="Model\MessagePartialModel.cs" />
     <Compile Include="Model\OnlineUsersResultModel.cs" />
     <Compile Include="Model\RegistrationModel.cs" />
     <Compile Include="Model\RegistrationResult.cs" />

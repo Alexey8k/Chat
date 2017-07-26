@@ -21,7 +21,7 @@ namespace BuisenessLevel
 
         public void ReceivedMessage(MessagePartialModel obj)
         {
-            _chatDb.AddMessage(obj.Mapping<MessageAddDataModel>());
+            _chatDb.AddMessage(obj.Mapping<MessagePartialDataModel>());
         }
 
         public UnreadMessagesResultModel GetUnreadMessages(LoginSuccessModel obj)

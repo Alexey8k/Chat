@@ -102,7 +102,7 @@
     <Compile Include="Model\LoginResultDataModel.cs" />
     <Compile Include="Model\LoginSuccessDataModel.cs" />
     <Compile Include="Model\LogoutDataModel.cs" />
-    <Compile Include="Model\MessageAddDataModel.cs" />
+    <Compile Include="Model\MessagePartialDataModel.cs" />
     <Compile Include="Model\MessageDataModel.cs" />
     <Compile Include="Model\RegistrationDataModel.cs" />
     <Compile Include="Model\RegistrationResultData.cs" />
