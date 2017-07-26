@@ -9,7 +9,7 @@ namespace DataLevel
 {
     public class ChatDb : IChatDb
     {
-        public void AddMessage(MessageAddDataModel obj)
+        public void AddMessage(MessagePartialDataModel obj)
         {
             using (var messageManager = new MessageDataManager())//конструкция using для Dispose
             {
