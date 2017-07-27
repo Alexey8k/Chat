@@ -9,26 +9,20 @@ using ChatServise.DataContract;
 namespace ChatServise
 {
 
-    [ServiceContract(CallbackContract = typeof(IChatCallback), SessionMode = SessionMode.Allowed)]//для дуплексного контакта
+    [ServiceContract(CallbackContract = typeof(IChatCallback))]
     public interface IChatService
     {
         [OperationContract]
-        LoginResultTransportModel Login(LoginTransportModel obj);//войти
+        LoginResultTransportModel Login(LoginTransportModel obj);    //войти
 
         [OperationContract]
-        void Logout(LogoutObjectIn obj);//выйти
+        void Logout(LogoutTransportModel obj);    //выйти
 
         [OperationContract]
-        void SendMessage(MessageObjectIn obj);//отправить сообщение
+        void SendMessage(MessagePartialTransportModel obj);    //отправить сообщение
 
         [OperationContract]
-        RegistrationResultTransportModel Registration(RegistrationTransportModel obj);//регистрация
-
-        //[OperationContract]
-        //void GetUsers();
-
-        //[OperationContract]
-        //void GetMessages();
+        RegistrationResultTransportModel Registration(RegistrationTransportModel obj);    //регистрация
     }
 
    

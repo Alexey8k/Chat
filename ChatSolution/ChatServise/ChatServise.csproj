@@ -49,24 +49,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContract\LoginResultTransport.cs" />
-    <Compile Include="DataContract\MessagesModelIn.cs" />
-    <Compile Include="DataContract\MessagesObjectIn.cs" />
+    <Compile Include="DataContract\MessagePartialTransportModel.cs" />
+    <Compile Include="DataContract\MessageTransportModel.cs" />
+    <Compile Include="DataContract\UnreadMessagesResultTransportModel.cs" />
     <Compile Include="DataContract\RegistrationResultTransport.cs" />
-    <Compile Include="DataContract\UserModel.cs" />
-    <Compile Include="DataContract\UsersObjectIn.cs" />
+    <Compile Include="DataContract\UserPartialTransportModel.cs" />
+    <Compile Include="DataContract\OnlineUsersTransportModel.cs" />
+    <Compile Include="DataContract\UserTransportModel.cs" />
     <Compile Include="IChatCallback.cs" />
     <Compile Include="IChatService.cs" />
     <Compile Include="DataContract\LoginResultTransportModel.cs" />
     <Compile Include="DataContract\LoginTransportModel.cs" />
-    <Compile Include="DataContract\LogoutObjectIn.cs" />
-    <Compile Include="DataContract\MessageObjectIn.cs" />
+    <Compile Include="DataContract\LogoutTransportModel.cs" />
     <Compile Include="DataContract\RegistrationResultTransportModel.cs" />
     <Compile Include="DataContract\RegistrationTransportModel.cs" />
     <Compile Include="DataContract\UserJoinedObjectIn.cs" />
     <Compile Include="DataContract\UserLeavedObjectIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChatService.cs" />
-    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

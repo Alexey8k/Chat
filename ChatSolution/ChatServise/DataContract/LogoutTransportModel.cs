@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class MessagesObjectIn //вернет коллекцию непрочитанных сообщений
+    public class LogoutTransportModel
     {
-        public List<MessagesModelIn> Messages = new List<MessagesModelIn>();
+        [DataMember]
+        public int UserId { get; set; }
     }
 }

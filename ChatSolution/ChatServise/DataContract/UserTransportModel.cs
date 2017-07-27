@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatServise.DataContract
 {
-   public class MessagesModelIn
+    class UserTransportModel
     {
-        public string Message { get; set; }//сообщение (для непрочитанных сообщений)
-
     }
 }

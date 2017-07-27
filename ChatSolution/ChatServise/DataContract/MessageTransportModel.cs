@@ -7,16 +7,19 @@ using System.Threading.Tasks;
 
 namespace ChatServise.DataContract
 {
-    [DataContract]
-    public class RegistrationTransportModel
+   [DataContract]
+   public class MessageTransportModel
     {
         [DataMember]
-        public string Login { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
-        public string Email { get; set; }
+        public string MessageText { get; set; }
 
         [DataMember]
-        public byte[] Hash { get; set; }
+        public DateTime Date { get; set; }
+
+        [DataMember]
+        public int UserId { get; set; }
     }
 }

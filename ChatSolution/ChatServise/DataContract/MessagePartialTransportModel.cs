@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class MessageObjectIn
+    public class MessagePartialTransportModel
     {
-       public RegistrationResultTransport regresult { get; set; }
+        [DataMember]
+        public int UserId { get; set; }
+
+        [DataMember]
+        public string MessageText { get; set; }
     }
 }
