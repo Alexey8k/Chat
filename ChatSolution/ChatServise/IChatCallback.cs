@@ -11,16 +11,19 @@ namespace ChatServise
     public interface IChatCallback    // дуплексный контракт
     {
         [OperationContract(IsOneWay = true)]
-        void UserJoined(UserJoinedObjectIn obj);    // разослать всем что юзер присоеденился к чату
+        void UserJoined(UserPartialTransportModel obj);    // разослать всем что юзер присоеденился к чату
 
         [OperationContract(IsOneWay = true)]
-        void UserLeaved(UserLeavedObjectIn obj);    // разослать всем что юзер покинул чат
+        void UserLeaved(UserLeavedTransportModel obj);    // разослать всем что юзер покинул чат
 
         [OperationContract(IsOneWay = true)]
         void MessageReceived(MessagePartialTransportModel obj);    // разослать всем такое то сообщение (у нас общий чат)
 
         [OperationContract(IsOneWay = true)]
         void OnlineUsers(OnlineUsersTransportModel obj);    // метод который запускается методом Login (при входе пользователя) пользователю который только залогинился придут пользователи которые онлайн
+
+        [OperationContract(IsOneWay = true)]
+        void CurrentUser(UserPartialTransportModel obj);
 
         [OperationContract(IsOneWay = true)]
         void UnreadMessages(UnreadMessagesResultTransportModel obj);    // метод который запускается методом Login (при входе пользователя) и показывает пользователю непрочитанные сообщения

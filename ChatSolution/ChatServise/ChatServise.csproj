@@ -63,8 +63,8 @@
     <Compile Include="DataContract\LogoutTransportModel.cs" />
     <Compile Include="DataContract\RegistrationResultTransportModel.cs" />
     <Compile Include="DataContract\RegistrationTransportModel.cs" />
-    <Compile Include="DataContract\UserJoinedObjectIn.cs" />
-    <Compile Include="DataContract\UserLeavedObjectIn.cs" />
+    <Compile Include="DataContract\UserLeavedTransportModel.cs" />
+    <Compile Include="Mapping\LogintransportModelExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ChatService.cs" />
   </ItemGroup>
@@ -77,10 +77,12 @@
       <Project>{663977a1-1417-45e9-a6f6-31578fea03f6}</Project>
       <Name>BuisenessLevel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataLevel\DataLevel.csproj">
+      <Project>{68197260-cf34-40b7-a6bc-07a3c70294a7}</Project>
+      <Name>DataLevel</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mapping\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

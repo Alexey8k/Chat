@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class UserLeavedObjectIn
+    public class UserLeavedTransportModel
     {
+        public int UserId { get; set; }
     }
 }

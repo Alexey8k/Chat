@@ -9,7 +9,7 @@ using BuisenessLevel.Mapping;
 using DataLevel;
 using DataLevel.Model;
 
-namespace BuisnessLevel
+namespace BuisenessLevel
 {
     public class AuthorizationManager
     {

@@ -19,10 +19,10 @@ namespace ChatServise
         void Logout(LogoutTransportModel obj);    //выйти
 
         [OperationContract]
-        void SendMessage(MessagePartialTransportModel obj);    //отправить сообщение
+        RegistrationResultTransportModel Registration(RegistrationTransportModel obj);    //регистрация
 
         [OperationContract]
-        RegistrationResultTransportModel Registration(RegistrationTransportModel obj);    //регистрация
+        void SendMessage(MessagePartialTransportModel obj);    //отправить сообщение
     }
 
    
