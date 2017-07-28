@@ -26,7 +26,7 @@ namespace ChatServise
         void CurrentUser(UserPartialTransportModel obj);
 
         [OperationContract(IsOneWay = true)]
-        void UnreadMessages(UnreadMessagesResultTransportModel obj);    // метод который запускается методом Login (при входе пользователя) и показывает пользователю непрочитанные сообщения
+        void UnreadMessages(UnreadMessagesTransportModel obj);    // метод который запускается методом Login (при входе пользователя) и показывает пользователю непрочитанные сообщения
     }
 
 }

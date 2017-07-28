@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace ChatServise.DataContract
 {
     [DataContract]
-    public class UnreadMessagesResultTransportModel
+    public class UnreadMessagesTransportModel
     {
         [DataMember]
         public MessageTransportModel[] Messages { get; set; }

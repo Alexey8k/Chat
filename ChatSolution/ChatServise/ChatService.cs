@@ -18,12 +18,13 @@ namespace ChatServise
     {
         private IChat _chat;
 
-        private Dictionary<int, IChatCallback> _callback = new Dictionary<int, IChatCallback>();
+        private MessageTransportManager _messenger;
 
         public ChatService()
         {
             IChatDb chatDb = new ChatDb();
             _chat = new Chat(new UserManager(chatDb), new AuthorizationManager(chatDb), new MessageManager(chatDb));
+            _messenger = new MessageTransportManager(_chat);
         }
 
         public LoginResultTransportModel Login(LoginTransportModel obj)    // войти
@@ -31,14 +32,15 @@ namespace ChatServise
             var resultLogin = _chat.Login(obj.Mapping<LoginModel>());
             if (resultLogin.Result == LoginResult.Ok)
             {
-
+                _messenger.UserJoined(resultLogin.Mapping<LoginSuccessModel>());
             }
-            return new LoginResultTransportModel();
+            return resultLogin.Mapping<LoginResultTransportModel>();
         }
 
         public void Logout(LogoutTransportModel obj)    // выйти
         {
-            
+            _chat.Logout(obj.Mapping<LogoutModel>());
+            _messenger.UserLeaved(obj.Mapping<UserLeavedTransportModel>());
         }
 
         public void SendMessage(MessagePartialTransportModel obj)    // отправить сообщение
@@ -48,8 +50,7 @@ namespace ChatServise
 
         public RegistrationResultTransportModel Registration(RegistrationTransportModel obj)    // регистрация
         {
-
-            return new RegistrationResultTransportModel();
+            return _chat.Registration(obj.Mapping<RegistrationModel>()).Mapping<RegistrationResultTransportModel>();
         }
     }
 }
