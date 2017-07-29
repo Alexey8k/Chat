@@ -14,7 +14,7 @@ namespace BuisenessLevel
     {
         private readonly IChatDb _chatDb;
 
-        private List<UserPartialModel> _users = new List<UserPartialModel>();
+        private readonly List<UserPartialModel> _users = new List<UserPartialModel>();
 
         public UserManager(IChatDb chatDb)
         {
@@ -23,7 +23,7 @@ namespace BuisenessLevel
 
         public UserPartialModel GetCurrentUser(LoginSuccessModel obj)
         {
-            var currentUser = _users.Find(u => u.Id == obj.UserId);
+            var currentUser = _users.LastOrDefault(u => u.Id == obj.UserId);
             if (currentUser == null)
             {
                 currentUser = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
@@ -38,8 +38,13 @@ namespace BuisenessLevel
             var indexCurrentUser = cashUsers.FindLastIndex(u => u.Id == obj.UserId);
             return new OnlineUsersResultModel
             {
-                Users = cashUsers.Take(indexCurrentUser).Concat(cashUsers.Skip(indexCurrentUser++)).ToArray()
+                Users = cashUsers.Take(indexCurrentUser).Concat(cashUsers.Skip(++indexCurrentUser)).ToArray()
             };
+        }
+
+        public void RemoveUser(LogoutModel obj)
+        {
+            _users.Remove(_users.Find(u => u.Id == obj.UserId));
         }
     }
 }

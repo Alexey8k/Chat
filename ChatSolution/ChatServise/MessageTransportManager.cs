@@ -14,9 +14,9 @@ namespace ChatServise
 {
     public class MessageTransportManager
     {
-        private IChat _chat;
+        private readonly IChat _chat;
 
-        private Dictionary<int, IChatCallback> _callback = new Dictionary<int, IChatCallback>();
+        private readonly Dictionary<int, IChatCallback> _callbacks = new Dictionary<int, IChatCallback>();
 
         public MessageTransportManager(IChat chat)
         {
@@ -25,9 +25,9 @@ namespace ChatServise
 
         public void UserJoined(LoginSuccessModel obj)
         {
-            var callbacks = _callback.Values.ToList();
+            var callbacks = _callbacks.Values.ToList();
             var currentCallBack = OperationContext.Current.GetCallbackChannel<IChatCallback>();
-            _callback.Add(obj.UserId, currentCallBack);
+            _callbacks.Add(obj.UserId, currentCallBack);
             var currentUser = _chat.GetCurrentUser(obj).Mapping<UserPartialTransportModel>();
             callbacks.ForEach(u => u.UserJoined(currentUser));
             currentCallBack.CurrentUser(currentUser);
@@ -37,8 +37,16 @@ namespace ChatServise
 
         public void UserLeaved(UserLeavedTransportModel obj)
         {
-            _callback.Remove(obj.UserId);
-            foreach (var callback in _callback.Values) callback.UserLeaved(obj);
+            _callbacks.Remove(obj.UserId);
+            foreach (var callback in _callbacks.Values) callback.UserLeaved(obj);
+        }
+
+        public void SendMessage(MessagePartialTransportModel obj)
+        {
+            foreach (var callback in _callbacks.Where(pair => pair.Key != obj.UserId).Select(pair => pair.Value))
+            {
+                callback.MessageReceived(obj);
+            }
         }
     }
 }

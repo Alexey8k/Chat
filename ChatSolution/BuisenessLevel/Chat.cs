@@ -9,7 +9,7 @@ namespace BuisenessLevel
 {
     public class Chat : IChat
     {
-        private UserManager _userManager;
+        private readonly UserManager _userManager;
 
         private readonly AuthorizationManager _authorizationManager;
 
@@ -45,6 +45,7 @@ namespace BuisenessLevel
         public void Logout(LogoutModel obj)
         {
             _authorizationManager.Logout(obj);
+            _userManager.RemoveUser(obj);
         }
 
         public void ReceivedMessage(MessagePartialModel obj)
