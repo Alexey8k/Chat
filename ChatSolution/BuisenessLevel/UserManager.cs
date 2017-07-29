@@ -24,11 +24,9 @@ namespace BuisenessLevel
         public UserPartialModel GetCurrentUser(LoginSuccessModel obj)
         {
             var currentUser = _users.LastOrDefault(u => u.Id == obj.UserId);
-            if (currentUser == null)
-            {
-                currentUser = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
-                _users.Add(currentUser);
-            }
+            if (currentUser != null) return currentUser;
+            currentUser = _chatDb.GetCurrentUser(obj.Mapping<LoginSuccessDataModel>()).Mapping<UserPartialModel>();
+            _users.Add(currentUser);
             return currentUser;
         }
 
