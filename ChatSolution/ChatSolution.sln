@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatLoger", "ChatLoger\ChatLoger.csproj", "{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportLevel", "TransportLevel\TransportLevel.csproj", "{E791C8A7-7E08-48AD-AD39-89F21B276C61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20417D78-3EF4-4D33-9F88-E8F928F582F7} = {20417D78-3EF4-4D33-9F88-E8F928F582F7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
