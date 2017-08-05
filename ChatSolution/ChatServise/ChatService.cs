@@ -16,9 +16,9 @@ namespace ChatServise
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
     public class ChatService : IChatService
     {
-        private IChat _chat;
+        private readonly IChat _chat;
 
-        private MessageTransportManager _messenger;
+        private readonly MessageTransportManager _messenger;
 
         public ChatService()
         {
@@ -45,7 +45,7 @@ namespace ChatServise
 
         public void SendMessage(MessagePartialTransportModel obj)    // отправить сообщение
         {
-            
+            _messenger.SendMessage(obj);
         }
 
         public RegistrationResultTransportModel Registration(RegistrationTransportModel obj)    // регистрация
