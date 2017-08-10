@@ -9,13 +9,13 @@ using TransportLevel.EventArg;
 
 namespace TransportLevel
 {
-    public class ChatClient : IChatClient
+    public class ChatTransport : IChatTransport
     {
         private readonly CallbackChatService _callbackChatService;
 
         private readonly ChatServiceClient _proxyChat;
 
-        public ChatClient()
+        public ChatTransport()
         {
             _callbackChatService = new CallbackChatService();
             _proxyChat = new ChatServiceClient(new InstanceContext(_callbackChatService));
