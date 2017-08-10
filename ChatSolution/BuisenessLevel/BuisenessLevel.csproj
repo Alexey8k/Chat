@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +44,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationManager.cs" />
+    <Compile Include="Chat.cs" />
+    <Compile Include="IChat.cs" />
+    <Compile Include="Mapping\LoginSuccessModelExtension.cs" />
+    <Compile Include="Mapping\LogoutModelExtension.cs" />
+    <Compile Include="Mapping\MessageReceiveModelExtension.cs" />
+    <Compile Include="Mapping\RegistrationModelExtension.cs" />
+    <Compile Include="Mapping\RegistrationResultDataModelExtension.cs" />
+    <Compile Include="Mapping\UnreadMessagesResultDataModelExtension.cs" />
+    <Compile Include="Mapping\UserDataModelExtension.cs" />
+    <Compile Include="Mapping\UserPartialModelExtension.cs" />
+    <Compile Include="MessageManager.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\LoginResult.cs" />
+    <Compile Include="Model\LoginResultModel.cs" />
+    <Compile Include="Mapping\LoginModelExtension.cs" />
+    <Compile Include="Mapping\LoginResultDataModelExtension.cs" />
+    <Compile Include="Model\LoginSuccessModel.cs" />
+    <Compile Include="Model\LogoutModel.cs" />
+    <Compile Include="Model\MessageModel.cs" />
+    <Compile Include="Model\MessagePartialModel.cs" />
+    <Compile Include="Model\OnlineUsersResultModel.cs" />
+    <Compile Include="Model\RegistrationModel.cs" />
+    <Compile Include="Model\RegistrationResult.cs" />
+    <Compile Include="Model\RegistrationResultModel.cs" />
+    <Compile Include="Model\UnreadMessagesResultModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\UserPartialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataLevel\DataLevel.csproj">
+      <Project>{68197260-cf34-40b7-a6bc-07a3c70294a7}</Project>
+      <Name>DataLevel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

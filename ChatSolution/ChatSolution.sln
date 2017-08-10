@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLevel", "DataLevel\DataLevel.csproj", "{68197260-CF34-40B7-A6BC-07A3C70294A7}"
 EndProject
@@ -12,6 +12,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatClient", "ChatClient\ChatClient.csproj", "{A952C673-DC78-4B57-AC64-53A74C173586}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicLevel", "LogicLevel\LogicLevel.csproj", "{C2CFA9B5-036E-4C1C-B3BB-625228124124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatLoger", "ChatLoger\ChatLoger.csproj", "{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportLevel", "TransportLevel\TransportLevel.csproj", "{E791C8A7-7E08-48AD-AD39-89F21B276C61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{20417D78-3EF4-4D33-9F88-E8F928F582F7} = {20417D78-3EF4-4D33-9F88-E8F928F582F7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,14 @@ Global
 		{C2CFA9B5-036E-4C1C-B3BB-625228124124}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2CFA9B5-036E-4C1C-B3BB-625228124124}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2CFA9B5-036E-4C1C-B3BB-625228124124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F783E2FB-0F84-4B24-B6C1-54A8FC803BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E791C8A7-7E08-48AD-AD39-89F21B276C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E791C8A7-7E08-48AD-AD39-89F21B276C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E791C8A7-7E08-48AD-AD39-89F21B276C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E791C8A7-7E08-48AD-AD39-89F21B276C61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
