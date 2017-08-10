@@ -8,7 +8,7 @@ using TransportLevel.EventArg;
 
 namespace TransportLevel
 {
-    public interface IChatClient
+    public interface IChatTransport
     {
         event EventHandler<UserJoinedEventArgs> UserJoined;
 
