@@ -651,8 +651,8 @@ namespace LogicLevel.ChatServiceReference {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/UserJoined")]
         void UserJoined(LogicLevel.ChatServiceReference.UserPartialTransportModel obj);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/UserLeaved")]
-        void UserLeaved(LogicLevel.ChatServiceReference.UserLeavedTransportModel obj);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/UserLeave")]
+        void UserLeave(LogicLevel.ChatServiceReference.UserLeavedTransportModel obj);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IChatService/MessageReceived")]
         void MessageReceived(LogicLevel.ChatServiceReference.MessagePartialTransportModel obj);

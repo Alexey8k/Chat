@@ -44,8 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatServiceCallback.cs" />
-    <Compile Include="ChatTransport.cs" />
+    <Compile Include="ChatClient.cs" />
     <Compile Include="Connected Services\ChatServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -57,13 +56,27 @@
     <Compile Include="EventArg\UnreadMessagesEventArgs.cs" />
     <Compile Include="EventArg\UserJoinedEventArgs.cs" />
     <Compile Include="EventArg\UserLeavedEventArgs.cs" />
-    <Compile Include="IChatTransport.cs" />
+    <Compile Include="IChatClient.cs" />
     <Compile Include="Mapping\CurrentUserEventArgsExtension.cs" />
     <Compile Include="Mapping\LoginModelExtension.cs" />
-    <Compile Include="Mapping\LoginResultDataModelExtension.cs" />
+    <Compile Include="Mapping\LoginResultTransportModelExtension.cs" />
+    <Compile Include="Mapping\LogoutModelExtension.cs" />
     <Compile Include="Mapping\MessagePartialModelExtension.cs" />
+    <Compile Include="Mapping\MessagePartialTransportModelExtension.cs" />
+    <Compile Include="Mapping\OnlineUsersTransportModelExtension.cs" />
+    <Compile Include="Mapping\RegistrationModelExtension.cs" />
+    <Compile Include="Mapping\RegistrationResultTransportModelExtension.cs" />
+    <Compile Include="Mapping\UnreadMessagesTransportModelExtension.cs" />
+    <Compile Include="Mapping\UserLeavedTransportModelExtension.cs" />
+    <Compile Include="Mapping\UserPartialTransportModelExtension.cs" />
     <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\LoginResult.cs" />
+    <Compile Include="Model\LoginResultModel.cs" />
+    <Compile Include="Model\LogoutModel.cs" />
     <Compile Include="Model\MessagePartialModel.cs" />
+    <Compile Include="Model\RegistrationModel.cs" />
+    <Compile Include="Model\RegistrationResult.cs" />
+    <Compile Include="Model\RegistrationResultModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

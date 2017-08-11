@@ -67,8 +67,8 @@
   <wsdl:message name="IChatService_UserJoined_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:UserJoined" />
   </wsdl:message>
-  <wsdl:message name="IChatService_UserLeaved_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:UserLeaved" />
+  <wsdl:message name="IChatService_UserLeave_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:UserLeave" />
   </wsdl:message>
   <wsdl:message name="IChatService_MessageReceived_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:MessageReceived" />
@@ -102,8 +102,8 @@
     <wsdl:operation name="UserJoined">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UserJoined" message="tns:IChatService_UserJoined_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UserLeaved">
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UserLeaved" message="tns:IChatService_UserLeaved_OutputCallbackMessage" />
+    <wsdl:operation name="UserLeave">
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/UserLeave" message="tns:IChatService_UserLeave_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="MessageReceived">
       <wsdl:output wsaw:Action="http://tempuri.org/IChatService/MessageReceived" message="tns:IChatService_MessageReceived_OutputCallbackMessage" />
@@ -164,8 +164,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="UserLeaved">
-      <soap12:operation soapAction="http://tempuri.org/IChatService/UserLeaved" style="document" />
+    <wsdl:operation name="UserLeave">
+      <soap12:operation soapAction="http://tempuri.org/IChatService/UserLeave" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

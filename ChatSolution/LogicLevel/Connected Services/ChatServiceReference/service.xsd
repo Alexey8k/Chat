@@ -60,7 +60,7 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="UserLeaved">
+  <xs:element name="UserLeave">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ChatServise.DataContract" minOccurs="0" name="obj" nillable="true" type="q8:UserLeavedTransportModel" />
