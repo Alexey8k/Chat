@@ -73,10 +73,15 @@
     <Compile Include="Model\LoginResult.cs" />
     <Compile Include="Model\LoginResultModel.cs" />
     <Compile Include="Model\LogoutModel.cs" />
+    <Compile Include="Model\MessageModel.cs" />
     <Compile Include="Model\MessagePartialModel.cs" />
+    <Compile Include="Model\OnlineUsersResultModel.cs" />
     <Compile Include="Model\RegistrationModel.cs" />
     <Compile Include="Model\RegistrationResult.cs" />
     <Compile Include="Model\RegistrationResultModel.cs" />
+    <Compile Include="Model\UnreadMessagesResultModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="Model\UserPartialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
