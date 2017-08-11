@@ -44,11 +44,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatServiceCallback.cs" />
+    <Compile Include="ChatTransport.cs" />
     <Compile Include="Connected Services\ChatServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="EventArg\CurrentUserEventArgs.cs" />
+    <Compile Include="EventArg\MessageReceivedEventArgs.cs" />
+    <Compile Include="EventArg\OnlineUsersEventArgs.cs" />
+    <Compile Include="EventArg\UnreadMessagesEventArgs.cs" />
+    <Compile Include="EventArg\UserJoinedEventArgs.cs" />
+    <Compile Include="EventArg\UserLeavedEventArgs.cs" />
+    <Compile Include="IChatTransport.cs" />
+    <Compile Include="Mapping\CurrentUserEventArgsExtension.cs" />
+    <Compile Include="Mapping\LoginModelExtension.cs" />
+    <Compile Include="Mapping\LoginResultDataModelExtension.cs" />
+    <Compile Include="Mapping\MessagePartialModelExtension.cs" />
+    <Compile Include="Model\LoginModel.cs" />
+    <Compile Include="Model\MessagePartialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
