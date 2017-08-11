@@ -14,7 +14,7 @@ namespace ChatServise
         void UserJoined(UserPartialTransportModel obj);    // разослать всем что юзер присоеденился к чату
 
         [OperationContract(IsOneWay = true)]
-        void UserLeaved(UserLeavedTransportModel obj);    // разослать всем что юзер покинул чат
+        void UserLeave(UserLeavedTransportModel obj);    // разослать всем что юзер покинул чат
 
         [OperationContract(IsOneWay = true)]
         void MessageReceived(MessagePartialTransportModel obj);    // разослать всем такое то сообщение (у нас общий чат)
