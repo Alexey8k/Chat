@@ -12,42 +12,47 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using LogicLevel;
-using LogicLevel.ChatServiceReference;
+using LogicLevel.Model;
 
 namespace ChatClient.ViewModel
 {
     class ChatViewModel : INotifyPropertyChanged
     {
-        private IChatClient _chatClient = new LogicLevel.ChatClient();
-        private UserPartialModel 
-        private string _login;
+        private readonly IChatClient _chatClient;
+
+        private UserPartialModel _currentUser;
+
+        public ChatViewModel()
+        {
+            _chatClient = new LogicLevel.ChatClient();
+            _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<> 
+        }
+        public int UserId
+        {
+            get { return _currentUser.Id; }
+        }
         public string Login
         {
-            get { return _login; }
+            get { return _currentUser.Login; }
+        }
+        private string _messageText;
+        public string MessageText
+        {
+            get { return _messageText; }
             set
             {
-                _login = value;
-                OnPropertyChanged("Login");
+                _messageText = value;
+                OnPropertyChanged("MessageText");
             }
         }
-        private string _textMessage;
-        public string TextMessage
+        private UserControl _loginInOut = new LoginControl();
+        public UserControl LoginInOut
         {
-            get { return _textMessage; }
-            set
-            {
-                _textMessage = value;
-                OnPropertyChanged("TextMessage");
-            }
-        }
-        private UserControl _logInOut = new LoginControl();
-        public UserControl LogInOut
-        {
-            get { return _logInOut; }
+            get { return _loginInOut; }
             private set
             {
-                _logInOut = value;
-                OnPropertyChanged("LogInOut");
+                _loginInOut = value;
+                OnPropertyChanged("LoginInOut");
             }
         }
         public ICommand LoginCommand
@@ -59,7 +64,7 @@ namespace ChatClient.ViewModel
                     LoginWindow loginWindow = new LoginWindow();
                     //((LoginViewModel)loginWindow.DataContext).ProxyChat = _proxyChat;
                     if (loginWindow.ShowDialog() != true) return;
-                    LogInOut = new LogoutControl();
+                    LoginInOut = new LogoutControl();
                 });
             }
         }
@@ -69,7 +74,7 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    if (_login == null) return;
+                    if (_currentUser == null) return;
                     //_proxyChat.Logout(_user);
                     //_proxyChat.Abort();
                 });
@@ -91,8 +96,8 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    MessageBox.Show(TextMessage);
-                    TextMessage = string.Empty;
+                    MessageBox.Show(MessageText);
+                    MessageText = string.Empty;
                 });
             }
         }

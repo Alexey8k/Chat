@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <DockPanel Grid.ColumnSpan="2" Grid.Row="0" Margin="3" Background="Pink">
-            <UserControl DockPanel.Dock="Right" VerticalAlignment="Bottom" Content="{Binding LogInOut}"/>
+            <UserControl DockPanel.Dock="Right" VerticalAlignment="Bottom" Content="{Binding LoginInOut}"/>
             <Label Content="Чат" Margin="3,0" FontSize="33" FontFamily="Comic Sans MS" Foreground="DeepPink"/>
         </DockPanel>
 
@@ -38,7 +38,7 @@
                     Content="Отправить" 
                     DockPanel.Dock="Right" 
                     Command="{Binding SendMessageCommamd}"/>
-            <TextBox Margin="3" x:Name="Message" Text="{Binding TextMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <TextBox Margin="3" x:Name="Message" Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding SendMessageCommamd}"/>
                 </TextBox.InputBindings>
