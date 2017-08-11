@@ -8,7 +8,7 @@ using LogicLevel.EventArg;
 
 namespace LogicLevel.Mapping
 {
-    internal static class CurrentUserEventArgsExtension
+    public static class CurrentUserEventArgsExtension
     {
         public static T Mapping<T>(this CurrentUserEventArgs obj)
         {

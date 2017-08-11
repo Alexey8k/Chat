@@ -8,7 +8,7 @@ using LogicLevel.Model;
 
 namespace LogicLevel.Mapping
 {
-    internal static class LogoutModelExtension
+    public static class LogoutModelExtension
     {
         public static T Mapping<T>(this LogoutModel obj)
         {
