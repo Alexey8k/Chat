@@ -11,11 +11,15 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LogicLevel;
+using LogicLevel.ChatServiceReference;
 
 namespace ChatClient.ViewModel
 {
     class ChatViewModel : INotifyPropertyChanged
     {
+        private IChatClient _chatClient = new LogicLevel.ChatClient();
+        private UserPartialModel 
         private string _login;
         public string Login
         {
