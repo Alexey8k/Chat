@@ -11,6 +11,21 @@
     <AssemblyName>DataLevel</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,8 +45,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,7 +68,96 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationDataManager.cs" />
+    <Compile Include="BaseDataManager.cs" />
+    <Compile Include="ChatDb.cs" />
+    <Compile Include="ChatDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChatDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChatDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChatDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChatDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorLogin.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IChatDb.cs" />
+    <Compile Include="Message.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MessageDataManager.cs" />
+    <Compile Include="MessageResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\LoginDataModel.cs" />
+    <Compile Include="Model\LoginResaltData.cs" />
+    <Compile Include="Model\LoginResultDataModel.cs" />
+    <Compile Include="Model\LoginSuccessDataModel.cs" />
+    <Compile Include="Model\LogoutDataModel.cs" />
+    <Compile Include="Model\MessageDataModel.cs" />
+    <Compile Include="Model\MessagePartialDataModel.cs" />
+    <Compile Include="Model\RegistrationDataModel.cs" />
+    <Compile Include="Model\RegistrationResultData.cs" />
+    <Compile Include="Model\RegistrationResultDataModel.cs" />
+    <Compile Include="Model\UnreadMessagesResultDataModel.cs" />
+    <Compile Include="Model\UserDataModel.cs" />
+    <Compile Include="Model\UserPartialDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDataManager.cs" />
+    <Compile Include="UserPartialResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserResult.cs">
+      <DependentUpon>ChatDBModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptDB\ProcedureDB.sql" />
+    <Content Include="ScriptDB\TablesBD.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="ChatDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ChatDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="ChatDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChatDBModel.edmx</DependentUpon>
+      <LastGenOutput>ChatDBModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="ChatDBModel.edmx.diagram">
+      <DependentUpon>ChatDBModel.edmx</DependentUpon>
+    </None>
+    <None Include="ChatDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ChatDBModel.edmx</DependentUpon>
+      <LastGenOutput>ChatDBModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
