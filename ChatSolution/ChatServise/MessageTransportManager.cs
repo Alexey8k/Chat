@@ -38,7 +38,7 @@ namespace ChatServise
         public void UserLeaved(UserLeavedTransportModel obj)
         {
             _callbacks.Remove(obj.UserId);
-            foreach (var callback in _callbacks.Values) callback.UserLeaved(obj);
+            foreach (var callback in _callbacks.Values) callback.UserLeave(obj);
         }
 
         public void SendMessage(MessagePartialTransportModel obj)
