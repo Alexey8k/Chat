@@ -8,7 +8,7 @@ using LogicLevel.ChatServiceReference;
 
 namespace LogicLevel.Mapping
 {
-    internal static class MessagePartialTransportModelExtension
+    public static class MessagePartialTransportModelExtension
     {
         public static T Mapping<T>(this MessagePartialTransportModel obj)
         {

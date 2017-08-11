@@ -8,7 +8,7 @@ using LogicLevel.ChatServiceReference;
 
 namespace LogicLevel.Mapping
 {
-    internal static class UserLeavedTransportModelExtension
+    public static class UserLeavedTransportModelExtension
     {
         public static T Mapping<T>(this UserLeavedTransportModel obj)
         {

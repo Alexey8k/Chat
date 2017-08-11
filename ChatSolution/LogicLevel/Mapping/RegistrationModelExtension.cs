@@ -8,7 +8,7 @@ using LogicLevel.Model;
 
 namespace LogicLevel.Mapping
 {
-    internal static class RegistrationModelExtension
+    public static class RegistrationModelExtension
     {
         public static T Mapping<T>(this RegistrationModel obj)
         {

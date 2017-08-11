@@ -8,7 +8,7 @@ using LogicLevel.Model;
 
 namespace LogicLevel.Mapping
 {
-    internal static class MessagePartialModelExtension
+    public static class MessagePartialModelExtension
     {
         public static T Mapping<T>(this MessagePartialModel obj)
         {
