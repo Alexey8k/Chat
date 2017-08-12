@@ -8,14 +8,18 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LogicLevel;
 
 namespace ChatClient.ViewModel
 {
     class LoginViewModel
     {
         public string Login { get; set; }
+
         private PasswordBox _password;
-        //public ChatClient ProxyChat { set; private get; }
+
+        public IChatClient ChatClient { set; private get; }
+
         public ICommand LoginCommand
         {
             get
@@ -48,7 +52,10 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    new RegistrationWindow().ShowDialog();
+                    RegistrationWindow registrationWindow = new RegistrationWindow();
+                    ((RegistrationViewModel)registrationWindow.DataContext).ChatClient = ChatClient;
+                    if (registrationWindow.ShowDialog() != true) return;
+                    //MessageBox.Show("Регистрация прошла успешно")
                 });
             }
         }

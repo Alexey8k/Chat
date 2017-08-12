@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using LogicLevel;
 
 namespace ChatClient.ViewModel
 {
     class RegistrationViewModel
     {
         public string Login { get; set; }
+
         public PasswordBox _password1 { get; set; }
+
         public PasswordBox _password2 { get; set; }
+
         public string Email { get; set; }
+
+
+        public IChatClient ChatClient { set; private get; }
         public ICommand RegistrationCommand
         {
             get
@@ -28,6 +35,7 @@ namespace ChatClient.ViewModel
                             MessageBox.Show("Не все поля заполнены или пароли не совпадают.");
                             return;
                         }
+                        ChatClient.Registration()
                     });
             }
         }

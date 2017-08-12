@@ -26,7 +26,8 @@ namespace ChatClient.ViewModel
         public ChatViewModel()
         {
             _chatClient = new LogicLevel.ChatClient();
-            _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<> 
+            _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<UserPartialModel>();
+            _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format("({0}) ", DateTime.Now);
         }
         public int UserId
         {
@@ -46,6 +47,18 @@ namespace ChatClient.ViewModel
                 OnPropertyChanged("MessageText");
             }
         }
+
+        private string _chatBox;
+        public string ChatBox
+        {
+            get { return _chatBox; }
+            set
+            {
+                _chatBox = value;
+                OnPropertyChanged("ChatBox");
+            }
+        }
+
         private UserControl _loginInOut = new LoginControl();
         public UserControl LoginInOut
         {
@@ -63,7 +76,7 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(sender =>
                 {
                     LoginWindow loginWindow = new LoginWindow();
-                    //((LoginViewModel)loginWindow.DataContext).ProxyChat = _proxyChat;
+                    ((LoginViewModel)loginWindow.DataContext).ChatClient = _chatClient;
                     if (loginWindow.ShowDialog() != true) return;
                     LoginInOut = new LogoutControl();
                 });
