@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using LogicLevel.ChatServiceReference;
 using LogicLevel.Model;
 
 namespace LogicLevel.Mapping
 {
     public static class RegistrationModelExtension
     {
-        public static T Mapping<T>(this RegistrationModel obj)
+        public static RegistrationTransportModel Mapping(this RegistrationModel obj, IHashAlgorithm hashAlgorithm)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<RegistrationModel, T>());
-            return Mapper.Map<RegistrationModel, T>(obj);
+            Mapper.Initialize(cfg => cfg.CreateMap<RegistrationModel, RegistrationTransportModel>().ForMember(
+                arg => arg.Hash, options => options.MapFrom(model => hashAlgorithm.GetHash(model.Login, model.Password))));
+            return Mapper.Map<RegistrationModel, RegistrationTransportModel>(obj);
         }
     }
 }

@@ -44,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorizationManager.cs" />
     <Compile Include="ChatClient.cs" />
+    <Compile Include="ChatTransport.cs" />
+    <Compile Include="ChatServiceCallback.cs" />
     <Compile Include="Connected Services\ChatServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,7 +59,9 @@
     <Compile Include="EventArg\UnreadMessagesEventArgs.cs" />
     <Compile Include="EventArg\UserJoinedEventArgs.cs" />
     <Compile Include="EventArg\UserLeavedEventArgs.cs" />
+    <Compile Include="HashSHA1.cs" />
     <Compile Include="IChatClient.cs" />
+    <Compile Include="IHashAlgorithm.cs" />
     <Compile Include="Mapping\CurrentUserEventArgsExtension.cs" />
     <Compile Include="Mapping\LoginModelExtension.cs" />
     <Compile Include="Mapping\LoginResultTransportModelExtension.cs" />
@@ -69,6 +74,7 @@
     <Compile Include="Mapping\UnreadMessagesTransportModelExtension.cs" />
     <Compile Include="Mapping\UserLeavedTransportModelExtension.cs" />
     <Compile Include="Mapping\UserPartialTransportModelExtension.cs" />
+    <Compile Include="MessageManager.cs" />
     <Compile Include="Model\LoginModel.cs" />
     <Compile Include="Model\LoginResult.cs" />
     <Compile Include="Model\LoginResultModel.cs" />
@@ -83,6 +89,7 @@
     <Compile Include="Model\UserModel.cs" />
     <Compile Include="Model\UserPartialModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
