@@ -10,6 +10,7 @@ namespace ChatServise.DataContract
     [DataContract]
     public class OnlineUsersTransportModel
     {
+        [DataMember]
         public UserPartialTransportModel[] Users { get; set; }
     }
 }
