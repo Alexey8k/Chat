@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ChatClient.Mapping;
 using LogicLevel;
 using LogicLevel.Mapping;
@@ -22,6 +23,7 @@ namespace ChatClient.ViewModel
 {
     class ChatViewModel : INotifyPropertyChanged
     {
+        private readonly Dispatcher _dispatcher = Dispatcher.CurrentDispatcher;
         private readonly IChatClient _chatClient;
 
         private UserPartialModel _currentUser;
@@ -45,7 +47,10 @@ namespace ChatClient.ViewModel
             _chatClient.OnlineUsersReceived += (sender, args) =>
             {
                 if (args.Users == null) return;
-                foreach (var user in args.Users) OnLineUsers.Add(user);
+                _dispatcher.Invoke(() =>
+                {
+                    foreach (var user in args.Users) OnLineUsers.Add(user);
+                });
             };
             _chatClient.UnreadMessagesReceived += (sender, args) =>
             {
@@ -54,8 +59,10 @@ namespace ChatClient.ViewModel
                     ChatBox += string.Format(
                         "({0}) {1}: {2}\r\n", message.Date, OnLineUsers.ToList().Find(u => u.Id == message.UserId), message.MessageText);
             };
-            _chatClient.OnUserJoined += (sender, args) => OnLineUsers.Add(args.Mapping<UserPartialModel>());
-            _chatClient.OnUserLeave += (sender, args) => OnLineUsers.Remove(args.Mapping<UserPartialModel>());
+            _chatClient.OnUserJoined += (sender, args) 
+                => _dispatcher.Invoke(() => OnLineUsers.Add(args.Mapping<UserPartialModel>()));
+            _chatClient.OnUserLeave += (sender, args) 
+                => _dispatcher.Invoke(() => OnLineUsers.Remove(args.Mapping<UserPartialModel>()));
         }
         public int UserId
         {
@@ -87,7 +94,7 @@ namespace ChatClient.ViewModel
             }
         }
 
-        public ObservableCollection<UserPartialModel> OnLineUsers { get; set; }
+        public ObservableCollection<UserPartialModel> OnLineUsers { get; set; } = new ObservableCollection<UserPartialModel>();
 
         private UserControl _loginInOut = new LoginControl();
         public UserControl LoginInOut
@@ -123,6 +130,7 @@ namespace ChatClient.ViewModel
                     _chatClient.Logout(this.Mapping<LogoutModel>());
                     _currentUser = null;
                     LoginInOut = new LoginControl();
+                    OnLineUsers.Clear();
                 });
             }
         }
