@@ -13,6 +13,8 @@ namespace LogicLevel
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     internal class ChatServiceCallback : IChatServiceCallback
     {
+        private object _locker = new object();
+
         public event EventHandler<UserJoinedEventArgs> OnUserJoined;
 
         public event EventHandler<UserLeavedEventArgs> OnUserLeave;
@@ -27,32 +29,50 @@ namespace LogicLevel
 
         public void UserJoined(UserPartialTransportModel obj)
         {
-            if (OnUserJoined != null) OnUserJoined(this, obj.Mapping<UserJoinedEventArgs>());
+            lock (_locker)
+            {
+                if (OnUserJoined != null) OnUserJoined(this, obj.Mapping<UserJoinedEventArgs>());
+            }
         }
 
         public void UserLeave(UserLeavedTransportModel obj)
         {
-            if (OnUserLeave != null) OnUserLeave(this, obj.Mapping<UserLeavedEventArgs>());
+            lock (_locker)
+            {
+                if (OnUserLeave != null) OnUserLeave(this, obj.Mapping<UserLeavedEventArgs>());
+            }
         }
 
         public void MessageReceived(MessagePartialTransportModel obj)
         {
-            if (OnMessageReceived != null) OnMessageReceived(this, obj.Mapping<MessageReceivedEventArgs>());
+            lock (_locker)
+            {
+                if (OnMessageReceived != null) OnMessageReceived(this, obj.Mapping<MessageReceivedEventArgs>());
+            }
         }
 
         public void OnlineUsers(OnlineUsersTransportModel obj)
         {
-            if (OnlineUsersReceived != null) OnlineUsersReceived(this, obj.Mapping());
+            lock (_locker)
+            {
+                if (OnlineUsersReceived != null) OnlineUsersReceived(this, obj.Mapping());
+            }
         }
 
         public void CurrentUser(UserPartialTransportModel obj)
         {
-            if (CurrentUserReceived != null) CurrentUserReceived(this, obj.Mapping<CurrentUserEventArgs>());
+            lock (_locker)
+            {
+                if (CurrentUserReceived != null) CurrentUserReceived(this, obj.Mapping<CurrentUserEventArgs>());
+            }
         }
 
         public void UnreadMessages(UnreadMessagesTransportModel obj)
         {
-            if (UnreadMessagesReceived != null) UnreadMessagesReceived(this, obj.Mapping());
+            lock (_locker)
+            {
+                if (UnreadMessagesReceived != null) UnreadMessagesReceived(this, obj.Mapping());
+            }
         }
     }
 }
