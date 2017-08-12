@@ -25,7 +25,11 @@ namespace ChatClient.ViewModel
 
         public ChatViewModel()
         {
-            _chatClient = new LogicLevel.ChatClient();
+            var chatTransport = new ChatTransport();
+            _chatClient = new LogicLevel.ChatClient(
+                new AuthorizationManager(chatTransport, new HashSHA1()),
+                new UserManager(chatTransport),
+                new MessageManager(chatTransport));
             _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<UserPartialModel>();
             _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format("({0}) ", DateTime.Now);
         }

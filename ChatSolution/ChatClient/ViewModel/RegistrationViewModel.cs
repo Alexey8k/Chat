@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChatClient.Mapping;
+using ChatClient.View;
 using LogicLevel;
+using LogicLevel.Model;
 
 namespace ChatClient.ViewModel
 {
@@ -15,14 +18,16 @@ namespace ChatClient.ViewModel
     {
         public string Login { get; set; }
 
-        public PasswordBox _password1 { get; set; }
+        private PasswordBox _password1;
 
-        public PasswordBox _password2 { get; set; }
+        private PasswordBox _password2;
+
+        public string Passwopd { get { return _password1.Password; } }
 
         public string Email { get; set; }
 
-
         public IChatClient ChatClient { set; private get; }
+
         public ICommand RegistrationCommand
         {
             get
@@ -30,12 +35,25 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(
                     sender =>
                     {
-                        if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1 != _password2 )
+                        if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1.Password != _password2.Password )
                         {
                             MessageBox.Show("Не все поля заполнены или пароли не совпадают.");
                             return;
                         }
-                        ChatClient.Registration()
+                        var result = ChatClient.Registration(this.Mapping<RegistrationModel>()).Result;
+                        switch (result)
+                        {
+                            case RegistrationResult.Login:
+                                MessageBox.Show("Данный логин уже занят.");
+                                break;
+                            case RegistrationResult.Email:
+                                MessageBox.Show("Пользователь с такой почтой уже есть.");
+                                break;
+                            default:
+                                ((RegistrationWindow) sender).DialogResult = true;
+                                break;
+                        }
+
                     });
             }
         }

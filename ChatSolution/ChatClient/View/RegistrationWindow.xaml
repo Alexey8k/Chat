@@ -33,7 +33,7 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PasswordChanged">
                     <i:InvokeCommandAction Command="{Binding Psw1Command}"
-                                           CommandParameter="{Binding ElementName=PswBox}"/>
+                                           CommandParameter="{Binding ElementName=Psw1}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </PasswordBox>
@@ -43,7 +43,7 @@
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PasswordChanged">
                     <i:InvokeCommandAction Command="{Binding Psw2Command}"
-                                           CommandParameter="{Binding ElementName=PswBox}"/>
+                                           CommandParameter="{Binding ElementName=Psw2}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </PasswordBox>
