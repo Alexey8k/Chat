@@ -22,7 +22,7 @@ namespace ChatClient.ViewModel
 
         private PasswordBox _password2;
 
-        public string Passwopd { get { return _password1.Password; } }
+        public string Password { get { return _password1.Password; } }
 
         public string Email { get; set; }
 
@@ -50,7 +50,7 @@ namespace ChatClient.ViewModel
                                 MessageBox.Show("Пользователь с такой почтой уже есть.");
                                 break;
                             case RegistrationResult.Ok:
-                                ((RegistrationWindow) sender).DialogResult = true;
+                                ((RegistrationWindow)sender).DialogResult = true;
                                 break;
                         }
                     });

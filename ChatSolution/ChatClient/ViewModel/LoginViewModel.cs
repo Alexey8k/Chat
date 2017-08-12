@@ -20,7 +20,7 @@ namespace ChatClient.ViewModel
 
         public string Login { get; set; }
 
-        public string Password { get; set; }
+        public string Password { get { return _password.Password; } }
 
         public IChatClient ChatClient { set; private get; }
 
