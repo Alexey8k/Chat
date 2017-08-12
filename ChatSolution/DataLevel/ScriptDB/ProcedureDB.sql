@@ -1,13 +1,11 @@
 ﻿create procedure [Login]
 @hash varbinary(100)
 as
-declare @userId	int
-select @userId=Id from [User] where [Hash]=@hash
-select case @userId
-			when null
-				then (select Code from ErrorLogin where Text='Fail')
-			else @userId
-		end	Result
+declare @result	int
+select @result=Id from [User] where [Hash]=@hash
+if @result is null	 
+	select @result = Code from ErrorLogin where Text='Fail'
+select @result Result
 go
 
 create procedure [Registration]
