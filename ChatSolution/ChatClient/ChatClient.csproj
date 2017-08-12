@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mapping\CurrentUserEventArgsExtension.cs" />
     <Compile Include="Mapping\LoginViewModelExtension.cs" />
     <Compile Include="Mapping\UserJoinedEventArgsExtension.cs" />
     <Compile Include="Mapping\RegistrationViewModelExtension.cs" />
