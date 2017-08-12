@@ -37,7 +37,6 @@ namespace ChatClient.ViewModel
                 new MessageManager(chatTransport));
             _chatClient.CurrentUserReceived += (sender, args) =>
             {
-                MessageBox.Show("");
                 _currentUser = args.Mapping<UserPartialModel>();
                 _currentUserReceived.Set();
             };
@@ -45,13 +44,11 @@ namespace ChatClient.ViewModel
                 "({0}) {1}: {2}\r\n", DateTime.Now, OnLineUsers.ToList().Find(u => u.Id == args.UserId), args.MessageText);
             _chatClient.OnlineUsersReceived += (sender, args) =>
             {
-                MessageBox.Show("");
                 if (args.Users == null) return;
                 foreach (var user in args.Users) OnLineUsers.Add(user);
             };
             _chatClient.UnreadMessagesReceived += (sender, args) =>
             {
-                //MessageBox.Show("");
                 if (args.Messages == null) return;
                 foreach (var message in args.Messages)
                     ChatBox += string.Format(
@@ -123,8 +120,9 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(sender =>
                 {
                     if (_currentUser == null) return;
-                    //_proxyChat.Logout(_user);
-                    //_proxyChat.Abort();
+                    _chatClient.Logout(this.Mapping<LogoutModel>());
+                    _currentUser = null;
+                    LoginInOut = new LoginControl();
                 });
             }
         }

@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mapping\ChatViewModelExtension.cs" />
     <Compile Include="Mapping\CurrentUserEventArgsExtension.cs" />
     <Compile Include="Mapping\LoginViewModelExtension.cs" />
     <Compile Include="Mapping\UserJoinedEventArgsExtension.cs" />
