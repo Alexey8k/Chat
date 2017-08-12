@@ -32,13 +32,12 @@ namespace ChatClient.ViewModel
                 new UserManager(chatTransport),
                 new MessageManager(chatTransport));
             _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<UserPartialModel>();
-            _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format("({0}) ", DateTime.Now);
-            _chatClient.OnlineUsersReceived += (sender, args) => {
-                foreach (var user in args.Users)
-                {
-                    OnLineUsers.Add(user);
-                }
-            }
+            _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format(
+                "({0}) {1}: {2}\r\n", DateTime.Now, OnLineUsers.ToList().Find(u => u.Id == args.UserId), args.MessageText);
+            _chatClient.OnlineUsersReceived += (sender, args) =>
+            {
+                foreach (var user in args.Users) OnLineUsers.Add(user);
+            };
         }
         public int UserId
         {
