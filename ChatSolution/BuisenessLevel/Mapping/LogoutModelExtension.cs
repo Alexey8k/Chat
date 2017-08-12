@@ -12,7 +12,7 @@ namespace BuisenessLevel.Mapping
     {
         public static T Mapping<T>(this LogoutModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<LoginModel, T>());
+            Mapper.Initialize(cfg => cfg.CreateMap<LogoutModel, T>());
             return Mapper.Map<LogoutModel, T>(obj);
         }
     }
