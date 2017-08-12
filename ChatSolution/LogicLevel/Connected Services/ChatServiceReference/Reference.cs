@@ -23,7 +23,7 @@ namespace LogicLevel.ChatServiceReference {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HashField;
+        private byte[] HashField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -36,7 +36,7 @@ namespace LogicLevel.ChatServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Hash {
+        public byte[] Hash {
             get {
                 return this.HashField;
             }
