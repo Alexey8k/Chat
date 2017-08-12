@@ -8,15 +8,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChatClient.Mapping;
 using LogicLevel;
+using LogicLevel.Model;
 
 namespace ChatClient.ViewModel
 {
-    class LoginViewModel
+    internal class LoginViewModel
     {
+        private PasswordBox _password;
+
         public string Login { get; set; }
 
-        private PasswordBox _password;
+        public string Password { get; set; }
 
         public IChatClient ChatClient { set; private get; }
 
@@ -31,6 +35,19 @@ namespace ChatClient.ViewModel
                         {
                             MessageBox.Show("Не все поля заполнены.");
                             return;
+                        }
+                        var result = ChatClient.Login(this.Mapping<LoginModel>()).Result;
+                        switch (result)
+                        {
+                            case LoginResult.Fail:
+                                MessageBox.Show("Не верный логин или пароль.");
+                                break;
+                            case LoginResult.Online:
+                                MessageBox.Show("Пользователь онлайн.");
+                                break;
+                            case LoginResult.Ok:
+                                ((LoginWindow)sender).DialogResult = true;
+                                break;
                         }
                     });
             }
@@ -54,8 +71,7 @@ namespace ChatClient.ViewModel
                 {
                     RegistrationWindow registrationWindow = new RegistrationWindow();
                     ((RegistrationViewModel)registrationWindow.DataContext).ChatClient = ChatClient;
-                    if (registrationWindow.ShowDialog() != true) return;
-                    //MessageBox.Show("Регистрация прошла успешно")
+                    registrationWindow.ShowDialog();
                 });
             }
         }

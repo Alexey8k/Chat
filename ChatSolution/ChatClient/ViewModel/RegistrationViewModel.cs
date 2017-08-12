@@ -49,11 +49,10 @@ namespace ChatClient.ViewModel
                             case RegistrationResult.Email:
                                 MessageBox.Show("Пользователь с такой почтой уже есть.");
                                 break;
-                            default:
+                            case RegistrationResult.Ok:
                                 ((RegistrationWindow) sender).DialogResult = true;
                                 break;
                         }
-
                     });
             }
         }

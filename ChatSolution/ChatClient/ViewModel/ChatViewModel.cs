@@ -3,6 +3,7 @@ using ChatClient.View;
 using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -32,6 +33,12 @@ namespace ChatClient.ViewModel
                 new MessageManager(chatTransport));
             _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<UserPartialModel>();
             _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format("({0}) ", DateTime.Now);
+            _chatClient.OnlineUsersReceived += (sender, args) => {
+                foreach (var user in args.Users)
+                {
+                    OnLineUsers.Add(user);
+                }
+            }
         }
         public int UserId
         {
@@ -63,6 +70,8 @@ namespace ChatClient.ViewModel
             }
         }
 
+        public ObservableCollection<UserPartialModel> OnLineUsers { get; set; }
+
         private UserControl _loginInOut = new LoginControl();
         public UserControl LoginInOut
         {
@@ -79,7 +88,7 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    LoginWindow loginWindow = new LoginWindow();
+                    var loginWindow = new LoginWindow();
                     ((LoginViewModel)loginWindow.DataContext).ChatClient = _chatClient;
                     if (loginWindow.ShowDialog() != true) return;
                     LoginInOut = new LogoutControl();
