@@ -53,9 +53,9 @@ namespace LogicLevel
             remove { _messageManager.UnreadMessagesReceived -= value; }
         }
 
-        public LoginResultModel Login(LoginModel obj)
+        public async Task<LoginResultModel> Login(LoginModel obj)
         {
-            return _authorizationManager.Login(obj);
+            return await _authorizationManager.Login(obj);
         }
 
         public void Logout(LogoutModel obj)

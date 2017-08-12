@@ -18,9 +18,9 @@ namespace LogicLevel
             _chatTransport = chatTransport;
             _hashAlgorithm = hashAlgorithm;
         }
-        public LoginResultModel Login(LoginModel obj)
+        public async Task<LoginResultModel> Login(LoginModel obj)
         {
-            return _chatTransport.Login(obj.Mapping(_hashAlgorithm)).Mapping<LoginResultModel>();
+            return await Task.Run(() => _chatTransport.Login(obj.Mapping(_hashAlgorithm)).Mapping<LoginResultModel>());
         }
 
         public void Logout(LogoutModel obj)

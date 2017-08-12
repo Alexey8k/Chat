@@ -22,7 +22,7 @@ namespace LogicLevel
 
         event EventHandler<UnreadMessagesEventArgs> UnreadMessagesReceived;
 
-        LoginResultModel Login(LoginModel obj);
+        Task<LoginResultModel> Login(LoginModel obj);
 
         void Logout(LogoutModel obj);
 
