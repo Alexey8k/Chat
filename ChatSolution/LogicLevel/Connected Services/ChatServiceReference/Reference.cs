@@ -429,6 +429,9 @@ namespace LogicLevel.ChatServiceReference {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int UserIdField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -436,6 +439,19 @@ namespace LogicLevel.ChatServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int UserId {
+            get {
+                return this.UserIdField;
+            }
+            set {
+                if ((this.UserIdField.Equals(value) != true)) {
+                    this.UserIdField = value;
+                    this.RaisePropertyChanged("UserId");
+                }
             }
         }
         
@@ -458,6 +474,9 @@ namespace LogicLevel.ChatServiceReference {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LogicLevel.ChatServiceReference.UserPartialTransportModel[] UsersField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -465,6 +484,19 @@ namespace LogicLevel.ChatServiceReference {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LogicLevel.ChatServiceReference.UserPartialTransportModel[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
             }
         }
         
