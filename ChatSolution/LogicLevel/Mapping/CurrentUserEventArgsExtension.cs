@@ -8,12 +8,12 @@ using LogicLevel.EventArg;
 
 namespace LogicLevel.Mapping
 {
-    public static class CurrentUserEventArgsExtension
-    {
-        public static T Mapping<T>(this CurrentUserEventArgs obj)
-        {
-            Mapper.Initialize(cfg => cfg.CreateMap<CurrentUserEventArgs, T>());
-            return Mapper.Map<CurrentUserEventArgs, T>(obj);
-        }
-    }
+    //public static class CurrentUserEventArgsExtension
+    //{
+    //    public static T Mapping<T>(this CurrentUserEventArgs obj)
+    //    {
+    //        Mapper.Initialize(cfg => cfg.CreateMap<CurrentUserEventArgs, T>());
+    //        return Mapper.Map<CurrentUserEventArgs, T>(obj);
+    //    }
+    //}
 }
