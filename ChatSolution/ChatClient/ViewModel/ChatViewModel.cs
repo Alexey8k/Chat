@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChatClient.Mapping;
 using LogicLevel;
 using LogicLevel.Mapping;
 using LogicLevel.Model;
@@ -38,6 +39,14 @@ namespace ChatClient.ViewModel
             {
                 foreach (var user in args.Users) OnLineUsers.Add(user);
             };
+            _chatClient.UnreadMessagesReceived += (sender, args) =>
+            {
+                foreach (var message in args.Messages)
+                    ChatBox += string.Format(
+                        "({0}) {1}: {2}\r\n", message.Date, OnLineUsers.ToList().Find(u => u.Id == message.UserId), message.MessageText);
+            };
+            _chatClient.OnUserJoined += (sender, args) => OnLineUsers.Add(args.Mapping<UserPartialModel>());
+            _chatClient.OnUserLeave += (sender, args) => OnLineUsers.Remove(args.Mapping<UserPartialModel>());
         }
         public int UserId
         {
