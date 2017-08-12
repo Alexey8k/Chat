@@ -1,95 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-using LogicLevel.ChatServiceReference;
 using LogicLevel.EventArg;
-using LogicLevel.Mapping;
 using LogicLevel.Model;
 
 namespace LogicLevel
 {
-    [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class ChatClient : IChatClient, IChatServiceCallback
+    public class ChatClient : IChatClient
     {
-        private readonly ChatServiceClient _proxyChat;
+        private readonly AuthorizationManager _authorizationManager;
 
-        public ChatClient()
+        private readonly UserManager _userManager;
+
+        private readonly MessageManager _messageManager;
+
+        public ChatClient(AuthorizationManager authorizationManager, UserManager userManager, MessageManager messageManager)
         {
-            _proxyChat = new ChatServiceClient(new InstanceContext(this));
+            _authorizationManager = authorizationManager;
+            _userManager = userManager;
+            _messageManager = messageManager;
         }
-        
-        #region IChatTransport
-
-        public event EventHandler<UserJoinedEventArgs> OnUserJoined;
-
-        public event EventHandler<UserLeavedEventArgs> OnUserLeave;
-
-        public event EventHandler<MessageReceivedEventArgs> OnMessageReceived;
-
-        public event EventHandler<OnlineUsersEventArgs> OnlineUsersReceived;
-
-        public event EventHandler<CurrentUserEventArgs> CurrentUserReceived;
-
-        public event EventHandler<UnreadMessagesEventArgs> UnreadMessagesReceived;
+        public event EventHandler<UserJoinedEventArgs> OnUserJoined
+        {
+            add { _userManager.OnUserJoined += value; }
+            remove { _userManager.OnUserJoined -= value; }
+        }
+        public event EventHandler<UserLeavedEventArgs> OnUserLeave
+        {
+            add { _userManager.OnUserLeave += value; }
+            remove { _userManager.OnUserLeave -= value; }
+        }
+        public event EventHandler<MessageReceivedEventArgs> OnMessageReceived
+        {
+            add { _messageManager.OnMessageReceived += value; }
+            remove { _messageManager.OnMessageReceived -= value; }
+        }
+        public event EventHandler<OnlineUsersEventArgs> OnlineUsersReceived
+        {
+            add { _userManager.OnlineUsersReceived += value; }
+            remove { _userManager.OnlineUsersReceived -= value; }
+        }
+        public event EventHandler<CurrentUserEventArgs> CurrentUserReceived
+        {
+            add { _userManager.CurrentUserReceived += value; }
+            remove { _userManager.CurrentUserReceived -= value; }
+        }
+        public event EventHandler<UnreadMessagesEventArgs> UnreadMessagesReceived
+        {
+            add { _messageManager.UnreadMessagesReceived += value; }
+            remove { _messageManager.UnreadMessagesReceived -= value; }
+        }
 
         public LoginResultModel Login(LoginModel obj)
         {
-            return _proxyChat.Login(obj.Mapping<LoginTransportModel>()).Mapping<LoginResultModel>();
+            return _authorizationManager.Login(obj);
         }
 
         public void Logout(LogoutModel obj)
         {
-            _proxyChat.Logout(obj.Mapping<LogoutTransportModel>());
+            _authorizationManager.Logout(obj);
         }
 
         public RegistrationResultModel Registration(RegistrationModel obj)
         {
-            return _proxyChat.Registration(obj.Mapping<RegistrationTransportModel>()).Mapping<RegistrationResultModel>();
+            return _authorizationManager.Registration(obj);
         }
 
         public void SendMessage(MessagePartialModel obj)
         {
-            _proxyChat.SendMessage(obj.Mapping<MessagePartialTransportModel>());
+            _messageManager.SendMessage(obj);
         }
-
-        #endregion
-
-
-        #region IChatServiceCallback
-
-        public void UserJoined(UserPartialTransportModel obj)
-        {
-            if (OnUserJoined != null) OnUserJoined(this, obj.Mapping<UserJoinedEventArgs>());
-        }
-
-        public void UserLeave(UserLeavedTransportModel obj)
-        {
-            if (OnUserLeave != null) OnUserLeave(this, obj.Mapping<UserLeavedEventArgs>());
-        }
-
-        public void MessageReceived(MessagePartialTransportModel obj)
-        {
-            if (OnMessageReceived != null) OnMessageReceived(this, obj.Mapping<MessageReceivedEventArgs>());
-        }
-
-        public void OnlineUsers(OnlineUsersTransportModel obj)
-        {
-            if (OnlineUsersReceived != null) OnlineUsersReceived(this, obj.Mapping<OnlineUsersEventArgs>());
-        }
-
-        public void CurrentUser(UserPartialTransportModel obj)
-        {
-            if (CurrentUserReceived != null) CurrentUserReceived(this, obj.Mapping<CurrentUserEventArgs>());
-        }
-
-        public void UnreadMessages(UnreadMessagesTransportModel obj)
-        {
-            if (UnreadMessagesReceived != null) UnreadMessagesReceived(this, obj.Mapping<UnreadMessagesEventArgs>());
-        }
-
-        #endregion
     }
 }

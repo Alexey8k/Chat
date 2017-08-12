@@ -8,6 +8,7 @@ namespace LogicLevel.Model
 {
    public class LoginModel
     {
-        public byte[] Hash { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
     }
 }
