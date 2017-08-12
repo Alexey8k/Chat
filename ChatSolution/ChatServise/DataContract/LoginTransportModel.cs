@@ -11,7 +11,7 @@ namespace ChatServise.DataContract
     public class LoginTransportModel //Вход
     {
         [DataMember]
-        public string Hash { get; set; }
+        public byte[] Hash { get; set; }
 
     }
 }
