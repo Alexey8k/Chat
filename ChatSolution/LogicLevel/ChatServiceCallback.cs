@@ -42,7 +42,7 @@ namespace LogicLevel
 
         public void OnlineUsers(OnlineUsersTransportModel obj)
         {
-            if (OnlineUsersReceived != null) OnlineUsersReceived(this, obj.Mapping<OnlineUsersEventArgs>());
+            if (OnlineUsersReceived != null) OnlineUsersReceived(this, obj.Mapping());
         }
 
         public void CurrentUser(UserPartialTransportModel obj)
@@ -52,7 +52,7 @@ namespace LogicLevel
 
         public void UnreadMessages(UnreadMessagesTransportModel obj)
         {
-            if (UnreadMessagesReceived != null) UnreadMessagesReceived(this, obj.Mapping<UnreadMessagesEventArgs>());
+            if (UnreadMessagesReceived != null) UnreadMessagesReceived(this, obj.Mapping());
         }
     }
 }

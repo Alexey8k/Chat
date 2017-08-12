@@ -5,15 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using LogicLevel.ChatServiceReference;
+using LogicLevel.EventArg;
+using LogicLevel.Model;
 
 namespace LogicLevel.Mapping
 {
     public static class OnlineUsersTransportModelExtension
     {
-        public static T Mapping<T>(this OnlineUsersTransportModel obj)
+        public static OnlineUsersEventArgs Mapping(this OnlineUsersTransportModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<OnlineUsersTransportModel, T>());
-            return Mapper.Map<OnlineUsersTransportModel, T>(obj);
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<OnlineUsersTransportModel, OnlineUsersEventArgs>();
+                cfg.CreateMap<UserPartialTransportModel, UserPartialModel>();
+            });
+            return Mapper.Map<OnlineUsersTransportModel, OnlineUsersEventArgs>(obj);
         }
     }
 }
