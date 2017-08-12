@@ -29,15 +29,15 @@ namespace ChatClient.ViewModel
             get
             {
                 return new ActionCommand(
-                    sender =>
+                    async sender =>
                     {
                         if (string.IsNullOrEmpty(Login) || _password == null || _password.Password.Length == 0)
                         {
                             MessageBox.Show("Не все поля заполнены.");
                             return;
                         }
-                        var result = ChatClient.Login(this.Mapping<LoginModel>()).Result;
-                        switch (result)
+                        var result = await ChatClient.Login(this.Mapping<LoginModel>());
+                        switch (result.Result)
                         {
                             case LoginResult.Fail:
                                 MessageBox.Show("Не верный логин или пароль.");
