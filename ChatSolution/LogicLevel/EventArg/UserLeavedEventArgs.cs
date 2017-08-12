@@ -8,6 +8,6 @@ namespace LogicLevel.EventArg
 {
     public class UserLeavedEventArgs : EventArgs
     {
-        public int UserId { get; set; }
+        public int Id { get; set; }
     }
 }
