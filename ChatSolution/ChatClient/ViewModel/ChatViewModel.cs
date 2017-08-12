@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +26,8 @@ namespace ChatClient.ViewModel
 
         private UserPartialModel _currentUser;
 
+        private AutoResetEvent _currentUserReceived = new AutoResetEvent(false);
+
         public ChatViewModel()
         {
             var chatTransport = new ChatTransport();
@@ -32,15 +35,24 @@ namespace ChatClient.ViewModel
                 new AuthorizationManager(chatTransport, new HashSHA1()),
                 new UserManager(chatTransport),
                 new MessageManager(chatTransport));
-            _chatClient.CurrentUserReceived += (sender, args) => _currentUser = args.Mapping<UserPartialModel>();
+            _chatClient.CurrentUserReceived += (sender, args) =>
+            {
+                MessageBox.Show("");
+                _currentUser = args.Mapping<UserPartialModel>();
+                _currentUserReceived.Set();
+            };
             _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format(
                 "({0}) {1}: {2}\r\n", DateTime.Now, OnLineUsers.ToList().Find(u => u.Id == args.UserId), args.MessageText);
             _chatClient.OnlineUsersReceived += (sender, args) =>
             {
+                MessageBox.Show("");
+                if (args.Users == null) return;
                 foreach (var user in args.Users) OnLineUsers.Add(user);
             };
             _chatClient.UnreadMessagesReceived += (sender, args) =>
             {
+                //MessageBox.Show("");
+                if (args.Messages == null) return;
                 foreach (var message in args.Messages)
                     ChatBox += string.Format(
                         "({0}) {1}: {2}\r\n", message.Date, OnLineUsers.ToList().Find(u => u.Id == message.UserId), message.MessageText);
@@ -99,6 +111,7 @@ namespace ChatClient.ViewModel
                     var loginWindow = new LoginWindow();
                     ((LoginViewModel)loginWindow.DataContext).ChatClient = _chatClient;
                     if (loginWindow.ShowDialog() != true) return;
+                    _currentUserReceived.WaitOne();
                     LoginInOut = new LogoutControl();
                 });
             }

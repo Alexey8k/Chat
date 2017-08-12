@@ -15,7 +15,7 @@
                 Command="{Binding LogoutCommand}" />
         <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center">
             <Hyperlink Command="{Binding CabinetCommand}">
-                <Run Text="{Binding Login}"/>
+                <Run Text="{Binding Login, Mode=OneWay}"/>
             </Hyperlink>
         </TextBlock>
     </DockPanel>
