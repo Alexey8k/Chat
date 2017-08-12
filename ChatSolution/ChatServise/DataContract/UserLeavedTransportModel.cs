@@ -10,6 +10,7 @@ namespace ChatServise.DataContract
     [DataContract]
     public class UserLeavedTransportModel
     {
+        [DataMember]
         public int UserId { get; set; }
     }
 }
