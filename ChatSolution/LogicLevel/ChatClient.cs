@@ -63,9 +63,9 @@ namespace LogicLevel
             _authorizationManager.Logout(obj);
         }
 
-        public RegistrationResultModel Registration(RegistrationModel obj)
+        public async Task<RegistrationResultModel> Registration(RegistrationModel obj)
         {
-            return _authorizationManager.Registration(obj);
+            return await _authorizationManager.Registration(obj);
         }
 
         public void SendMessage(MessagePartialModel obj)
