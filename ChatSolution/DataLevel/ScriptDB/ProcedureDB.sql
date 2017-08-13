@@ -42,12 +42,14 @@ as
 	values(@text,GETDATE(),@userId)
 go
 
-create procedure GetUnreadMessage
+create procedure GetUnreadMessages
 @userId int
 as
-select m.* from [Message] m
-	join [User] u on u.LastVisitDate<=m.Date
-	where u.Id=@userId
+select m.Id, m.Text, m.Date, u.Login from [User] u
+	join (select m.* from [Message] m
+			join [User] u on u.LastVisitDate<=m.Date
+			where u.Id=@userId) m 
+		on  m.UserId=u.Id
 go
 
 create procedure GetUser

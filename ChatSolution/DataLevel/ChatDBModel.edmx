@@ -17,7 +17,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Text" Type="varchar" MaxLength="140" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="140" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
@@ -26,7 +26,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Login" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="15" Nullable="false" />
           <Property Name="Hash" Type="varbinary" MaxLength="100" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="RegDate" Type="datetime" Nullable="false" />
@@ -86,7 +86,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" MaxLength="140" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="140" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="User" Relationship="ChatDbModel.FK_Message_User" FromRole="Message" ToRole="User" />
@@ -119,17 +119,17 @@
           <FunctionImport Name="GetUserPartial" ReturnType="Collection(ChatDbModel.UserPartialResult)">
           <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetUnreadMessages" ReturnType="Collection(ChatDbModel.MessageResult)">
-          <Parameter Name="userId" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="ErrorLogins" EntityType="ChatDbModel.ErrorLogin" />
+          <FunctionImport Name="GetUnreadMessages" ReturnType="Collection(ChatDbModel.MessageResult)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Hash" Type="Binary" Nullable="false" MaxLength="100" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -160,12 +160,6 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Login" Nullable="false" MaxLength="15" />
         </ComplexType>
-        <ComplexType Name="MessageResult">
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Text" Nullable="false" MaxLength="140" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
-          <Property Type="Int32" Name="UserId" Nullable="false" />
-        </ComplexType>
         <EntityType Name="ErrorLogin">
           <Key>
             <PropertyRef Name="Code" />
@@ -173,6 +167,12 @@
           <Property Name="Code" Type="Int32" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <ComplexType Name="MessageResult">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" MaxLength="140" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="15" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -225,16 +225,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetUnreadMessages" FunctionName="Хранилище ChatDbModel.GetUnreadMessages">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="ChatDbModel.MessageResult">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="ErrorLogins">
             <EntityTypeMapping TypeName="ChatDbModel.ErrorLogin">
               <MappingFragment StoreEntitySet="ErrorLogin">
@@ -243,6 +233,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetUnreadMessages" FunctionName="Хранилище ChatDbModel.GetUnreadMessages">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ChatDbModel.MessageResult">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
