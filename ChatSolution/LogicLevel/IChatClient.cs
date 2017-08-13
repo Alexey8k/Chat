@@ -26,7 +26,7 @@ namespace LogicLevel
 
         void Logout(LogoutModel obj);
 
-        RegistrationResultModel Registration(RegistrationModel obj);
+        Task<RegistrationResultModel> Registration(RegistrationModel obj);
 
         void SendMessage(MessagePartialModel obj);
     }
