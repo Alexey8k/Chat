@@ -70,6 +70,7 @@
     <Compile Include="Mapping\LoginResultModelExtension.cs" />
     <Compile Include="Mapping\LoginTransportModelExtension.cs" />
     <Compile Include="Mapping\LogoutTransportModelExtension.cs" />
+    <Compile Include="Mapping\MessagePartialTransportModelExtension.cs" />
     <Compile Include="Mapping\OnlineUsersResultModelExtension.cs" />
     <Compile Include="Mapping\RegistrationResultModelExtension.cs" />
     <Compile Include="Mapping\RegistrationTransportModelExtension.cs" />
