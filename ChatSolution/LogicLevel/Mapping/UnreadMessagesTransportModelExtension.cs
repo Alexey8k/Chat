@@ -17,7 +17,7 @@ namespace LogicLevel.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UnreadMessagesTransportModel, UnreadMessagesEventArgs>();
-                cfg.CreateMap<MessagePartialTransportModel, MessagePartialModel>();
+                cfg.CreateMap<MessageTransportModel, MessageModel>();
             });
             return Mapper.Map<UnreadMessagesTransportModel, UnreadMessagesEventArgs>(obj);
         }
