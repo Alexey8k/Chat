@@ -8,6 +8,8 @@ namespace BuisenessLevel.Model
 {
    public class LoginModel
     {
+        public string Login { get; set; }
+
         public byte[] Hash { get; set; }
     }
 }
