@@ -44,5 +44,10 @@ namespace BuisenessLevel
         {
             _users.Remove(_users.Find(u => u.Id == obj.UserId));
         }
+
+        public bool IsOnline(LoginModel obj)
+        {
+            return _users.Any(u => u.Login == obj.Login);
+        }
     }
 }

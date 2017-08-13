@@ -3,6 +3,7 @@
   <xs:complexType name="LoginTransportModel">
     <xs:sequence>
       <xs:element minOccurs="0" name="Hash" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="LoginTransportModel" nillable="true" type="tns:LoginTransportModel" />
