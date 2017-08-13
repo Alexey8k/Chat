@@ -30,7 +30,8 @@ namespace LogicLevel
 
         public async Task<RegistrationResultModel> Registration(RegistrationModel obj)
         {
-            return await _chatTransport.Registration(obj.Mapping(_hashAlgorithm)).Mapping<Task<RegistrationResultModel>>();
+            var res = await _chatTransport.Registration(obj.Mapping(_hashAlgorithm)).Mapping<Task<RegistrationResultModel>>();
+            return res;
         }
     }
 }
