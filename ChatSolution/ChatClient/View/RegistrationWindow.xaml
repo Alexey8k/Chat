@@ -27,7 +27,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Margin="3" Text="Логин:" Grid.Row="0" Grid.Column="0"/>
-        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding Login}"/>
+        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Margin="3" Text="Пароль:" Grid.Row="1" Grid.Column="0"/>
         <PasswordBox Margin="3" x:Name="Psw1" Grid.Row="1" Grid.Column="1">
