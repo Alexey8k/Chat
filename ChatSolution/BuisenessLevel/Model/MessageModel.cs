@@ -11,6 +11,6 @@ namespace BuisenessLevel.Model
         public int Id { get; set; }
         public string MessageText { get; set; }
         public DateTime Date { get; set; }
-        public int UserId { get; set; }
+        public string Login { get; set; }
     }
 }
