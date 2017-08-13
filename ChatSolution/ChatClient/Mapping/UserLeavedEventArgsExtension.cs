@@ -5,15 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using LogicLevel.EventArg;
+using LogicLevel.Model;
 
 namespace ChatClient.Mapping
 {
     internal static class UserLeavedEventArgsExtension
     {
-        public static T Mapping<T>(this UserLeavedEventArgs obj)
+        public static UserPartialModel Mapping(this UserLeavedEventArgs obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<UserLeavedEventArgs, T>());
-            return Mapper.Map<UserLeavedEventArgs, T>(obj);
+            Mapper.Initialize(cfg => cfg.CreateMap<UserLeavedEventArgs, UserPartialModel>().ForMember(u => u.Id,
+                opt => opt.MapFrom(u => u.UserId)));
+            return Mapper.Map<UserLeavedEventArgs, UserPartialModel>(obj);
         }
     }
 }

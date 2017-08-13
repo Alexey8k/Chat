@@ -24,6 +24,7 @@ namespace ChatClient.ViewModel
     class ChatViewModel : INotifyPropertyChanged
     {
         private readonly Dispatcher _dispatcher = Dispatcher.CurrentDispatcher;
+
         private readonly IChatClient _chatClient;
 
         private UserPartialModel _currentUser;
@@ -33,10 +34,12 @@ namespace ChatClient.ViewModel
         public ChatViewModel()
         {
             var chatTransport = new ChatTransport();
+
             _chatClient = new LogicLevel.ChatClient(
                 new AuthorizationManager(chatTransport, new HashSHA1()),
                 new UserManager(chatTransport),
                 new MessageManager(chatTransport));
+
             _chatClient.CurrentUserReceived += (sender, args) =>
             {
                 _currentUser = args.Mapping<UserPartialModel>();
@@ -64,8 +67,7 @@ namespace ChatClient.ViewModel
             _chatClient.OnUserLeave += (sender, args)
                 =>
             {
-                MessageBox.Show(args.Mapping<UserPartialModel>().Id + " received");
-                _dispatcher.Invoke(() => OnLineUsers.Remove(args.Mapping<UserPartialModel>()));
+                _dispatcher.Invoke(() => OnLineUsers.Remove(args.Mapping()));
             };
         }
         public int UserId
@@ -131,7 +133,6 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(sender =>
                 {
                     if (_currentUser == null) return;
-                    MessageBox.Show(this.Mapping<LogoutModel>().UserId + " send");
                     _chatClient.Logout(this.Mapping<LogoutModel>());
                     _currentUser = null;
                     LoginInOut = new LoginControl();
