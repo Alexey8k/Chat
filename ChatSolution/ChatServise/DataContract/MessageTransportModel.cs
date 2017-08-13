@@ -20,6 +20,6 @@ namespace ChatServise.DataContract
         public DateTime Date { get; set; }
 
         [DataMember]
-        public int UserId { get; set; }
+        public string Login { get; set; }
     }
 }
