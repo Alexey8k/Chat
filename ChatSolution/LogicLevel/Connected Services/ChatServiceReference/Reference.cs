@@ -587,10 +587,10 @@ namespace LogicLevel.ChatServiceReference {
         private int IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string MessageTextField;
+        private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int UserIdField;
+        private string MessageTextField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -629,6 +629,19 @@ namespace LogicLevel.ChatServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string MessageText {
             get {
                 return this.MessageTextField;
@@ -637,19 +650,6 @@ namespace LogicLevel.ChatServiceReference {
                 if ((object.ReferenceEquals(this.MessageTextField, value) != true)) {
                     this.MessageTextField = value;
                     this.RaisePropertyChanged("MessageText");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int UserId {
-            get {
-                return this.UserIdField;
-            }
-            set {
-                if ((this.UserIdField.Equals(value) != true)) {
-                    this.UserIdField = value;
-                    this.RaisePropertyChanged("UserId");
                 }
             }
         }
