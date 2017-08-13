@@ -39,7 +39,8 @@ namespace BuisenessLevel
 
         public LoginResultModel Login(LoginModel obj)
         {
-            return _authorizationManager.Login(obj);
+            return _userManager.IsOnline(obj) ? 
+                new LoginResultModel { Result = LoginResult.Online } : _authorizationManager.Login(obj);
         }
 
         public void Logout(LogoutModel obj)
