@@ -13,7 +13,8 @@ namespace DataLevel
     {
         public UnreadMessagesResultDataModel GetUnreadMessages(LoginSuccessDataModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<MessageResult, MessageDataModel>());
+            Mapper.Initialize(cfg => cfg.CreateMap<MessageResult, MessageDataModel>().ForMember(
+                m => m.MessageText, opt => opt.MapFrom(m => m.Text)));
             return new UnreadMessagesResultDataModel
             {
                 Messages = Mapper.Map<ObjectResult<MessageResult>, MessageDataModel[]>(_chatDb.GetUnreadMessages(obj.UserId))
