@@ -38,6 +38,7 @@
                 Margin="3"
                 Padding="7,0"
                 IsDefault="True"
+                IsEnabled="{Binding ButtonIsEnabled}"
                 Command="{Binding LoginCommand}"
                 CommandParameter="{Binding ElementName=Window}"/>
             <TextBlock Margin="3" VerticalAlignment="Bottom">

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +16,7 @@ using LogicLevel.Model;
 
 namespace ChatClient.ViewModel
 {
-    class RegistrationViewModel
+    class RegistrationViewModel : INotifyPropertyChanged
     {
         public string Login { get; set; }
 
@@ -28,6 +30,18 @@ namespace ChatClient.ViewModel
 
         public IChatClient ChatClient { set; private get; }
 
+        private bool _buttonIsEnabled = true;
+
+        public bool ButtonIsEnabled
+        {
+            get { return _buttonIsEnabled; }
+            private set
+            {
+                _buttonIsEnabled = value;
+                OnPropertyChanged("ButtonIsEnabled");
+            }
+        }
+
         public ICommand RegistrationCommand
         {
             get
@@ -35,18 +49,21 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(
                     sender =>
                     {
-                        if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1.Password != _password2.Password )
+                        if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1.Password != _password2.Password)
                         {
                             MessageBox.Show("Не все поля заполнены или пароли не совпадают.");
                             return;
                         }
+                        ButtonIsEnabled = false;
                         var result = ChatClient.Registration(this.Mapping<RegistrationModel>()).Result;
                         switch (result)
                         {
                             case RegistrationResult.Login:
+                                ButtonIsEnabled = true;
                                 MessageBox.Show("Данный логин уже занят.");
                                 break;
                             case RegistrationResult.Email:
+                                ButtonIsEnabled = true;
                                 MessageBox.Show("Пользователь с такой почтой уже есть.");
                                 break;
                             case RegistrationResult.Ok:
@@ -78,5 +95,12 @@ namespace ChatClient.ViewModel
             }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            if (PropertyChanged == null) return;
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

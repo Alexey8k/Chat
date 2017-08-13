@@ -14,7 +14,7 @@
     <Window.DataContext>
         <Binding Source="{StaticResource RegistrationViewModel}"/>
     </Window.DataContext>
-    <Grid Margin="3">
+    <Grid Margin="3" FocusManager.FocusedElement="{Binding ElementName=Login}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="190"/>
@@ -27,10 +27,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Margin="3" Text="Логин:" Grid.Row="0" Grid.Column="0"/>
-        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Margin="3" Grid.Row="0" Grid.Column="1" x:Name="Login" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <TextBlock Margin="3" Text="Пароль:" Grid.Row="1" Grid.Column="0"/>
-        <PasswordBox Margin="3" x:Name="Psw1" Grid.Row="1" Grid.Column="1">
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" Text="Пароль:"/>
+        <PasswordBox Grid.Row="1" Grid.Column="1" Margin="3" x:Name="Psw1">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PasswordChanged">
                     <i:InvokeCommandAction Command="{Binding Psw1Command}"
@@ -39,8 +39,8 @@
             </i:Interaction.Triggers>
         </PasswordBox>
 
-        <TextBlock Margin="3" Text="Повторите пароль:" Grid.Row="2" Grid.Column="0"/>
-        <PasswordBox Margin="3" x:Name="Psw2" Grid.Row="2" Grid.Column="1" >
+        <TextBlock Grid.Row="2" Grid.Column="0" Margin="3" Text="Повторите пароль:"/>
+        <PasswordBox Grid.Row="2" Grid.Column="1" Margin="3" x:Name="Psw2" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="PasswordChanged">
                     <i:InvokeCommandAction Command="{Binding Psw2Command}"
@@ -48,12 +48,15 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </PasswordBox>
-        <TextBlock Margin="3" Text="Почта:" Grid.Row="3" Grid.Column="0"/>
-        <TextBox Margin="3" Grid.Row="3" Grid.Column="1" Text="{Binding Email}"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="Почта:" Margin="3" />
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
 
-        <Button Margin="3" Grid.Row="8" Grid.ColumnSpan="2" 
+        <Button Grid.Row="4" Grid.ColumnSpan="2"
+                Margin="3" 
                 Padding="7,3"
                 Content="Регистрация" 
+                IsDefault="True"
+                IsEnabled="{Binding ButtonIsEnabled}"
                 HorizontalAlignment="Center"
                 Command="{Binding RegistrationCommand}"
                 CommandParameter="{Binding ElementName=Window}"/>

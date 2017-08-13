@@ -2,7 +2,9 @@
 using Microsoft.Expression.Interactivity.Core;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,7 +16,7 @@ using LogicLevel.Model;
 
 namespace ChatClient.ViewModel
 {
-    internal class LoginViewModel
+    internal class LoginViewModel : INotifyPropertyChanged
     {
         private PasswordBox _password;
 
@@ -23,6 +25,18 @@ namespace ChatClient.ViewModel
         public string Password { get { return _password.Password; } }
 
         public IChatClient ChatClient { set; private get; }
+
+        private bool _buttonIsEnabled = true;
+
+        public bool ButtonIsEnabled
+        {
+            get { return _buttonIsEnabled; }
+            private set
+            {
+                _buttonIsEnabled = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand LoginCommand
         {
@@ -36,13 +50,16 @@ namespace ChatClient.ViewModel
                             MessageBox.Show("Не все поля заполнены.");
                             return;
                         }
+                        ButtonIsEnabled = false;
                         var result = await ChatClient.Login(this.Mapping<LoginModel>());
                         switch (result.Result)
                         {
                             case LoginResult.Fail:
+                                ButtonIsEnabled = true;
                                 MessageBox.Show("Не верный логин или пароль.");
                                 break;
                             case LoginResult.Online:
+                                ButtonIsEnabled = true;
                                 MessageBox.Show("Пользователь онлайн.");
                                 break;
                             case LoginResult.Ok:
@@ -74,6 +91,14 @@ namespace ChatClient.ViewModel
                     registrationWindow.ShowDialog();
                 });
             }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            if (PropertyChanged == null) return;
+            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
