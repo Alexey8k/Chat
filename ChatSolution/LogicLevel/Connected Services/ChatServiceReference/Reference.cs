@@ -25,6 +25,9 @@ namespace LogicLevel.ChatServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] HashField;
         
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LoginField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -44,6 +47,19 @@ namespace LogicLevel.ChatServiceReference {
                 if ((object.ReferenceEquals(this.HashField, value) != true)) {
                     this.HashField = value;
                     this.RaisePropertyChanged("Hash");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Login {
+            get {
+                return this.LoginField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
+                    this.LoginField = value;
+                    this.RaisePropertyChanged("Login");
                 }
             }
         }
