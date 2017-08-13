@@ -61,8 +61,12 @@ namespace ChatClient.ViewModel
             };
             _chatClient.OnUserJoined += (sender, args) 
                 => _dispatcher.Invoke(() => OnLineUsers.Add(args.Mapping<UserPartialModel>()));
-            _chatClient.OnUserLeave += (sender, args) 
-                => _dispatcher.Invoke(() => OnLineUsers.Remove(args.Mapping<UserPartialModel>()));
+            _chatClient.OnUserLeave += (sender, args)
+                =>
+            {
+                MessageBox.Show(args.Mapping<UserPartialModel>().Id + " received");
+                _dispatcher.Invoke(() => OnLineUsers.Remove(args.Mapping<UserPartialModel>()));
+            };
         }
         public int UserId
         {
@@ -127,6 +131,7 @@ namespace ChatClient.ViewModel
                 return new ActionCommand(sender =>
                 {
                     if (_currentUser == null) return;
+                    MessageBox.Show(this.Mapping<LogoutModel>().UserId + " send");
                     _chatClient.Logout(this.Mapping<LogoutModel>());
                     _currentUser = null;
                     LoginInOut = new LoginControl();
