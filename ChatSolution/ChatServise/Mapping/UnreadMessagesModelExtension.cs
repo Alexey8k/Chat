@@ -16,7 +16,7 @@ namespace ChatServise.Mapping
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<UnreadMessagesResultModel, UnreadMessagesTransportModel>();
-                cfg.CreateMap<MessagePartialModel, MessagePartialTransportModel>();
+                cfg.CreateMap<MessageModel, MessageTransportModel>();
             });
             return Mapper.Map<UnreadMessagesResultModel, UnreadMessagesTransportModel>(obj);
         }
