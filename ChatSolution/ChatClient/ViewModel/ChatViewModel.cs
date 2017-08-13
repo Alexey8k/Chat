@@ -60,7 +60,7 @@ namespace ChatClient.ViewModel
                 if (args.Messages == null) return;
                 foreach (var message in args.Messages)
                     ChatBox += string.Format(
-                        "({0}) {1}: {2}\r\n", message.Date, message.UserId, message.MessageText);
+                        "({0}) {1}: {2}\r\n", message.Date, message.Login, message.MessageText);
             };
             _chatClient.OnUserJoined += (sender, args)
                 => _dispatcher.Invoke(() => OnLineUsers.Add(args.Mapping<UserPartialModel>()));
