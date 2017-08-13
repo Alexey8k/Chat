@@ -10,10 +10,10 @@ namespace LogicLevel.Mapping
 {
     public static class RegistrationResultTransportModelExtension
     {
-        public static T Mapping<T>(this Task<RegistrationResultTransportModel> obj)
+        public static T Mapping<T>(this RegistrationResultTransportModel obj)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<Task<RegistrationResultTransportModel>, T>());
-            return Mapper.Map<Task<RegistrationResultTransportModel>, T>(obj);
+            Mapper.Initialize(cfg => cfg.CreateMap<RegistrationResultTransportModel, T>());
+            return Mapper.Map<RegistrationResultTransportModel, T>(obj);
         }
     }
 }
