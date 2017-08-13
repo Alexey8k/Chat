@@ -28,9 +28,9 @@ namespace LogicLevel
             _chatTransport.Logout(obj.Mapping<LogoutTransportModel>());
         }
 
-        public RegistrationResultModel Registration(RegistrationModel obj)
+        public async Task<RegistrationResultModel> Registration(RegistrationModel obj)
         {
-            return _chatTransport.Registration(obj.Mapping(_hashAlgorithm)).Mapping<RegistrationResultModel>();
+            return await _chatTransport.Registration(obj.Mapping(_hashAlgorithm)).Mapping<Task<RegistrationResultModel>>();
         }
     }
 }
