@@ -47,7 +47,7 @@ namespace ChatClient.ViewModel
             get
             {
                 return new ActionCommand(
-                    sender =>
+                    async sender =>
                     {
                         if (string.IsNullOrEmpty(Login) || _password1 == null || _password1.Password.Length == 0 || Email.Length == 0 || _password1.Password != _password2.Password)
                         {
@@ -55,8 +55,8 @@ namespace ChatClient.ViewModel
                             return;
                         }
                         ButtonIsEnabled = false;
-                        var result = ChatClient.Registration(this.Mapping<RegistrationModel>()).Result;
-                        switch (result)
+                        var result = await ChatClient.Registration(this.Mapping<RegistrationModel>());
+                        switch (result.Result)
                         {
                             case RegistrationResult.Login:
                                 ButtonIsEnabled = true;
