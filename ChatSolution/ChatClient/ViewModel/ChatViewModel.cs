@@ -60,7 +60,7 @@ namespace ChatClient.ViewModel
                 if (args.Messages == null) return;
                 foreach (var message in args.Messages)
                     ChatBox += string.Format(
-                        "({0}) {1}: {2}\r\n", message.Date, message.UserId/*OnLineUsers.ToList().Find(u => u.Id == message.UserId).Login*/, message.MessageText);
+                        "({0}) {1}: {2}\r\n", message.Date, message.UserId, message.MessageText);
             };
             _chatClient.OnUserJoined += (sender, args)
                 => _dispatcher.Invoke(() => OnLineUsers.Add(args.Mapping<UserPartialModel>()));
@@ -134,6 +134,7 @@ namespace ChatClient.ViewModel
                 {
                     if (_currentUser == null) return;
                     _chatClient.Logout(this.Mapping<LogoutModel>());
+                    if (sender != null) return;
                     _currentUser = null;
                     LoginInOut = new LoginControl();
                     OnLineUsers.Clear();
@@ -159,6 +160,7 @@ namespace ChatClient.ViewModel
                 {
                     if (string.IsNullOrEmpty(MessageText) || string.IsNullOrWhiteSpace(MessageText)) return;
                     _chatClient.SendMessage(this.Mapping<MessagePartialModel>());
+                    ChatBox += string.Format("({0}) {1}: {2}\r\n", DateTime.Now, Login, MessageText);
                     MessageText = string.Empty;
                 });
             }

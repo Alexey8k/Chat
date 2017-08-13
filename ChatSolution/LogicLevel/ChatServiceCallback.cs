@@ -13,7 +13,7 @@ namespace LogicLevel
     [CallbackBehavior(ConcurrencyMode = ConcurrencyMode.Multiple)]
     internal class ChatServiceCallback : IChatServiceCallback
     {
-        private object _locker = new object();
+        private readonly object _locker = new object();
 
         public event EventHandler<UserJoinedEventArgs> OnUserJoined;
 

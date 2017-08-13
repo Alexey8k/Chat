@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:uc="clr-namespace:ChatClient.UserControls"
         xmlns:viewModel="clr-namespace:ChatClient.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         Title="Чат" Height="500" Width="725">
     <Window.Resources >
         <viewModel:ChatViewModel x:Key="ChatViewModel"/>
@@ -10,6 +11,12 @@
     <Window.DataContext>
         <Binding Source="{StaticResource ChatViewModel}"/>
     </Window.DataContext>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding LogoutCommand}"
+                                   CommandParameter="0"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid Margin="3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -37,12 +44,13 @@
         <ListBox Margin="3" Grid.Column="1" Grid.Row="1" x:Name="ListBox"
                  ItemsSource="{Binding OnLineUsers}" DisplayMemberPath="Login"/>
 
-        <DockPanel Grid.ColumnSpan="2" Grid.Row="2" FocusManager.FocusedElement="{Binding ElementName=Message}">
+        <DockPanel Grid.ColumnSpan="2" Grid.Row="2" 
+                   FocusManager.FocusedElement="{Binding ElementName=Message}"
+                   IsEnabled="{Binding ElementName=ListBox, Path=Items.Count}">
             <Button Margin="3"
                     Padding="7,3" 
                     Content="Отправить" 
                     DockPanel.Dock="Right" 
-                    IsEnabled="{Binding ElementName=ListBox, Path=Items.Count}" 
                     Command="{Binding SendMessageCommamd}"/>
             <TextBox Margin="3" x:Name="Message" Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TextBox.InputBindings>
