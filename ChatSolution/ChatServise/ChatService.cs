@@ -45,6 +45,7 @@ namespace ChatServise
 
         public void SendMessage(MessagePartialTransportModel obj)    // отправить сообщение
         {
+            _chat.ReceivedMessage(obj.Mapping<MessagePartialModel>());
             _messenger.SendMessage(obj);
         }
 
