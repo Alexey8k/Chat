@@ -26,17 +26,23 @@
             <Label Content="Чат" Margin="3,0" FontSize="33" FontFamily="Comic Sans MS" Foreground="DeepPink"/>
         </DockPanel>
 
-        <TextBox Margin="3" Grid.Column="0" Grid.Row="1" Text="{Binding ChatBox}" TextWrapping="WrapWithOverflow" IsReadOnly="True"/>
+        <TextBox Margin="3" Grid.Column="0" Grid.Row="1" 
+                Text="{Binding ChatBox}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                TextWrapping="WrapWithOverflow" 
+                IsReadOnly="True"/>
 
         <GridSplitter Grid.Row="1" Width="3" Background="Transparent"/>
 
-        <ListBox Margin="3" Grid.Column="1" Grid.Row="1" ItemsSource="{Binding OnLineUsers}" DisplayMemberPath="Login"/>
+        <ListBox Margin="3" Grid.Column="1" Grid.Row="1" x:Name="ListBox"
+                 ItemsSource="{Binding OnLineUsers}" DisplayMemberPath="Login"/>
 
         <DockPanel Grid.ColumnSpan="2" Grid.Row="2" FocusManager.FocusedElement="{Binding ElementName=Message}">
             <Button Margin="3"
                     Padding="7,3" 
                     Content="Отправить" 
                     DockPanel.Dock="Right" 
+                    IsEnabled="{Binding ElementName=ListBox, Path=Items.Count}" 
                     Command="{Binding SendMessageCommamd}"/>
             <TextBox Margin="3" x:Name="Message" Text="{Binding MessageText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <TextBox.InputBindings>

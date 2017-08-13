@@ -46,7 +46,7 @@ namespace ChatClient.ViewModel
                 _currentUserReceived.Set();
             };
             _chatClient.OnMessageReceived += (sender, args) => ChatBox += string.Format(
-                "({0}) {1}: {2}\r\n", DateTime.Now, OnLineUsers.ToList().Find(u => u.Id == args.UserId), args.MessageText);
+                "({0}) {1}: {2}\r\n", DateTime.Now, OnLineUsers.ToList().Find(u => u.Id == args.UserId).Login, args.MessageText);
             _chatClient.OnlineUsersReceived += (sender, args) =>
             {
                 if (args.Users == null) return;
@@ -60,9 +60,9 @@ namespace ChatClient.ViewModel
                 if (args.Messages == null) return;
                 foreach (var message in args.Messages)
                     ChatBox += string.Format(
-                        "({0}) {1}: {2}\r\n", message.Date, OnLineUsers.ToList().Find(u => u.Id == message.UserId), message.MessageText);
+                        "({0}) {1}: {2}\r\n", message.Date, OnLineUsers.ToList().Find(u => u.Id == message.UserId).Login, message.MessageText);
             };
-            _chatClient.OnUserJoined += (sender, args) 
+            _chatClient.OnUserJoined += (sender, args)
                 => _dispatcher.Invoke(() => OnLineUsers.Add(args.Mapping<UserPartialModel>()));
             _chatClient.OnUserLeave += (sender, args)
                 =>
@@ -137,6 +137,7 @@ namespace ChatClient.ViewModel
                     _currentUser = null;
                     LoginInOut = new LoginControl();
                     OnLineUsers.Clear();
+                    ChatBox = string.Empty;
                 });
             }
         }
@@ -146,7 +147,7 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    
+
                 });
             }
         }
@@ -156,7 +157,8 @@ namespace ChatClient.ViewModel
             {
                 return new ActionCommand(sender =>
                 {
-                    MessageBox.Show(MessageText);
+                    if (string.IsNullOrEmpty(MessageText) || string.IsNullOrWhiteSpace(MessageText)) return;
+                    _chatClient.SendMessage(this.Mapping<MessagePartialModel>());
                     MessageText = string.Empty;
                 });
             }
@@ -165,8 +167,8 @@ namespace ChatClient.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            if(PropertyChanged!=null)
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (PropertyChanged != null)
+                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
