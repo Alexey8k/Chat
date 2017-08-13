@@ -65,8 +65,7 @@ namespace LogicLevel
 
         public async Task<RegistrationResultModel> Registration(RegistrationModel obj)
         {
-            var res = await _authorizationManager.Registration(obj);
-            return res;
+            return await _authorizationManager.Registration(obj);
         }
 
         public void SendMessage(MessagePartialModel obj)

@@ -69,8 +69,7 @@ namespace LogicLevel
 
         internal async Task<RegistrationResultTransportModel> Registration(RegistrationTransportModel obj)
         {
-            var res = await _proxyChat.RegistrationAsync(obj);
-            return res;
+            return await _proxyChat.RegistrationAsync(obj);
         }
 
         internal void SendMessage(MessagePartialTransportModel obj)

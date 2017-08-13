@@ -12,11 +12,7 @@ namespace LogicLevel.Mapping
     {
         public static T Mapping<T>(this Task<RegistrationResultTransportModel> obj)
         {
-            Mapper.Initialize(cfg =>
-            {
-                cfg.CreateMap<Task<RegistrationResultTransportModel>, T>();
-                cfg.CreateMap<RegistrationResultTransportModel, T>();
-            });
+            Mapper.Initialize(cfg => cfg.CreateMap<Task<RegistrationResultTransportModel>, T>());
             return Mapper.Map<Task<RegistrationResultTransportModel>, T>(obj);
         }
     }
