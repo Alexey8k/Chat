@@ -101,8 +101,12 @@ namespace ChatClient.ViewModel
         }
 
         private ObservableCollection<UserPartialModel> _onlineUsers = new ObservableCollection<UserPartialModel>();
+
         public ObservableCollection<UserPartialModel> OnLineUsers
-        { get { return _onlineUsers; } set { _onlineUsers = value; } } 
+        {
+            get { return _onlineUsers; }
+            set { _onlineUsers = value; }
+        }
 
         private UserControl _loginInOut = new LoginControl();
         public UserControl LoginInOut
