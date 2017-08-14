@@ -9,13 +9,13 @@ namespace BuisenessLevel
 {
     public class Chat : IChat
     {
-        private readonly UserManager _userManager;
+        private readonly IUserManager _userManager;
 
-        private readonly AuthorizationManager _authorizationManager;
+        private readonly IAuthorizationManager _authorizationManager;
 
-        private readonly MessageManager _messageManager;
+        private readonly IMessageManager _messageManager;
 
-        public Chat(UserManager userManager, AuthorizationManager authorizationManager, MessageManager messageManager)
+        public Chat(IUserManager userManager, IAuthorizationManager authorizationManager, IMessageManager messageManager)
         {
             _userManager = userManager;
             _authorizationManager = authorizationManager;

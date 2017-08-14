@@ -10,7 +10,7 @@ using DataLevel.Model;
 
 namespace BuisenessLevel
 {
-    public class MessageManager
+    public class MessageManager : IMessageManager
     {
         private readonly IChatDb _chatDb;
 
