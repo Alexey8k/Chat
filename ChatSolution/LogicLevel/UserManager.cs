@@ -7,7 +7,7 @@ using LogicLevel.EventArg;
 
 namespace LogicLevel
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly ChatTransport _chatTransport;
 

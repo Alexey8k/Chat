@@ -10,7 +10,7 @@ using LogicLevel.Model;
 
 namespace LogicLevel
 {
-    public class MessageManager
+    public class MessageManager : IMessageManager
     {
         private readonly ChatTransport _chatTransport;
 
