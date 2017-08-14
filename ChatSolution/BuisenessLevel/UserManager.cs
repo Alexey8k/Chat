@@ -10,7 +10,7 @@ using BuisenessLevel.Mapping;
 
 namespace BuisenessLevel
 {
-    public class UserManager
+    public class UserManager : IUserManager
     {
         private readonly IChatDb _chatDb;
 

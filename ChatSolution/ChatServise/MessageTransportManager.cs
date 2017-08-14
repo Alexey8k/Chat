@@ -12,7 +12,7 @@ using ChatServise.Mapping;
 
 namespace ChatServise
 {
-    public class MessageTransportManager
+    internal class MessageTransportManager
     {
         private readonly IChat _chat;
 

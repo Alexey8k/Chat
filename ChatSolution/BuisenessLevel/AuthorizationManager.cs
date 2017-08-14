@@ -11,7 +11,7 @@ using DataLevel.Model;
 
 namespace BuisenessLevel
 {
-    public class AuthorizationManager
+    public class AuthorizationManager : IAuthorizationManager
     {
         private readonly IChatDb _chatDb;
 

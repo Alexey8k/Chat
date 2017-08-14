@@ -46,7 +46,10 @@
   <ItemGroup>
     <Compile Include="AuthorizationManager.cs" />
     <Compile Include="Chat.cs" />
+    <Compile Include="IAuthorizationManager.cs" />
     <Compile Include="IChat.cs" />
+    <Compile Include="IMessageManager.cs" />
+    <Compile Include="IUserManager.cs" />
     <Compile Include="Mapping\LoginSuccessModelExtension.cs" />
     <Compile Include="Mapping\LogoutModelExtension.cs" />
     <Compile Include="Mapping\MessageReceiveModelExtension.cs" />
