@@ -10,13 +10,13 @@ namespace LogicLevel
 {
     public class ChatClient : IChatClient
     {
-        private readonly AuthorizationManager _authorizationManager;
+        private readonly IAuthorizationManager _authorizationManager;
 
-        private readonly UserManager _userManager;
+        private readonly IUserManager _userManager;
 
-        private readonly MessageManager _messageManager;
+        private readonly IMessageManager _messageManager;
 
-        public ChatClient(AuthorizationManager authorizationManager, UserManager userManager, MessageManager messageManager)
+        public ChatClient(IAuthorizationManager authorizationManager, IUserManager userManager, IMessageManager messageManager)
         {
             _authorizationManager = authorizationManager;
             _userManager = userManager;

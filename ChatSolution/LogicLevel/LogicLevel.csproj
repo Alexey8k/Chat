@@ -60,8 +60,11 @@
     <Compile Include="EventArg\UserJoinedEventArgs.cs" />
     <Compile Include="EventArg\UserLeavedEventArgs.cs" />
     <Compile Include="HashSHA1.cs" />
+    <Compile Include="IAuthorizationManager.cs" />
     <Compile Include="IChatClient.cs" />
     <Compile Include="IHashAlgorithm.cs" />
+    <Compile Include="IMessageManager.cs" />
+    <Compile Include="IUserManager.cs" />
     <Compile Include="Mapping\LoginModelExtension.cs" />
     <Compile Include="Mapping\LoginResultTransportModelExtension.cs" />
     <Compile Include="Mapping\LogoutModelExtension.cs" />

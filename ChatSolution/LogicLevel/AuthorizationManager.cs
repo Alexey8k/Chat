@@ -9,7 +9,7 @@ using LogicLevel.Model;
 
 namespace LogicLevel
 {
-    public class AuthorizationManager
+    public class AuthorizationManager : IAuthorizationManager
     {
         private readonly ChatTransport _chatTransport;
         private readonly IHashAlgorithm _hashAlgorithm;
